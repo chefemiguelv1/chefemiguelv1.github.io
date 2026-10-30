@@ -195,7 +195,7 @@
 
   /* ── bar: solid past the hero, dark over dark bands, current link ───── */
   var bar = $('#bar'), hero = $('.hero');
-  var darks = $$('.projects, .contact, .foot');
+  var darks = $$('.projects, .contact');
   var links = $$('.bar__nav a');
   function onScroll() {
     bar.classList.toggle('is-solid', hero.getBoundingClientRect().bottom <= 70);
