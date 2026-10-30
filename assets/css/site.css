@@ -871,3 +871,7 @@ a.clip { display: block; text-decoration: none; color: inherit; }
 .foot__cols { grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, .7fr); }
 @media (max-width: 1100px) { .foot__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .foot__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.foot__credit { align-items: center; justify-content: space-between; }
+.foot__credit .etiqueta-mawebs { flex: none; }
+@media (max-width: 760px) { .foot__credit { align-items: flex-start; } }
+.foot__credit .etiqueta-mawebs, .foot__credit .etiqueta-mawebs:hover { color: #1a1a1c; }
