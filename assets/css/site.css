@@ -880,3 +880,8 @@ a.clip { display: block; text-decoration: none; color: inherit; }
 .foot__badge .etiqueta-mawebs { color: #1a1a1c; }
 .foot .foot__credit { grid-column: 1 / -1; justify-content: center; text-align: center; margin-top: clamp(1rem, 3vw, 2rem); padding-top: 1.75rem; border-top: 1px solid var(--line); }
 @media (max-width: 760px) { .foot .foot__credit { align-items: center; } }
+/* badge closer to the columns, no rule under it */
+.foot { row-gap: 0; padding-top: clamp(3rem, 5vw, 4rem); }
+.foot__badge { border-bottom: 0; padding-bottom: 0; margin-bottom: clamp(2rem, 3.5vw, 2.75rem); }
+.foot .foot__credit { margin-top: clamp(2rem, 4vw, 3rem); }
+@media (max-width: 760px) { .foot__side { margin-bottom: 2rem; } }
