@@ -834,3 +834,8 @@ a.clip { display: block; text-decoration: none; color: inherit; }
   .foot__row { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 760px) { .foot__legal { justify-content: flex-start; text-align: left; } .foot__row { text-align: left; } }
+
+/* footer: MA Webs centred above the legal links */
+.foot__made { display: flex; justify-content: center; padding-bottom: 2rem; border-bottom: 1px solid rgba(242,237,228,.14); }
+.foot .foot__legal { justify-content: center; text-align: center; border-bottom: 0; padding: 1.75rem 0 .75rem; }
+.foot__copy { text-align: center; font-size: .75rem; letter-spacing: .04em; color: rgba(242,237,228,.55); }
