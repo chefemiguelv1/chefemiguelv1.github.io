@@ -23,7 +23,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+html { scroll-behavior: smooth; scroll-padding-top: 60px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -212,6 +212,8 @@ body.locked { overflow: hidden; }
 .igw__grid a:hover::after { opacity: 1; }
 .igw__end { padding: 1.4rem; text-align: center; border-top: 1px solid #EFEFEF; }
 .igw__end a { font-size: .88rem; font-weight: 600; color: #4A5DF9 !important; }
+.igw__short, .igw__more { display: none; }
+.igw__more { width: 100%; margin-bottom: .9rem; padding: .7rem; border: 1px solid #DBDBDB; border-radius: 8px; background: none; color: #000; font: 600 .85rem -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
 .ico { width: 16px; height: 16px; flex: none; }
 
 /* 08 contactos */
@@ -296,14 +298,28 @@ body.locked { overflow: hidden; }
   .shelf p:last-child { display: none; }
   .grid figure.wide { grid-column: auto; }
   .igw { border-radius: 14px; }
-  .igw__top { grid-template-columns: 77px 1fr; gap: 1.1rem; align-items: start; padding-top: 1.4rem; }
-  .igw__pic { width: 77px; height: 77px; }
+  .igw__top { grid-template-columns: 86px 1fr; grid-template-areas: "pic user" "pic stats"; column-gap: 1.1rem; row-gap: .55rem; padding: 1.3rem 1rem 1rem; }
+  .igw__info { display: contents; }
+  .igw__pic { grid-area: pic; width: 86px; height: 86px; }
   .igw__pic img { border-width: 3px; }
-  .igw__user { font-size: 1.05rem; }
-  .igw__stats { gap: 1.2rem; font-size: .8rem; line-height: 1.3; }
-  .igw__stats span { display: flex; flex-direction: column; }
+  .igw__user { grid-area: user; min-width: 0; font-size: 1.05rem; }
+  .igw__user span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .igw__stats { grid-area: stats; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: .4rem; margin: 0; font-size: .76rem; line-height: 1.25; }
+  .igw__stats span { display: flex; flex-direction: column; white-space: nowrap; }
+  .igw__stats b { font-size: .95rem; }
+  .igw__name, .igw__bio, .igw__site { grid-column: 1 / -1; margin: -.3rem 0 0; font-size: .85rem; line-height: 1.35; }
+  .igw__name { margin-top: .4rem; font-weight: 600; color: #000; }
+  .igw__btns { grid-template-columns: 1fr 1fr 34px; gap: .4rem; padding: 0 1rem 1rem; }
+  .igw__btns a { height: 34px; border-radius: 8px; font-size: .82rem; white-space: nowrap; }
+  .igw__long { display: none; }
+  .igw__short { display: inline; }
+  .igw__tabs { gap: 0; }
+  .igw__tabs button { flex: 1; justify-content: center; font-size: .66rem; }
+  .igw__scroll { max-height: none; overflow: visible; }
   .igw__grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .igw__scroll { max-height: 520px; }
+  .igw__grid.short a:nth-child(n+10) { display: none; }
+  .igw__grid a::after { display: none; }
+  .igw__more { display: block; }
   .foot { flex-direction: column; text-align: center; }
   .lb { grid-template-columns: 44px 1fr 44px; }
 }
@@ -573,7 +589,7 @@ body.locked { overflow: hidden; }
     <div class="igw" id="igw">
       <div class="igw__top">
         <a class="igw__pic" data-ig><img id="igAvatar" alt=""></a>
-        <div>
+        <div class="igw__info">
           <a class="igw__user" data-ig><span id="igUser"></span></a>
           <p class="igw__name" id="igName"></p>
           <p class="igw__stats"><span><b id="igPosts"></b> publicações</span><span><b id="igFollowers"></b> seguidores</span><span><b id="igFollowing"></b> a seguir</span></p>
@@ -583,15 +599,15 @@ body.locked { overflow: hidden; }
       </div>
       <div class="igw__btns">
         <a class="blue" data-ig>Seguir</a>
-        <a data-ig>Enviar mensagem</a>
+        <a data-ig><span class="igw__long">Enviar mensagem</span><span class="igw__short">Mensagem</span></a>
         <a data-ig aria-label="Perfil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M19 8v6M16 11h6"/></svg></a>
       </div>
       <div class="igw__tabs" id="igTabs">
         <button type="button" class="on" data-t="all"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h5v5H3zM9.5 3h5v5h-5zM16 3h5v5h-5zM3 9.5h5v5H3zM9.5 9.5h5v5h-5zM16 9.5h5v5h-5zM3 16h5v5H3zM9.5 16h5v5h-5zM16 16h5v5h-5z"/></svg>Publicações</button>
         <button type="button" data-t="reel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>Reels</button>
       </div>
-      <div class="igw__scroll"><div class="igw__grid" id="igGrid"></div></div>
-      <div class="igw__end"><a data-ig>Ver mais no Instagram</a></div>
+      <div class="igw__scroll"><div class="igw__grid short" id="igGrid"></div></div>
+      <div class="igw__end"><button class="igw__more" id="igMore" type="button">Ver mais publicações</button><a data-ig>Ver mais no Instagram</a></div>
     </div>
   </section>
 
@@ -746,6 +762,8 @@ body.locked { overflow: hidden; }
       a.querySelector('img').src = p.img;
       grid.appendChild(a);
     });
+    var more = document.getElementById('igMore');
+    more.addEventListener('click', function () { grid.classList.remove('short'); more.hidden = true; });
     var tabs = document.getElementById('igTabs');
     tabs.addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b) return;
