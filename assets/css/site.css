@@ -875,3 +875,8 @@ a.clip { display: block; text-decoration: none; color: inherit; }
 .foot__credit .etiqueta-mawebs { flex: none; }
 @media (max-width: 760px) { .foot__credit { align-items: flex-start; } }
 .foot__credit .etiqueta-mawebs, .foot__credit .etiqueta-mawebs:hover { color: #1a1a1c; }
+/* MA Webs centred above everything, © centred at the bottom */
+.foot__badge { grid-column: 1 / -1; display: flex; justify-content: center; padding-bottom: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: clamp(.5rem, 2vw, 1rem); border-bottom: 1px solid var(--line); }
+.foot__badge .etiqueta-mawebs { color: #1a1a1c; }
+.foot .foot__credit { grid-column: 1 / -1; justify-content: center; text-align: center; margin-top: clamp(1rem, 3vw, 2rem); padding-top: 1.75rem; border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .foot .foot__credit { align-items: center; } }
