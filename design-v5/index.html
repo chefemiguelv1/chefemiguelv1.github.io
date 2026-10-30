@@ -181,25 +181,37 @@ body.locked { overflow: hidden; }
 .grid figcaption { display: none; }
 .grid figure[hidden] { display: none; }
 
-/* instagram */
+/* instagram (perfil, como na app) */
 .insta { background: var(--paper-2); }
-.ig { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.5rem); flex-wrap: wrap; padding-bottom: 1.8rem; margin-bottom: 1.8rem; border-bottom: 1px solid var(--line); }
-.ig__pic { width: 88px; height: 88px; border-radius: 50%; padding: 3px; background: linear-gradient(45deg, #F5B041, #D6336C 55%, #7B2FBE); flex: none; }
-.ig__pic img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--paper-2); background: var(--paper); }
-.ig__name { font: 700 1.35rem/1.15 var(--sans); letter-spacing: -.02em; }
-.ig__handle { display: flex; align-items: center; gap: .4rem; margin-top: .25rem; font-size: .9rem; color: var(--muted); }
-.ig__stats { display: flex; gap: 1.6rem; margin-top: .6rem; font-size: .88rem; color: var(--muted); }
-.ig__stats b { color: var(--ink); }
-.ig__follow { margin-left: auto; display: inline-flex; align-items: center; gap: .55rem; padding: .85rem 1.5rem; background: var(--ink); color: var(--paper); font: 700 .72rem var(--sans); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-.ig__follow:hover { background: var(--wine); }
-.ig__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.ig__grid a { position: relative; display: block; aspect-ratio: 1; overflow: hidden; background: var(--ink); }
-.ig__grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s, opacity .3s; }
-.ig__grid a::after { content: ""; position: absolute; inset: 0; background: rgba(20,17,15,.45) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.6'%3E%3Crect x='3' y='3' width='18' height='18' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4.2'/%3E%3Ccircle cx='17.3' cy='6.7' r='1' fill='%23fff' stroke='none'/%3E%3C/svg%3E") center/34px no-repeat; opacity: 0; transition: opacity .3s; }
-.ig__grid a:hover::after { opacity: 1; }
-.ig__grid a:hover img { transform: scale(1.04); }
-.ig__more { display: flex; justify-content: center; margin-top: 2rem; }
-.ig__more a { font: 700 .74rem var(--sans); letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding-bottom: .3rem; }
+.igw { max-width: 980px; margin: 0 auto; background: #fff; color: #000; border-radius: 18px; box-shadow: 0 30px 60px -36px rgba(0,0,0,.35); overflow: hidden; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.igw a { color: inherit; }
+.igw__top { display: grid; grid-template-columns: 150px 1fr; gap: 2.2rem; align-items: center; padding: 2rem clamp(1.25rem, 4vw, 3rem) 1.2rem; }
+.igw__pic { width: 150px; height: 150px; border-radius: 50%; padding: 3px; background: linear-gradient(45deg, #F9CE34, #EE2A7B 50%, #6228D7); }
+.igw__pic img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid #fff; }
+.igw__user { display: flex; align-items: center; gap: .6rem; font-size: 1.35rem; font-weight: 700; }
+.igw__name { margin-top: .2rem; font-size: .9rem; color: #262626; }
+.igw__stats { display: flex; gap: 1.6rem; margin-top: .9rem; font-size: .95rem; }
+.igw__stats b { font-weight: 700; }
+.igw__bio { margin-top: .9rem; font-size: .9rem; }
+.igw__site { display: inline-flex; align-items: center; gap: .3rem; margin-top: .2rem; font-size: .9rem; font-weight: 600; color: #00376B !important; }
+.igw__btns { display: grid; grid-template-columns: 1fr 1fr 44px; gap: .5rem; padding: 0 clamp(1.25rem, 4vw, 3rem) 1.4rem; }
+.igw__btns a { display: grid; place-items: center; height: 40px; border-radius: 10px; background: #EFEFEF; font-size: .88rem; font-weight: 600; }
+.igw__btns a.blue { background: #4A5DF9; color: #fff; }
+.igw__btns a:hover { filter: brightness(.95); }
+.igw__tabs { display: flex; justify-content: center; gap: clamp(3rem, 12vw, 9rem); border-top: 1px solid #DBDBDB; }
+.igw__tabs button { display: flex; align-items: center; gap: .4rem; padding: .9rem 0; margin-top: -1px; border: 0; border-top: 2px solid transparent; background: none; color: #8E8E8E; font: 600 .72rem/1 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.igw__tabs button.on { color: #000; border-top-color: #000; }
+.igw__tabs svg { width: 14px; height: 14px; }
+.igw__scroll { max-height: 640px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.igw__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+.igw__grid a { position: relative; display: block; aspect-ratio: 3/4; overflow: hidden; background: #EFEFEF; }
+.igw__grid img { width: 100%; height: 100%; object-fit: cover; }
+.igw__grid a[hidden] { display: none; }
+.igw__grid a > svg { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; filter: drop-shadow(0 0 3px rgba(0,0,0,.4)); }
+.igw__grid a::after { content: "Ver no Instagram"; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.4); color: #fff; font-size: .82rem; font-weight: 700; opacity: 0; transition: opacity .2s; }
+.igw__grid a:hover::after { opacity: 1; }
+.igw__end { padding: 1.4rem; text-align: center; border-top: 1px solid #EFEFEF; }
+.igw__end a { font-size: .88rem; font-weight: 600; color: #4A5DF9 !important; }
 .ico { width: 16px; height: 16px; flex: none; }
 
 /* 08 contactos */
@@ -283,10 +295,15 @@ body.locked { overflow: hidden; }
   .shelf h3 { font-size: .9rem; }
   .shelf p:last-child { display: none; }
   .grid figure.wide { grid-column: auto; }
-  .ig__grid { grid-template-columns: repeat(3, 1fr); gap: 3px; }
-  .ig__grid a:nth-child(n+7) { display: none; }
-  .ig__pic { width: 64px; height: 64px; }
-  .ig__follow { margin-left: 0; width: 100%; justify-content: center; }
+  .igw { border-radius: 14px; }
+  .igw__top { grid-template-columns: 77px 1fr; gap: 1.1rem; align-items: start; padding-top: 1.4rem; }
+  .igw__pic { width: 77px; height: 77px; }
+  .igw__pic img { border-width: 3px; }
+  .igw__user { font-size: 1.05rem; }
+  .igw__stats { gap: 1.2rem; font-size: .8rem; line-height: 1.3; }
+  .igw__stats span { display: flex; flex-direction: column; }
+  .igw__grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .igw__scroll { max-height: 520px; }
   .foot { flex-direction: column; text-align: center; }
   .lb { grid-template-columns: 44px 1fr 44px; }
 }
@@ -550,29 +567,32 @@ body.locked { overflow: hidden; }
     </div>
   </section>
 
-  <!-- Instagram -->
+  <!-- Instagram: preenchido a partir de ig/feed.js -->
   <section class="insta" id="instagram">
     <div class="head"><div><p class="label">Instagram</p><h2 class="title">Acompanhe a <em>cozinha</em></h2></div></div>
-    <div class="ig">
-      <a class="ig__pic" href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener"><img src="../assets/img/MCS_site_base_home_2560x1400_pb-1980x1083.jpg" alt="Miguel Castro e Silva"></a>
-      <div>
-        <p class="ig__name">Miguel Castro-Silva</p>
-        <p class="ig__handle"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>@chef_castrosilvamiguel</p>
-        <p class="ig__stats"><span><b>158</b> publicações</span><span><b>3 415</b> seguidores</span></p>
+    <div class="igw" id="igw">
+      <div class="igw__top">
+        <a class="igw__pic" data-ig><img id="igAvatar" alt=""></a>
+        <div>
+          <a class="igw__user" data-ig><span id="igUser"></span></a>
+          <p class="igw__name" id="igName"></p>
+          <p class="igw__stats"><span><b id="igPosts"></b> publicações</span><span><b id="igFollowers"></b> seguidores</span><span><b id="igFollowing"></b> a seguir</span></p>
+          <p class="igw__bio" id="igBio"></p>
+          <a class="igw__site" id="igSite"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span></span></a>
+        </div>
       </div>
-      <a class="ig__follow" href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener">Seguir no Instagram</a>
+      <div class="igw__btns">
+        <a class="blue" data-ig>Seguir</a>
+        <a data-ig>Enviar mensagem</a>
+        <a data-ig aria-label="Perfil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M19 8v6M16 11h6"/></svg></a>
+      </div>
+      <div class="igw__tabs" id="igTabs">
+        <button type="button" class="on" data-t="all"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h5v5H3zM9.5 3h5v5h-5zM16 3h5v5h-5zM3 9.5h5v5H3zM9.5 9.5h5v5h-5zM16 9.5h5v5h-5zM3 16h5v5H3zM9.5 16h5v5h-5zM16 16h5v5h-5z"/></svg>Publicações</button>
+        <button type="button" data-t="reel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>Reels</button>
+      </div>
+      <div class="igw__scroll"><div class="igw__grid" id="igGrid"></div></div>
+      <div class="igw__end"><a data-ig>Ver mais no Instagram</a></div>
     </div>
-    <div class="ig__grid">
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="img/Casario_terrina_sapateira.jpg" alt="" loading="lazy"></a>
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="../assets/img/MCS_projetos-0x0.jpg" alt="" loading="lazy"></a>
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="img/de_castro_raia.jpg" alt="" loading="lazy"></a>
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="img/MCS_Mercado_TO_2025_05_caldo_verde.jpg" alt="" loading="lazy"></a>
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="img/MCS_Cantina_007.jpg" alt="" loading="lazy"></a>
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="img/Casario_tartelete_choco.jpg" alt="" loading="lazy"></a>
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="img/de_castro_bisaro_arroz_cog.jpg" alt="" loading="lazy"></a>
-      <a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="../assets/img/MCS_imprensa-0x0.jpg" alt="" loading="lazy"></a>
-    </div>
-    <p class="ig__more"><a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener">Ver todas as publicações →</a></p>
   </section>
 
   <!-- 08 Contactos -->
@@ -620,6 +640,7 @@ body.locked { overflow: hidden; }
   <div class="lb__cap"><b id="lbc"></b><span id="lbh"></span></div>
 </div>
 
+<script src="ig/feed.js"></script>
 <script>
   // desktop submenus: open on click (and hover with a mouse), close when clicking outside or on an item
   var dds = document.querySelectorAll('.dd');
@@ -697,6 +718,41 @@ body.locked { overflow: hidden; }
   var opts = document.getElementById('opts');
   opts.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; opts.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); }); });
   document.getElementById('cform').addEventListener('submit', function (e) { e.preventDefault(); document.getElementById('sent').hidden = false; this.reset(); });
+
+  // instagram: profile and posts come from ig/feed.js; every click opens Instagram in a new tab
+  (function () {
+    var f = window.IG_FEED; if (!f) { document.getElementById('instagram').hidden = true; return; }
+    var profile = 'https://www.instagram.com/' + f.username + '/';
+    function n(x) { return x.toLocaleString('pt-PT'); }
+    function out(a, url) { a.href = url || profile; a.target = '_blank'; a.rel = 'noopener'; }
+    document.getElementById('igAvatar').src = f.avatar;
+    document.getElementById('igUser').textContent = f.username;
+    document.getElementById('igName').textContent = f.name;
+    document.getElementById('igPosts').textContent = n(f.posts);
+    document.getElementById('igFollowers').textContent = n(f.followers);
+    document.getElementById('igFollowing').textContent = n(f.following);
+    document.getElementById('igBio').textContent = f.bio;
+    var site = document.getElementById('igSite'); site.querySelector('span').textContent = f.site; out(site, 'https://' + f.site);
+    document.querySelectorAll('#igw [data-ig]').forEach(function (a) { out(a); });
+    var icons = {
+      reel: '<svg viewBox="0 0 24 24" fill="#fff"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm6 6v6l5-3z"/></svg>',
+      album: '<svg viewBox="0 0 24 24" fill="#fff"><path d="M8 2h13a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM3 7h2v12h12v2H4a1 1 0 0 1-1-1z"/></svg>'
+    };
+    var grid = document.getElementById('igGrid');
+    f.items.forEach(function (p) {
+      var a = document.createElement('a'); out(a, p.url); a.dataset.type = p.type;
+      a.setAttribute('aria-label', p.alt + ', ver no Instagram');
+      a.innerHTML = '<img loading="lazy" alt="">' + (p.badge !== false && icons[p.type] ? icons[p.type] : '');
+      a.querySelector('img').src = p.img;
+      grid.appendChild(a);
+    });
+    var tabs = document.getElementById('igTabs');
+    tabs.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      tabs.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      grid.querySelectorAll('a').forEach(function (a) { a.hidden = b.dataset.t !== 'all' && a.dataset.type !== b.dataset.t; });
+    });
+  })();
 </script>
 </body>
 </html>
