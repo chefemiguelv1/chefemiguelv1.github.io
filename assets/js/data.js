@@ -8,6 +8,7 @@ var PROJECTS = [
   { group: 'now', name: 'Time Out Market', place: 'Lisboa', year: '2014 —', img: 'MerRib_10-1600x875.jpg',
     pt: 'Cozinha regional de Norte a Sul, no Mercado da Ribeira.', en: 'Regional cooking from North to South, at Mercado da Ribeira.',
     link: 'https://www.timeoutmarket.com/lisboa/',
+    cover: 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg',
     photos: ['MerRib_10-1600x875.jpg', 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg', 'pratos/MCS_Mercado_TO_2025_05_caldo_verde.jpg', 'pratos/MCS_Mercado_TO_2025_03_lombo_bacalhau.jpg', 'pratos/MCS_Mercado_TO_2025_06_arroz_enchidos.jpg', 'pratos/MCS_Mercado_TO_2025_04_vitela.jpg', 'pratos/MCS_Mercado_TO_2025_01_lula.jpg'] },
   { group: 'now', name: 'Casario', place: 'Ribeira, Porto', year: '2018 —', img: 'Casario_01_2560x1400-1980x1083.jpg',
     pt: 'A quatro mãos com José Guedes, à beira do Douro.', en: 'Four hands with José Guedes, by the Douro.',
@@ -39,32 +40,56 @@ var PROJECTS = [
     pt: 'Um dos 12 melhores restaurantes de Portugal (Exame).', en: 'One of Portugal’s 12 best restaurants (Exame).' }
 ];
 
-// Signature dishes: a provisional list made from the photos on his current site,
-// to be replaced by the list the chef sends (photo, name, house, one line).
-var SIGNATURE = [
-  { img: 'pratos/Casario_vieira_acafrao.jpg', pt: 'Vieira com açafrão', en: 'Scallop with saffron', house: 'Casario' },
-  { img: 'pratos/de_castro_arroz_marisco.jpg', pt: 'Arroz de marisco', en: 'Seafood rice', house: 'deCastro Gaia' },
-  { img: 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg', pt: 'Bacalhau à Brás', en: 'Bacalhau à Brás', house: 'Time Out Market' },
-  { img: 'pratos/Casario_polvo_agriao.jpg', pt: 'Polvo e agrião', en: 'Octopus and watercress', house: 'Casario' },
-  { img: 'pratos/Cantina_Ventozelo_Almoco_Alcatra-Barosa-Arroz-Tomate.jpg', pt: 'Alcatra barrosã, arroz de tomate', en: 'Barrosã beef, tomato rice', house: 'Cantina de Ventozelo' },
-  { img: 'pratos/de_castro_pudim_alho_frances.jpg', pt: 'Pudim de alho-francês', en: 'Leek pudding', house: 'deCastro Gaia' },
-  { img: 'pratos/Casario_terrina_sapateira.jpg', pt: 'Terrina de sapateira', en: 'Brown crab terrine', house: 'Casario' },
-  { img: 'pratos/MCS_Mercado_TO_2025_05_caldo_verde.jpg', pt: 'Caldo verde', en: 'Caldo verde', house: 'Time Out Market' }
+// Dishes by category, from the photos on his current site. The chef will
+// confirm the list, the names and which ones are his signature dishes.
+var DISH_CATS = [
+  { key: 'peixe', pt: 'Peixe e marisco', en: 'Fish and seafood' },
+  { key: 'carne', pt: 'Carne', en: 'Meat' },
+  { key: 'especiais', pt: 'Sopas, petiscos e doces', en: 'Soups, small plates and sweets' }
+];
+var DISHES = [
+  { cat: 'peixe', img: 'pratos/Casario_vieira_acafrao.jpg', pt: 'Vieira com açafrão', en: 'Scallop with saffron', house: 'Casario' },
+  { cat: 'peixe', img: 'pratos/Casario_polvo_agriao.jpg', pt: 'Polvo e agrião', en: 'Octopus and watercress', house: 'Casario' },
+  { cat: 'peixe', img: 'pratos/de_castro_arroz_marisco.jpg', pt: 'Arroz de marisco', en: 'Seafood rice', house: 'deCastro Gaia' },
+  { cat: 'peixe', img: 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg', pt: 'Bacalhau à Brás', en: 'Bacalhau à Brás', house: 'Time Out Market' },
+  { cat: 'peixe', img: 'pratos/Casario_robalo.jpg', pt: 'Robalo', en: 'Sea bass', house: 'Casario' },
+  { cat: 'peixe', img: 'pratos/Casario_terrina_sapateira.jpg', pt: 'Terrina de sapateira', en: 'Brown crab terrine', house: 'Casario' },
+  { cat: 'peixe', img: 'pratos/de_castro_camarao_alho.jpg', pt: 'Camarão ao alho', en: 'Garlic prawns', house: 'deCastro Gaia' },
+  { cat: 'peixe', img: 'pratos/MCS_Mercado_TO_2025_03_lombo_bacalhau.jpg', pt: 'Lombo de bacalhau', en: 'Salt cod loin', house: 'Time Out Market' },
+  { cat: 'peixe', img: 'pratos/Casario_rodovalho.jpg', pt: 'Rodovalho', en: 'Turbot', house: 'Casario' },
+  { cat: 'peixe', img: 'pratos/de_castro_raia.jpg', pt: 'Raia', en: 'Skate', house: 'deCastro Gaia' },
+  { cat: 'peixe', img: 'pratos/de_castro_dourada.jpg', pt: 'Dourada', en: 'Gilthead bream', house: 'deCastro Gaia' },
+  { cat: 'peixe', img: 'pratos/MCS_Mercado_TO_2025_01_lula.jpg', pt: 'Lula', en: 'Squid', house: 'Time Out Market' },
+  { cat: 'carne', img: 'pratos/Cantina_Ventozelo_Almoco_Alcatra-Barosa-Arroz-Tomate.jpg', pt: 'Alcatra barrosã, arroz de tomate', en: 'Barrosã beef, tomato rice', house: 'Cantina de Ventozelo' },
+  { cat: 'carne', img: 'pratos/de_castro_bisaro_arroz_cog.jpg', pt: 'Bísaro e arroz de cogumelos', en: 'Bísaro pork, mushroom rice', house: 'deCastro Gaia' },
+  { cat: 'carne', img: 'pratos/Casario_novilho.jpg', pt: 'Novilho', en: 'Veal', house: 'Casario' },
+  { cat: 'carne', img: 'pratos/MCS_Mercado_TO_2025_04_vitela.jpg', pt: 'Vitela', en: 'Veal', house: 'Time Out Market' },
+  { cat: 'carne', img: 'pratos/de_castro_feijao_tripas.jpg', pt: 'Feijão com tripas', en: 'Tripe and beans', house: 'deCastro Gaia' },
+  { cat: 'carne', img: 'pratos/MCS_Mercado_TO_2025_06_arroz_enchidos.jpg', pt: 'Arroz de enchidos', en: 'Rice with cured sausages', house: 'Time Out Market' },
+  { cat: 'carne', img: 'pratos/de_castro_morcela.jpg', pt: 'Morcela', en: 'Blood sausage', house: 'deCastro Gaia' },
+  { cat: 'especiais', img: 'pratos/MCS_Mercado_TO_2025_05_caldo_verde.jpg', pt: 'Caldo verde', en: 'Caldo verde', house: 'Time Out Market' },
+  { cat: 'especiais', img: 'pratos/de_castro_pudim_alho_frances.jpg', pt: 'Pudim de alho-francês', en: 'Leek pudding', house: 'deCastro Gaia' },
+  { cat: 'especiais', img: 'pratos/MCS_Cantina_005.jpg', pt: 'Sopa e pão da casa', en: 'House soup and bread', house: 'Cantina de Ventozelo' },
+  { cat: 'especiais', img: 'pratos/de_castro_tarte_queijo.jpg', pt: 'Tarte de queijo', en: 'Cheese tart', house: 'deCastro Gaia' },
+  { cat: 'especiais', img: 'pratos/Casario_tartelete_choco.jpg', pt: 'Tartelete de chocolate', en: 'Chocolate tartlet', house: 'Casario' },
+  { cat: 'especiais', img: 'pratos/de_castro_bolo_choco.jpg', pt: 'Bolo de chocolate', en: 'Chocolate cake', house: 'deCastro Gaia' }
 ];
 
 var TIMELINE = [
-  { y: '1961', pt: ['Porto', 'Nasce no Porto. Primeiro a música — piano, baixo, técnico de som.'], en: ['Porto', 'Born in Porto. Music came first — piano, bass, sound engineer.'] },
-  { y: '1992', pt: ['Quinta dos Vales', 'Abre o primeiro restaurante, numa quinta rústica na Maia.'], en: ['Quinta dos Vales', 'Opens his first restaurant, on a rustic farm in Maia.'], img: 'MCS_restaurantes_01-0x0.jpg' },
-  { y: '1994', pt: ['Restaurante do Miguel', 'Na Foz. Cinco estrelas e os primeiros jantares vínicos com Niepoort e Luís Pato.'], en: ['Restaurante do Miguel', 'In Foz. Five stars and the first wine dinners with Niepoort and Luís Pato.'] },
-  { y: '1997', pt: ['Bull & Bear', 'No edifício da Bolsa. Garfo de Ouro, 3 Sóis Repsol, 25 melhores da Europa.'], en: ['Bull & Bear', 'In the Stock Exchange. Garfo de Ouro, 3 Repsol Suns, Europe’s top 25.'], img: 'BB_1280_01.jpg' },
-  { y: '2001', pt: ['Cozinheiro do Ano', 'Academia Portuguesa de Gastronomia. Publica “Uma Cozinha de Aromas”. Aulas na Ferrandi, Paris.'], en: ['Chef of the Year', 'Portuguese Academy of Gastronomy. Publishes “Uma Cozinha de Aromas”. Teaches at Ferrandi, Paris.'] },
-  { y: '2005', pt: ['Xangai', 'Jantar presidencial a convite da Presidência da República. Consultor em Serralves.'], en: ['Shanghai', 'Presidential dinner at the invitation of the Portuguese Presidency. Consultant at Serralves.'] },
-  { y: '2007', pt: ['Larousse', 'Três receitas no Larousse Gastronomique. Pioneiro da cozinha a baixa temperatura.'], en: ['Larousse', 'Three recipes in the Larousse Gastronomique. Pioneer of low-temperature cooking.'] },
-  { y: '2009', pt: ['Lisboa', 'Muda-se para a capital e abre o deCastro Elias.'], en: ['Lisbon', 'Moves to the capital and opens deCastro Elias.'], img: 'deCastro_01-1980x1083.jpg' },
-  { y: '2014', pt: ['Mercado da Ribeira', 'Abre o espaço com o seu nome no Time Out Market.'], en: ['Mercado da Ribeira', 'Opens his namesake counter at Time Out Market.'], img: 'MerRib_10-1600x875.jpg' },
-  { y: '2017', pt: ['David Lopes Ramos', 'Prémio de carreira, Revista de Vinhos.'], en: ['David Lopes Ramos', 'Lifetime award, Revista de Vinhos.'] },
-  { y: '2019', pt: ['Douro', 'Cantina de Ventozelo: a cozinha da região, de proximidade.'], en: ['Douro', 'Cantina de Ventozelo: the region’s own cooking.'], img: 'Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg' },
-  { y: 'Hoje', yEn: 'Today', pt: ['Quatro casas', 'Lisboa, Porto, Gaia e Douro. Consultoria, livros e vinhos de autor.'], en: ['Four houses', 'Lisbon, Porto, Gaia and the Douro. Consulting, books and signature wines.'] }
+  { y: '1961', pt: ['Porto', 'Nasce no Porto. Antes da cozinha vem a música: piano, depois baixo e alguns anos como técnico de som. Estuda Biologia na Alemanha, onde trabalha em restaurantes para pagar as contas, e regressa ao Porto para a indústria têxtil.'], en: ['Porto', 'Born in Porto. Music came first: piano, then bass, then a few years as a sound engineer. He studied Biology in Germany, working in restaurants to pay the bills, and came back to Porto to work in textiles.'] },
+  { y: '1992', pt: ['Quinta dos Vales', 'Muda de vida e abre o primeiro restaurante, numa quinta rústica na Maia. A cozinha deixa de ser um biscate e passa a ser o ofício.'], en: ['Quinta dos Vales', 'He changes course and opens his first restaurant, on a rustic farm in Maia. Cooking stops being a side job and becomes the trade.'], img: 'MCS_restaurantes_01-0x0.jpg' },
+  { y: '1994', pt: ['Restaurante do Miguel', 'Na Foz. A revista Exame põe-no entre os doze melhores do país. Começam ali os jantares vínicos com Dirk Niepoort, Luís Pato e Ricardo Nicolau de Almeida.'], en: ['Restaurante do Miguel', 'In Foz. Exame magazine names it one of the country’s twelve best. The wine dinners with Dirk Niepoort, Luís Pato and Ricardo Nicolau de Almeida begin there.'] },
+  { y: '1997', pt: ['Bull & Bear', 'No edifício da Bolsa, até 2008. Garfo de Ouro do Expresso, três Sóis Repsol e, em 2004, um dos 25 melhores restaurantes da Europa para o Financial Times.'], en: ['Bull & Bear', 'In the Stock Exchange building, until 2008. Expresso’s Garfo de Ouro, three Repsol Suns and, in 2004, one of Europe’s 25 best restaurants for the Financial Times.'], img: 'BB_1280_01.jpg' },
+  { y: '2001', pt: ['Cozinheiro do Ano', 'Eleito Cozinheiro do Ano 2000 pela Academia Portuguesa de Gastronomia. Publica “Uma Cozinha de Aromas” e dá aulas na escola Ferrandi, em Paris.'], en: ['Chef of the Year', 'Named Chef of the Year 2000 by the Portuguese Academy of Gastronomy. Publishes “Uma Cozinha de Aromas” and teaches at the Ferrandi school in Paris.'] },
+  { y: '2005', pt: ['Xangai', 'Cozinha em Xangai o jantar oferecido pela Presidência da República. Cozinha por Portugal em França, na Bélgica, na Hungria e no Brasil.'], en: ['Shanghai', 'Cooks the dinner hosted by the Portuguese Presidency in Shanghai. Cooks for Portugal in France, Belgium, Hungary and Brazil.'] },
+  { y: '2007', pt: ['Larousse', 'Assina três receitas no Larousse Gastronomique e publica “The Food & Cooking of Portugal”. É dos primeiros no país a cozinhar a baixa temperatura.'], en: ['Larousse', 'Signs three recipes in the Larousse Gastronomique and publishes “The Food & Cooking of Portugal”. One of the first in the country to cook at low temperature.'] },
+  { y: '2009', pt: ['Lisboa', 'Muda-se para a capital e abre o deCastro, dedicado aos petiscos. Dirige depois a cozinha do Largo, no Chiado, e do Less, no Príncipe Real.'], en: ['Lisbon', 'Moves to the capital and opens deCastro, devoted to petiscos. He then runs the kitchens of Largo, in Chiado, and Less, in Príncipe Real.'], img: 'deCastro_01-1980x1083.jpg' },
+  { y: '2012', pt: ['Gaia', 'Regressa ao Norte com a Gran Cruz e abre o deCastro Gaia, no Espaço Porto Cruz.'], en: ['Gaia', 'Returns to the North with Gran Cruz and opens deCastro Gaia, at Espaço Porto Cruz.'], img: 'deCastro_Gaia_01_2560x1400-1980x1083.jpg' },
+  { y: '2014', pt: ['Mercado da Ribeira', 'Abre o espaço com o seu nome no Time Out Market, onde serve ao balcão a cozinha regional de norte a sul.'], en: ['Mercado da Ribeira', 'Opens his namesake counter at Time Out Market, serving regional cooking from north to south.'], img: 'MerRib_10-1600x875.jpg' },
+  { y: '2017', pt: ['David Lopes Ramos', 'Recebe o prémio de carreira da Revista de Vinhos. No ano anterior publica “Na Cozinha de Miguel Castro e Silva”.'], en: ['David Lopes Ramos', 'Receives Revista de Vinhos’ lifetime award, a year after publishing “Na Cozinha de Miguel Castro e Silva”.'] },
+  { y: '2018', pt: ['Casario', 'Abre o Casario, na Ribeira do Porto, a quatro mãos com José Guedes.'], en: ['Casario', 'Opens Casario, on Porto’s Ribeira, cooking four-handed with José Guedes.'], img: 'Casario_01_2560x1400-1980x1083.jpg' },
+  { y: '2019', pt: ['Douro', 'Na Quinta de Ventozelo, em São João da Pesqueira, abre a Cantina: a cozinha da região, feita com o que está por perto.'], en: ['Douro', 'At Quinta de Ventozelo, in São João da Pesqueira, he opens the Cantina: the region’s own cooking, made with what is close by.'], img: 'Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg' },
+  { y: 'Hoje', yEn: 'Today', pt: ['Quatro casas', 'Lisboa, Porto, Gaia e Douro, consultoria e livros. E um novo restaurante na Madeira, a caminho.'], en: ['Four houses', 'Lisbon, Porto, Gaia and the Douro, consulting and books. And a new restaurant in Madeira on the way.'] }
 ];
 
 var BOOKS = [
@@ -100,12 +125,16 @@ var GALLERY = [
   { img: 'MCS_Ideias_Soltas_2560x1400_01-1980x1083.jpg', pt: 'Arroz e peixe', en: 'Rice and fish', size: 'tall' },
   { img: 'MCS_imprensa-0x0.jpg', pt: 'O fogão', en: 'At the stove', size: 'wide' },
   { video: 'OEja3sMxw6c', img: 'yt_bio.jpg', pt: 'Filme · Biografia', en: 'Film · Biography', size: 'sq' },
-  { img: 'Casario_01_2560x1400-1980x1083.jpg', pt: 'Casario, Porto', en: 'Casario, Porto', size: 'wide' }
+  { img: 'Casario_01_2560x1400-1980x1083.jpg', pt: 'Casario, Porto', en: 'Casario, Porto', size: 'wide' },
+  { img: 'deCastro_Gaia_01_2560x1400-1980x1083.jpg', pt: 'deCastro Gaia', en: 'deCastro Gaia', size: 'wide' },
+  { img: 'MerRib_10-1600x875.jpg', pt: 'Time Out Market, Lisboa', en: 'Time Out Market, Lisbon', size: 'wide' },
+  { img: 'pratos/MCS_Cantina_007.jpg', pt: 'Almoço na Cantina', en: 'Lunch at the Cantina', size: 'sq' },
+  { img: 'BB_1280_01.jpg', pt: 'Bull & Bear, Porto', en: 'Bull & Bear, Porto', size: 'wide' }
 ];
 
 var I18N = {
   en: {
-    'nav.chef': 'The Chef', 'nav.projects': 'Projects', 'nav.path': 'Path', 'nav.books': 'Books',
+    'nav.chef': 'The Chef', 'nav.projects': 'Restaurants', 'nav.path': 'Path', 'nav.books': 'Books',
     'nav.press': 'Press', 'nav.gallery': 'Gallery', 'nav.contact': 'Contact',
     'hero.eyebrow': 'Chef · Porto, 1961',
     'hero.lede': 'Thirty-five years reinventing Portuguese cooking — from Porto to the Douro, from Lisbon to the world.',
@@ -130,7 +159,7 @@ var I18N = {
     'press.h3': 'Garfo de Ouro · Bull & Bear, 2003',
     'press.h4': 'Three recipes in the Larousse Gastronomique · 2007',
     'gal.eyebrow': 'Gallery', 'gal.title': 'Dishes, houses<br><em>and moments</em>',
-    'hero.phrase': 'Portuguese cooking <em>with soul.</em>', 'nav.dishes': 'Dishes', 'sig.eyebrow': 'Signature dishes', 'sig.title': 'A library<br><em>of dishes</em>', 'sig.note': 'The dishes he created and that stayed. Not a menu: a memory of Portuguese cooking, for those who love to eat and those who cook.', 'proj.gallery': 'See gallery', 'proj.book': 'Book a table', 'proj.photos': 'photos', 'cf.phone': 'Phone (optional)', 'cf.msg': 'Message', 'cf.send': 'Send message', 'cf.thanksNote': 'Your message arrived. We will reply shortly.',
+    'hero.phrase': 'Portuguese cooking <em>with soul.</em>', 'proj.title2': 'Restaurants', 'soon.kicker': 'Coming soon', 'gal.photos': 'Photographs', 'gal.films': 'Films', 'drag': 'Drag', 'nav.dishes': 'Dishes', 'sig.eyebrow': 'Signature dishes', 'sig.title': 'A library<br><em>of dishes</em>', 'sig.note': 'The dishes he created and that stayed. Not a menu: a memory of Portuguese cooking, for those who love to eat and those who cook.', 'proj.gallery': 'See gallery', 'proj.book': 'Book a table', 'proj.photos': 'photos', 'cf.phone': 'Phone (optional)', 'cf.msg': 'Message', 'cf.send': 'Send message', 'cf.thanksNote': 'Your message arrived. We will reply shortly.',
     'ig.eyebrow': 'Instagram', 'ig.title': 'Follow<br><em>the kitchen</em>', 'ig.posts': 'posts', 'ig.followers': 'followers', 'ig.following': 'following', 'ig.follow': 'Follow', 'ig.message': 'Send message', 'ig.messageShort': 'Message', 'ig.tabPosts': 'Posts', 'ig.more': 'See more posts', 'ig.open': 'See more on Instagram',
     'contact.eyebrow': 'Contact', 'contact.title': 'Shall we<br>set the table?',
     'contact.note': 'Events, consulting, press or anything else: write to us. The reply comes by email.',

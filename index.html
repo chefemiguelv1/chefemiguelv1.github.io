@@ -16,7 +16,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
@@ -33,7 +33,7 @@
     <a href="#chef" data-i18n="nav.chef">O Chef</a>
     <a href="#percurso" data-i18n="nav.path">Percurso</a>
     <a href="#pratos" data-i18n="nav.dishes">Pratos</a>
-    <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+    <a href="#restaurantes" data-i18n="nav.projects">Restaurantes</a>
     <a href="#livros" data-i18n="nav.books">Livros</a>
     <a href="#imprensa" data-i18n="nav.press">Imprensa</a>
     <a href="#galeria" data-i18n="nav.gallery">Galeria</a>
@@ -47,7 +47,7 @@
   <a href="#chef" data-i18n="nav.chef">O Chef</a>
   <a href="#percurso" data-i18n="nav.path">Percurso</a>
   <a href="#pratos" data-i18n="nav.dishes">Pratos</a>
-  <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+  <a href="#restaurantes" data-i18n="nav.projects">Restaurantes</a>
   <a href="#livros" data-i18n="nav.books">Livros</a>
   <a href="#imprensa" data-i18n="nav.press">Imprensa</a>
   <a href="#galeria" data-i18n="nav.gallery">Galeria</a>
@@ -70,8 +70,7 @@
 
   <!-- ── 02 O Chef ───────────────────────────────────────────────────── -->
   <section class="chef" id="chef" aria-labelledby="chef-title">
-    <p class="eyebrow fade"><span class="num">01</span> <span data-i18n="chef.eyebrow">O Chef</span></p>
-    <h2 class="statement" id="chef-title" data-split data-i18n="chef.statement">Foi dos primeiros a brincar com a cozinha tradicional portuguesa — quando isso ainda era quase uma ofensa.</h2>
+    <h2 class="statement" id="chef-title" data-i18n="chef.statement">Foi dos primeiros a brincar com a cozinha tradicional portuguesa — quando isso ainda era quase uma ofensa.</h2>
 
     <div class="chef__grid">
       <figure class="chef__portrait plate">
@@ -96,7 +95,6 @@
   <section class="path" id="percurso" aria-labelledby="path-title">
     <div class="path__pin">
       <div class="path__head">
-        <p class="eyebrow"><span class="num">02</span> <span data-i18n="path.eyebrow">Percurso</span></p>
         <h2 class="sec-title" id="path-title" data-i18n="path.title">Do Porto<br>para o <em>mundo</em></h2>
         <div class="path__bar"><i id="path-progress"></i></div>
       </div>
@@ -104,65 +102,44 @@
     </div>
   </section>
 
-  <!-- ── 03 Pratos de assinatura: a biblioteca (lista provisória) ────── -->
-  <section class="sig" id="pratos" aria-labelledby="sig-title">
-    <div class="sec-head sig__head">
-      <p class="eyebrow fade"><span class="num">03</span> <span data-i18n="sig.eyebrow">Pratos de assinatura</span></p>
-      <h2 class="sec-title" id="sig-title" data-i18n="sig.title">A biblioteca<br><em>de pratos</em></h2>
-      <p class="sig__note fade" data-i18n="sig.note">Os pratos que criou e que ficaram. Não é uma carta: é uma memória da cozinha portuguesa, para quem gosta de comer e para quem cozinha.</p>
-    </div>
-    <ol class="sig__grid" id="sig"></ol>
+  <!-- ── Pratos: faixas por categoria, arrastam-se para o lado ─────────── -->
+  <section class="dishes" id="pratos" aria-label="Pratos">
+    <div class="rails" id="dish-rails"></div>
   </section>
 
-  <!-- ── 04 Projetos: uma secção por casa + arquivo ─────────────────── -->
-  <section class="projects" id="projetos" aria-labelledby="proj-title">
-    <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">04</span> <span data-i18n="proj.eyebrow">Projetos</span></p>
-      <h2 class="sec-title rise-block" id="proj-title" data-i18n="proj.title">Onde se come<br><em>hoje</em></h2>
+  <!-- ── Restaurantes: um painel por casa, Madeira em breve, arquivo ───── -->
+  <section class="projects" id="restaurantes" aria-labelledby="proj-title">
+    <div class="sec-head sec-head--center">
+      <h2 class="sec-title" id="proj-title" data-i18n="proj.title2">Restaurantes</h2>
     </div>
-    <div class="houses" id="houses"></div>
+    <div class="restos" id="houses"></div>
+    <div class="soon fade" id="soon"></div>
     <div class="archive">
-      <p class="eyebrow archive__head" data-i18n="proj.archive">Arquivo</p>
-      <ol class="index" id="index"></ol>
+      <h3 class="archive__title" data-i18n="proj.archive">Arquivo</h3>
+      <ol class="archive__grid" id="index"></ol>
     </div>
-    <div class="hover-plate" id="hover-plate" aria-hidden="true"><img alt=""></div>
   </section>
 
   <!-- ── 05 Livros ───────────────────────────────────────────────────── -->
   <section class="books" id="livros" aria-labelledby="books-title">
     <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">05</span> <span data-i18n="books.eyebrow">Livros</span></p>
       <h2 class="sec-title" id="books-title" data-i18n="books.title">A cozinha,<br><em>por escrito</em></h2>
     </div>
     <div class="shelf" id="shelf"></div>
   </section>
 
   <!-- ── 06 Imprensa ─────────────────────────────────────────────────── -->
-  <section class="press" id="imprensa" aria-labelledby="press-title">
-    <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">06</span> <span data-i18n="press.eyebrow">Imprensa</span></p>
-      <h2 class="sec-title" id="press-title" data-i18n="press.title">O que se<br><em>escreveu</em></h2>
-    </div>
+  <section class="press" id="imprensa" aria-label="Imprensa">
     <blockquote class="quote fade">
       <p data-i18n="press.quote">“Um dos chefs do momento na cidade.”</p>
       <cite>Time Out Lisboa · 2010</cite>
     </blockquote>
     <div class="marquee" id="marquee"></div>
-    <ul class="honours fade">
-      <li><b>FT</b><span data-i18n="press.h1">Bull &amp; Bear entre os 25 melhores restaurantes da Europa · Financial Times, 2004</span></li>
-      <li><b>IWWC</b><span data-i18n="press.h2">1.º lugar entre os dez chefs de referência em Portugal · 2004</span></li>
-      <li><b>Expresso</b><span data-i18n="press.h3">Garfo de Ouro · Bull &amp; Bear, 2003</span></li>
-      <li><b>Larousse</b><span data-i18n="press.h4">Três receitas no Larousse Gastronomique · 2007</span></li>
-    </ul>
   </section>
 
   <!-- ── 07 Galeria ──────────────────────────────────────────────────── -->
-  <section class="gallery" id="galeria" aria-labelledby="gal-title">
-    <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">07</span> <span data-i18n="gal.eyebrow">Galeria</span></p>
-      <h2 class="sec-title" id="gal-title" data-i18n="gal.title">Pratos, casas<br><em>e momentos</em></h2>
-    </div>
-    <div class="mosaic" id="mosaic"></div>
+  <section class="gallery" id="galeria" aria-label="Galeria">
+    <div class="rails" id="gal-rails"></div>
   </section>
 
   <!-- ── Instagram: perfil como na app (dados em assets/ig/feed.js) ───── -->
@@ -199,7 +176,6 @@
   <!-- ── 08 Contactos: formulário simples ─────────────────────────── -->
   <section class="contact" id="contactos" aria-labelledby="contact-title">
     <div class="contact__lead">
-      <p class="eyebrow"><span class="num">08</span> <span data-i18n="contact.eyebrow">Contactos</span></p>
       <h2 class="sec-title" id="contact-title" data-i18n="contact.title">Vamos<br>pôr a mesa?</h2>
       <p class="contact__note" data-i18n="contact.note">Eventos, consultoria, imprensa ou outro assunto: escreva-nos. A resposta chega por email.</p>
       <ul class="contact__social">

@@ -21,51 +21,81 @@
   var arrow = '<svg class="row__go" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 24L24 8M11 8h13v13"/></svg>';
 
   function renderProjects() {
-    var list = PROJECTS.filter(function (p) { return p.group === filter; });
-    $('#index').innerHTML = list.map(function (p, i) {
-      var tag = p.link ? 'a href="' + p.link + '" target="_blank" rel="noopener"' : 'a href="#galeria" tabindex="0"';
-      return '<li class="row" data-img="' + IMG + p.img + '"><' + tag + '>' +
-        '<span class="row__n">' + String(i + 1).padStart(2, '0') + '</span>' +
-        '<span class="row__name">' + esc(p.name) + '</span>' +
-        '<span class="row__desc"><span class="row__place">' + esc(p.place) + '</span>' + esc(t(p)) + '</span>' +
-        '<span class="row__year">' + p.year + '</span>' + arrow +
-        '<span class="row__thumb"><img src="' + IMG + p.img + '" alt="" loading="lazy"></span>' +
-        '</a></li>';
+    $('#index').innerHTML = PROJECTS.filter(function (p) { return p.group === 'archive'; }).map(function (p) {
+      return '<li class="card fade"><div class="card__img"><img src="' + IMG + p.img + '" alt="" loading="lazy"></div>' +
+        '<p class="card__year">' + esc(p.year) + '</p><h4 class="card__name">' + esc(p.name) + '</h4>' +
+        '<p class="card__place">' + esc(p.place) + '</p><p class="card__p">' + esc(t(p)) + '</p></li>';
     }).join('');
-    $$('#index .row').forEach(function (r, i) { r.style.animationDelay = (i * 70) + 'ms'; });
-    watch($$('#index .row'));
+    watch($$('#index .card'));
   }
 
-  // one block per house: 3 photos, the full gallery and the booking link
+
+  // restaurants: one full panel per house, the Madeira teaser, the archive as cards
   function renderHouses() {
-    var label = { gal: lang === 'en' ? I18N.en['proj.gallery'] : 'Ver galeria', book: lang === 'en' ? I18N.en['proj.book'] : 'Reservar', photos: lang === 'en' ? I18N.en['proj.photos'] : 'fotografias' };
-    $('#houses').innerHTML = PROJECTS.filter(function (p) { return p.group === 'now' || p.group === 'soon'; }).map(function (p, i) {
-      var soon = p.group === 'soon', year = (lang === 'en' && p.yearEn) ? p.yearEn : p.year;
-      var pics = (p.photos || []).slice(0, 3).map(function (src, k) {
-        return '<button type="button" class="house__ph house__ph--' + k + '" data-house="' + i + '" data-at="' + k + '"><img src="' + IMG + src + '" alt="" loading="lazy"></button>';
-      }).join('');
-      return '<article class="house' + (soon ? ' house--soon' : '') + (i % 2 ? ' house--alt' : '') + ' fade">' +
-        '<div class="house__text"><p class="house__n">' + String(i + 1).padStart(2, '0') + '</p>' +
-        '<h3 class="house__name">' + esc(p.name) + '</h3>' +
-        '<p class="house__place">' + esc(p.place) + ' · ' + esc(year) + '</p>' +
-        '<p class="house__p">' + esc(t(p)) + '</p>' +
-        (soon ? '' : '<div class="house__btns">' +
-          '<button type="button" class="btn btn--line" data-house="' + i + '" data-at="0">' + label.gal + ' <small>' + p.photos.length + ' ' + label.photos + '</small></button>' +
-          (p.link ? '<a class="btn" href="' + p.link + '" target="_blank" rel="noopener">' + label.book + ' ↗</a>' : '') + '</div>') +
-        '</div>' + (soon ? '' : '<div class="house__pics">' + pics + '</div>') + '</article>';
+    var label = { gal: (lang === 'en' ? I18N.en['proj.gallery'] : 'Ver galeria'), book: (lang === 'en' ? I18N.en['proj.book'] : 'Reservar'), photos: (lang === 'en' ? I18N.en['proj.photos'] : 'fotografias') };
+    var list = PROJECTS.filter(function (p) { return p.group === 'now'; });
+    $('#houses').innerHTML = list.map(function (p, i) {
+      return '<article class="resto fade">' +
+        '<button type="button" class="resto__img" data-house="' + i + '" data-at="0" aria-label="' + label.gal + ': ' + esc(p.name) + '"><img src="' + IMG + (p.cover || p.photos[0]) + '" alt="" loading="lazy"></button>' +
+        '<div class="resto__body">' +
+          '<p class="resto__place">' + esc(p.place) + ' · ' + (lang === 'en' ? 'since ' : 'desde ') + esc(p.year.replace(/\s*—\s*$/, '')) + '</p>' +
+          '<h3 class="resto__name">' + esc(p.name) + '</h3>' +
+          '<p class="resto__p">' + esc(t(p)) + '</p>' +
+          '<div class="resto__btns">' +
+            '<button type="button" class="btn btn--line" data-house="' + i + '" data-at="0">' + label.gal + ' <small>' + p.photos.length + '</small></button>' +
+            (p.link ? '<a class="btn" href="' + p.link + '" target="_blank" rel="noopener">' + label.book + ' ↗</a>' : '') +
+          '</div>' +
+        '</div></article>';
     }).join('');
-    watch($$('#houses .house'));
+    var soon = PROJECTS.filter(function (p) { return p.group === 'soon'; })[0];
+    $('#soon').innerHTML = soon ? '<p class="soon__kicker">' + (lang === 'en' ? I18N.en['soon.kicker'] : 'Em breve') + '</p><h3 class="soon__name">' + esc(soon.name) + '</h3><p class="soon__p">' + esc(t(soon)) + '</p>' : '';
+    watch($$('#houses .resto'));
   }
 
-  // signature dishes: the "library"
-  function renderSig() {
-    $('#sig').innerHTML = SIGNATURE.map(function (s, i) {
-      return '<li class="dish fade" style="--i:' + i + '"><button type="button" data-sig="' + i + '">' +
-        '<span class="dish__img"><img src="' + IMG + s.img + '" alt="" loading="lazy"></span>' +
-        '<span class="dish__n">' + String(i + 1).padStart(2, '0') + '</span>' +
-        '<span class="dish__name">' + esc(t(s)) + '</span><span class="dish__house">' + esc(s.house) + '</span></button></li>';
+  // dishes and gallery: rails dragged sideways, one per category
+  function railHTML(key, title, items) {
+    return '<div class="rail"><div class="rail__head"><h3 class="rail__title">' + esc(title) + '</h3>' +
+      '<div class="rail__nav"><button type="button" data-rail-dir="-1" aria-label="Anterior">←</button><button type="button" data-rail-dir="1" aria-label="Seguinte">→</button></div></div>' +
+      '<div class="rail__stage"><div class="rail__track">' + items.map(function (it, i) {
+        return '<figure class="shot' + (it.video ? ' shot--film' : '') + '"><button type="button" class="shot__plate" data-rail="' + key + '" data-at="' + i + '">' +
+          '<img src="' + IMG + it.img + '" alt="" loading="lazy" draggable="false">' +
+          (it.video ? '<span class="shot__play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span>' : '') +
+          '</button><figcaption>' + esc(it.cap) + (it.sub ? '<span>' + esc(it.sub) + '</span>' : '') + '</figcaption></figure>';
+      }).join('') + '</div></div></div>';
+  }
+  var RAILS = {};
+  function renderRails() {
+    RAILS = {};
+    $('#dish-rails').innerHTML = DISH_CATS.map(function (c) {
+      var items = DISHES.filter(function (x) { return x.cat === c.key; }).map(function (x) { return { img: x.img, cap: t(x), sub: x.house }; });
+      RAILS[c.key] = items;
+      return railHTML(c.key, t(c), items);
     }).join('');
-    watch($$('#sig .dish'));
+    RAILS.photos = GALLERY.filter(function (g) { return !g.video; }).map(function (g) { return { img: g.img, cap: t(g) }; });
+    RAILS.films = GALLERY.filter(function (g) { return g.video; }).map(function (g) { return { img: g.img, cap: t(g), video: g.video }; });
+    $('#gal-rails').innerHTML = railHTML('photos', (lang === 'en' ? I18N.en['gal.photos'] : 'Fotografias'), RAILS.photos) + railHTML('films', (lang === 'en' ? I18N.en['gal.films'] : 'Vídeos'), RAILS.films);
+    $$('.rail__stage').forEach(dragScroll);
+  }
+
+  // press a mouse and drag a rail; fingers and trackpads already scroll it
+  function dragScroll(stage) {
+    if (stage.dataset.drag) return; stage.dataset.drag = '1';
+    var down = false, moved = false, startX = 0, startLeft = 0;
+    stage.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0 || e.pointerType === 'touch') return;
+      down = true; moved = false; startX = e.clientX; startLeft = stage.scrollLeft;
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) < 5) return;
+      moved = true; stage.classList.add('is-dragging');
+      stage.scrollLeft = startLeft - dx;
+    });
+    function up() { down = false; setTimeout(function () { stage.classList.remove('is-dragging'); }, 0); }
+    stage.addEventListener('pointerup', up); stage.addEventListener('pointerleave', up);
+    // a drag must not count as a click on the photo underneath
+    stage.addEventListener('click', function (e) { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
   }
 
   function renderPath() {
@@ -117,7 +147,7 @@
     });
     $$('#lang span').forEach(function (s, i) { s.classList.toggle('is-on', (i === 0) === (lang === 'pt')); });
     splitStatement();
-    renderHouses(); renderSig(); renderProjects(); renderPath(); renderBooks(); renderPress(); renderGallery();
+    renderHouses(); renderRails(); renderProjects(); renderPath(); renderBooks(); renderPress();
     sizePath();
   }
   $('#lang').addEventListener('click', function () {
@@ -197,32 +227,6 @@
     prog.style.transform = 'scaleX(' + p + ')';
   }
 
-  /* ── project index: the image follows the cursor ────────────────────── */
-  var plate = $('#hover-plate'), plateImg = $('img', plate);
-  var mx = 0, my = 0, px = 0, py = 0, raf = null;
-  function follow() {
-    px += (mx - px) * .14; py += (my - py) * .14;
-    plate.style.left = px + 'px'; plate.style.top = py + 'px';
-    raf = plate.classList.contains('on') ? requestAnimationFrame(follow) : null;
-  }
-  $('#index').addEventListener('mousemove', function (e) {
-    mx = e.clientX; my = e.clientY;
-    var row = e.target.closest('.row');
-    if (!row) return;
-    var src = row.dataset.img;
-    if (plateImg.getAttribute('src') !== src) plateImg.src = src;
-    if (!plate.classList.contains('on')) { px = mx; py = my; plate.classList.add('on'); }
-    if (!raf) raf = requestAnimationFrame(follow);
-  });
-  $('#index').addEventListener('mouseleave', function () { plate.classList.remove('on'); });
-  $$('.tab').forEach(function (b) {
-    b.addEventListener('click', function () {
-      filter = b.dataset.filter;
-      $$('.tab').forEach(function (x) { var on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-selected', on); });
-      renderProjects();
-    });
-  });
-
   /* ── counters ───────────────────────────────────────────────────────── */
   if (io) {
     var cio = new IntersectionObserver(function (es) {
@@ -284,12 +288,14 @@
 
   document.addEventListener('click', function (e) {
     var g = e.target.closest('[data-gal]'), p = e.target.closest('[data-press]');
-    var hs = e.target.closest('[data-house]'), sg = e.target.closest('[data-sig]');
+    var hs = e.target.closest('[data-house]'), rl = e.target.closest('[data-rail]'), rn = e.target.closest('[data-rail-dir]');
+    if (rn) { var st = rn.closest('.rail').querySelector('.rail__stage'); st.scrollBy({ left: +rn.dataset.railDir * st.clientWidth * .8, behavior: 'smooth' }); return; }
     if (hs) {
-      var house = PROJECTS.filter(function (x) { return x.group === 'now' || x.group === 'soon'; })[+hs.dataset.house];
+      var house = PROJECTS.filter(function (x) { return x.group === 'now'; })[+hs.dataset.house];
       open(house.photos.map(function (src) { return { src: IMG + src, cap: house.name + ' · ' + house.place }; }), +hs.dataset.at);
-    } else if (sg) {
-      open(SIGNATURE.map(function (x) { return { src: IMG + x.img, cap: t(x) + ' · ' + x.house }; }), +sg.dataset.sig);
+    } else if (rl) {
+      var list = RAILS[rl.dataset.rail];
+      open(list.map(function (x) { return { src: IMG + x.img, cap: x.cap + (x.sub ? ' · ' + x.sub : ''), video: x.video }; }), +rl.dataset.at);
     } else if (g) {
       open(GALLERY.map(function (x) { return { src: IMG + x.img, cap: t(x), video: x.video }; }), +g.dataset.gal);
     } else if (p) {
