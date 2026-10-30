@@ -17,7 +17,7 @@
   function watch(els) { els.forEach(function (el) { if (io) io.observe(el); else el.classList.add('is-in'); }); }
 
   /* ── renderers (re-run when the language changes) ───────────────────── */
-  var filter = 'now';
+  var filter = 'archive';
   var arrow = '<svg class="row__go" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 24L24 8M11 8h13v13"/></svg>';
 
   function renderProjects() {
@@ -34,6 +34,38 @@
     }).join('');
     $$('#index .row').forEach(function (r, i) { r.style.animationDelay = (i * 70) + 'ms'; });
     watch($$('#index .row'));
+  }
+
+  // one block per house: 3 photos, the full gallery and the booking link
+  function renderHouses() {
+    var label = { gal: lang === 'en' ? I18N.en['proj.gallery'] : 'Ver galeria', book: lang === 'en' ? I18N.en['proj.book'] : 'Reservar', photos: lang === 'en' ? I18N.en['proj.photos'] : 'fotografias' };
+    $('#houses').innerHTML = PROJECTS.filter(function (p) { return p.group === 'now' || p.group === 'soon'; }).map(function (p, i) {
+      var soon = p.group === 'soon', year = (lang === 'en' && p.yearEn) ? p.yearEn : p.year;
+      var pics = (p.photos || []).slice(0, 3).map(function (src, k) {
+        return '<button type="button" class="house__ph house__ph--' + k + '" data-house="' + i + '" data-at="' + k + '"><img src="' + IMG + src + '" alt="" loading="lazy"></button>';
+      }).join('');
+      return '<article class="house' + (soon ? ' house--soon' : '') + (i % 2 ? ' house--alt' : '') + ' fade">' +
+        '<div class="house__text"><p class="house__n">' + String(i + 1).padStart(2, '0') + '</p>' +
+        '<h3 class="house__name">' + esc(p.name) + '</h3>' +
+        '<p class="house__place">' + esc(p.place) + ' · ' + esc(year) + '</p>' +
+        '<p class="house__p">' + esc(t(p)) + '</p>' +
+        (soon ? '' : '<div class="house__btns">' +
+          '<button type="button" class="btn btn--line" data-house="' + i + '" data-at="0">' + label.gal + ' <small>' + p.photos.length + ' ' + label.photos + '</small></button>' +
+          (p.link ? '<a class="btn" href="' + p.link + '" target="_blank" rel="noopener">' + label.book + ' ↗</a>' : '') + '</div>') +
+        '</div>' + (soon ? '' : '<div class="house__pics">' + pics + '</div>') + '</article>';
+    }).join('');
+    watch($$('#houses .house'));
+  }
+
+  // signature dishes: the "library"
+  function renderSig() {
+    $('#sig').innerHTML = SIGNATURE.map(function (s, i) {
+      return '<li class="dish fade" style="--i:' + i + '"><button type="button" data-sig="' + i + '">' +
+        '<span class="dish__img"><img src="' + IMG + s.img + '" alt="" loading="lazy"></span>' +
+        '<span class="dish__n">' + String(i + 1).padStart(2, '0') + '</span>' +
+        '<span class="dish__name">' + esc(t(s)) + '</span><span class="dish__house">' + esc(s.house) + '</span></button></li>';
+    }).join('');
+    watch($$('#sig .dish'));
   }
 
   function renderPath() {
@@ -85,8 +117,7 @@
     });
     $$('#lang span').forEach(function (s, i) { s.classList.toggle('is-on', (i === 0) === (lang === 'pt')); });
     splitStatement();
-    renderProjects(); renderPath(); renderBooks(); renderPress(); renderGallery();
-    renderQ2();
+    renderHouses(); renderSig(); renderProjects(); renderPath(); renderBooks(); renderPress(); renderGallery();
     sizePath();
   }
   $('#lang').addEventListener('click', function () {
@@ -208,39 +239,20 @@
     $$('.count').forEach(function (c) { c.textContent = '0'; cio.observe(c); });
   }
 
-  /* ── contact questionnaire ──────────────────────────────────────────── */
-  var quiz = $('#quiz'), step = 1, motivo = 'evento';
-  function renderQ2() {
-    var q = Q2[motivo];
-    $('#q2-label').innerHTML = lang === 'en' ? I18N.en['q2.' + motivo] : q.label.pt;
-    $('#q2-choices').innerHTML = q[lang].map(function (o) {
-      return '<label class="choice"><input type="radio" name="detalhe_tipo" value="' + esc(o) + '"><span>' + esc(o) + '</span></label>';
-    }).join('');
-  }
-  function go(n) {
-    step = n;
-    $$('.quiz__step', quiz).forEach(function (s) { s.classList.toggle('is-on', +s.dataset.step === n); });
-    $$('.quiz__steps i', quiz).forEach(function (d, i) { d.classList.toggle('is-on', i < n); });
-    var first = $('.quiz__step.is-on input, .quiz__step.is-on textarea', quiz);
-    if (first && n > 1) first.focus({ preventScroll: true });
-  }
-  quiz.addEventListener('click', function (e) {
-    if (e.target.name === 'motivo') { motivo = e.target.value; renderQ2(); setTimeout(function () { go(2); }, 280); }
-    if (e.target.closest('[data-back]')) go(step - 1);
-    if (e.target.closest('[data-next]')) go(step + 1);
-  });
-  quiz.addEventListener('submit', function (e) {
+  /* ── contact: a simple form ────────────────────────────────────────── */
+  var cform = $('#cform');
+  cform.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
-    ['nome', 'email'].forEach(function (n) {
-      var f = quiz.elements[n], bad = !f.value.trim() || (n === 'email' && !/^\S+@\S+\.\S+$/.test(f.value));
+    ['nome', 'email', 'mensagem'].forEach(function (n) {
+      var f = cform.elements[n], bad = !f.value.trim() || (n === 'email' && !/^\S+@\S+\.\S+$/.test(f.value));
       f.closest('.field').classList.toggle('bad', bad); if (bad) ok = false;
     });
-    var r = quiz.elements.rgpd; r.closest('.check').classList.toggle('bad', !r.checked); if (!r.checked) ok = false;
+    var r = cform.elements.rgpd; r.closest('.check').classList.toggle('bad', !r.checked); if (!r.checked) ok = false;
     if (!ok) return;
-    // Demo: nothing is sent. In production this posts to the server form handler.
-    $$('.quiz__step, .quiz__steps', quiz).forEach(function (s) { s.style.display = 'none'; });
-    $('.quiz__done', quiz).hidden = false;
+    // Demo: nothing is sent yet. In production this posts to the server form handler.
+    $$('.field, .check, .cform__two, .cform__send', cform).forEach(function (s) { s.style.display = 'none'; });
+    $('.quiz__done', cform).hidden = false;
   });
 
   /* ── lightbox ───────────────────────────────────────────────────────── */
@@ -272,7 +284,13 @@
 
   document.addEventListener('click', function (e) {
     var g = e.target.closest('[data-gal]'), p = e.target.closest('[data-press]');
-    if (g) {
+    var hs = e.target.closest('[data-house]'), sg = e.target.closest('[data-sig]');
+    if (hs) {
+      var house = PROJECTS.filter(function (x) { return x.group === 'now' || x.group === 'soon'; })[+hs.dataset.house];
+      open(house.photos.map(function (src) { return { src: IMG + src, cap: house.name + ' · ' + house.place }; }), +hs.dataset.at);
+    } else if (sg) {
+      open(SIGNATURE.map(function (x) { return { src: IMG + x.img, cap: t(x) + ' · ' + x.house }; }), +sg.dataset.sig);
+    } else if (g) {
       open(GALLERY.map(function (x) { return { src: IMG + x.img, cap: t(x), video: x.video }; }), +g.dataset.gal);
     } else if (p) {
       open(PRESS.map(function (x) { return { src: IMG + x[0], cap: x[1] }; }), +p.dataset.press);

@@ -31,8 +31,9 @@
   </a>
   <nav class="bar__nav" aria-label="Secções">
     <a href="#chef" data-i18n="nav.chef">O Chef</a>
-    <a href="#projetos" data-i18n="nav.projects">Projetos</a>
     <a href="#percurso" data-i18n="nav.path">Percurso</a>
+    <a href="#pratos" data-i18n="nav.dishes">Pratos</a>
+    <a href="#projetos" data-i18n="nav.projects">Projetos</a>
     <a href="#livros" data-i18n="nav.books">Livros</a>
     <a href="#imprensa" data-i18n="nav.press">Imprensa</a>
     <a href="#galeria" data-i18n="nav.gallery">Galeria</a>
@@ -44,8 +45,9 @@
 
 <div class="drawer" id="drawer" hidden>
   <a href="#chef" data-i18n="nav.chef">O Chef</a>
-  <a href="#projetos" data-i18n="nav.projects">Projetos</a>
   <a href="#percurso" data-i18n="nav.path">Percurso</a>
+  <a href="#pratos" data-i18n="nav.dishes">Pratos</a>
+  <a href="#projetos" data-i18n="nav.projects">Projetos</a>
   <a href="#livros" data-i18n="nav.books">Livros</a>
   <a href="#imprensa" data-i18n="nav.press">Imprensa</a>
   <a href="#galeria" data-i18n="nav.gallery">Galeria</a>
@@ -90,25 +92,11 @@
     </dl>
   </section>
 
-  <!-- ── 03 Projetos: an index you hover ─────────────────────────────── -->
-  <section class="projects" id="projetos" aria-labelledby="proj-title">
-    <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">02</span> <span data-i18n="proj.eyebrow">Projetos</span></p>
-      <h2 class="sec-title rise-block" id="proj-title" data-i18n="proj.title">Onde se come<br><em>hoje</em></h2>
-      <div class="tabs" role="tablist" aria-label="Filtro">
-        <button role="tab" class="tab is-on" aria-selected="true" data-filter="now" data-i18n="proj.now">Atuais</button>
-        <button role="tab" class="tab" aria-selected="false" data-filter="archive" data-i18n="proj.archive">Arquivo</button>
-      </div>
-    </div>
-    <ol class="index" id="index"></ol>
-    <div class="hover-plate" id="hover-plate" aria-hidden="true"><img alt=""></div>
-  </section>
-
-  <!-- ── 04 Percurso: years that travel sideways ─────────────────────── -->
+  <!-- ── 02 Percurso: years that travel sideways ─────────────────────── -->
   <section class="path" id="percurso" aria-labelledby="path-title">
     <div class="path__pin">
       <div class="path__head">
-        <p class="eyebrow"><span class="num">03</span> <span data-i18n="path.eyebrow">Percurso</span></p>
+        <p class="eyebrow"><span class="num">02</span> <span data-i18n="path.eyebrow">Percurso</span></p>
         <h2 class="sec-title" id="path-title" data-i18n="path.title">Do Porto<br>para o <em>mundo</em></h2>
         <div class="path__bar"><i id="path-progress"></i></div>
       </div>
@@ -116,10 +104,34 @@
     </div>
   </section>
 
+  <!-- ── 03 Pratos de assinatura: a biblioteca (lista provisória) ────── -->
+  <section class="sig" id="pratos" aria-labelledby="sig-title">
+    <div class="sec-head sig__head">
+      <p class="eyebrow fade"><span class="num">03</span> <span data-i18n="sig.eyebrow">Pratos de assinatura</span></p>
+      <h2 class="sec-title" id="sig-title" data-i18n="sig.title">A biblioteca<br><em>de pratos</em></h2>
+      <p class="sig__note fade" data-i18n="sig.note">Os pratos que criou e que ficaram. Não é uma carta: é uma memória da cozinha portuguesa, para quem gosta de comer e para quem cozinha.</p>
+    </div>
+    <ol class="sig__grid" id="sig"></ol>
+  </section>
+
+  <!-- ── 04 Projetos: uma secção por casa + arquivo ─────────────────── -->
+  <section class="projects" id="projetos" aria-labelledby="proj-title">
+    <div class="sec-head">
+      <p class="eyebrow fade"><span class="num">04</span> <span data-i18n="proj.eyebrow">Projetos</span></p>
+      <h2 class="sec-title rise-block" id="proj-title" data-i18n="proj.title">Onde se come<br><em>hoje</em></h2>
+    </div>
+    <div class="houses" id="houses"></div>
+    <div class="archive">
+      <p class="eyebrow archive__head" data-i18n="proj.archive">Arquivo</p>
+      <ol class="index" id="index"></ol>
+    </div>
+    <div class="hover-plate" id="hover-plate" aria-hidden="true"><img alt=""></div>
+  </section>
+
   <!-- ── 05 Livros ───────────────────────────────────────────────────── -->
   <section class="books" id="livros" aria-labelledby="books-title">
     <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">04</span> <span data-i18n="books.eyebrow">Livros</span></p>
+      <p class="eyebrow fade"><span class="num">05</span> <span data-i18n="books.eyebrow">Livros</span></p>
       <h2 class="sec-title" id="books-title" data-i18n="books.title">A cozinha,<br><em>por escrito</em></h2>
     </div>
     <div class="shelf" id="shelf"></div>
@@ -128,7 +140,7 @@
   <!-- ── 06 Imprensa ─────────────────────────────────────────────────── -->
   <section class="press" id="imprensa" aria-labelledby="press-title">
     <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">05</span> <span data-i18n="press.eyebrow">Imprensa</span></p>
+      <p class="eyebrow fade"><span class="num">06</span> <span data-i18n="press.eyebrow">Imprensa</span></p>
       <h2 class="sec-title" id="press-title" data-i18n="press.title">O que se<br><em>escreveu</em></h2>
     </div>
     <blockquote class="quote fade">
@@ -147,7 +159,7 @@
   <!-- ── 07 Galeria ──────────────────────────────────────────────────── -->
   <section class="gallery" id="galeria" aria-labelledby="gal-title">
     <div class="sec-head">
-      <p class="eyebrow fade"><span class="num">06</span> <span data-i18n="gal.eyebrow">Galeria</span></p>
+      <p class="eyebrow fade"><span class="num">07</span> <span data-i18n="gal.eyebrow">Galeria</span></p>
       <h2 class="sec-title" id="gal-title" data-i18n="gal.title">Pratos, casas<br><em>e momentos</em></h2>
     </div>
     <div class="mosaic" id="mosaic"></div>
@@ -184,49 +196,29 @@
     </div>
   </section>
 
-  <!-- ── 08 Contactos: a short questionnaire ─────────────────────────── -->
+  <!-- ── 08 Contactos: formulário simples ─────────────────────────── -->
   <section class="contact" id="contactos" aria-labelledby="contact-title">
     <div class="contact__lead">
-      <p class="eyebrow"><span class="num">07</span> <span data-i18n="contact.eyebrow">Contactos</span></p>
+      <p class="eyebrow"><span class="num">08</span> <span data-i18n="contact.eyebrow">Contactos</span></p>
       <h2 class="sec-title" id="contact-title" data-i18n="contact.title">Vamos<br>pôr a mesa?</h2>
-      <p class="contact__note" data-i18n="contact.note">Eventos privados, consultoria ou imprensa. Três perguntas rápidas — a resposta chega por email.</p>
+      <p class="contact__note" data-i18n="contact.note">Eventos, consultoria, imprensa ou outro assunto: escreva-nos. A resposta chega por email.</p>
       <ul class="contact__social">
         <li><a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://www.youtube.com/@chefmiguelcastroesilva9269" target="_blank" rel="noopener">YouTube</a></li>
       </ul>
     </div>
 
-    <form class="quiz" id="quiz" novalidate>
-      <div class="quiz__steps" aria-hidden="true"><i class="is-on"></i><i></i><i></i></div>
-
-      <fieldset class="quiz__step is-on" data-step="1">
-        <legend><span class="quiz__n">1/3</span> <span data-i18n="q1.q">Em que podemos ajudar?</span></legend>
-        <div class="choices">
-          <label class="choice"><input type="radio" name="motivo" value="evento"><span data-i18n="q1.a">Evento privado</span></label>
-          <label class="choice"><input type="radio" name="motivo" value="consultoria"><span data-i18n="q1.b">Consultoria</span></label>
-          <label class="choice"><input type="radio" name="motivo" value="imprensa"><span data-i18n="q1.c">Imprensa</span></label>
-          <label class="choice"><input type="radio" name="motivo" value="outro"><span data-i18n="q1.d">Outro assunto</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="quiz__step" data-step="2">
-        <legend><span class="quiz__n">2/3</span> <span id="q2-label" data-i18n="q2.evento">Para quantas pessoas, e quando?</span></legend>
-        <div class="choices" id="q2-choices"></div>
-        <label class="field"><span data-i18n="q2.more">Conte-nos um pouco mais</span><textarea name="detalhe" rows="3"></textarea></label>
-        <div class="quiz__nav"><button type="button" class="link-btn" data-back data-i18n="q.back">← Voltar</button><button type="button" class="btn" data-next data-i18n="q.next">Continuar</button></div>
-      </fieldset>
-
-      <fieldset class="quiz__step" data-step="3">
-        <legend><span class="quiz__n">3/3</span> <span data-i18n="q3.q">Como lhe respondemos?</span></legend>
-        <label class="field"><span data-i18n="q3.name">Nome</span><input name="nome" autocomplete="name" required></label>
+    <form class="cform" id="cform" novalidate>
+      <label class="field"><span data-i18n="q3.name">Nome</span><input name="nome" autocomplete="name" required></label>
+      <div class="cform__two">
         <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
-        <label class="check"><input type="checkbox" name="rgpd" required><span data-i18n="q3.rgpd">Aceito que os meus dados sejam usados apenas para responder a este pedido.</span></label>
-        <div class="quiz__nav"><button type="button" class="link-btn" data-back data-i18n="q.back">← Voltar</button><button type="submit" class="btn btn--wine" data-i18n="q.send">Enviar pedido</button></div>
-      </fieldset>
-
+        <label class="field"><span data-i18n="cf.phone">Telefone (opcional)</span><input name="telefone" type="tel" autocomplete="tel"></label>
+      </div>
+      <label class="field"><span data-i18n="cf.msg">Mensagem</span><textarea name="mensagem" rows="5" required></textarea></label>
+      <label class="check"><input type="checkbox" name="rgpd" required><span data-i18n="q3.rgpd">Aceito que os meus dados sejam usados apenas para responder a este pedido.</span></label>
+      <div class="cform__send"><button type="submit" class="btn" data-i18n="cf.send">Enviar mensagem</button></div>
       <div class="quiz__done" hidden>
         <p class="quiz__thanks" data-i18n="q.thanks">Obrigado. <em>Até já.</em></p>
-        <p data-i18n="q.thanksNote">O pedido chegou à equipa. Respondemos em breve.</p>
+        <p data-i18n="cf.thanksNote">A mensagem chegou. Respondemos em breve.</p>
       </div>
     </form>
   </section>

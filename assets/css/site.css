@@ -598,3 +598,55 @@ em { font-style: italic; }
 .hero--simple .hero__veil { background: linear-gradient(180deg, rgba(20,17,15,.35), rgba(20,17,15,.2) 50%, rgba(20,17,15,.45)); }
 .hero__phrase { font: 400 clamp(2.6rem, 1rem + 6vw, 7rem)/1 var(--serif); letter-spacing: -.02em; max-width: 14ch; }
 .hero__phrase em { color: var(--wine-l); }
+
+/* ── pratos de assinatura: a biblioteca ─────────────────────────────── */
+.sig { padding: clamp(6rem, 12vw, 10rem) 0; background: var(--paper-2); }
+.sig__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: end; gap: 1rem 4rem; }
+.sig__head .eyebrow { grid-column: 1 / -1; }
+.sig__note { color: var(--muted); max-width: 36ch; }
+.sig__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.25rem, 2.5vw, 2.5rem) clamp(1rem, 2vw, 2rem); padding: 0 var(--gut); }
+.dish button { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .3rem .8rem; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: zoom-in; }
+.dish__img { grid-column: 1 / -1; aspect-ratio: 4 / 5; overflow: hidden; margin-bottom: .9rem; background: var(--paper); }
+.dish__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--swift); }
+.dish button:hover .dish__img img { transform: scale(1.05); }
+.dish__n { grid-row: 2 / 4; font: 400 1rem/1.3 var(--serif); color: var(--wine); }
+.dish__name { font: 400 clamp(1.35rem, 1rem + .9vw, 1.75rem)/1.1 var(--serif); }
+.dish__house { font: 500 .6875rem/1.4 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 960px) { .sig__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sig__head { grid-template-columns: 1fr; } }
+
+/* ── projetos: uma secção por casa ───────────────────────────────────── */
+.houses { padding: 0 var(--gut); display: grid; gap: clamp(4rem, 8vw, 7rem); }
+.house { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.house--alt { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
+.house--alt .house__text { order: 2; }
+.house__n { font: 400 1rem/1 var(--serif); color: rgba(242,237,228,.45); margin-bottom: 1rem; }
+.house__name { font: 400 clamp(2.6rem, 1.4rem + 3.6vw, 5rem)/.95 var(--serif); letter-spacing: -.02em; }
+.house__place { margin-top: 1rem; font: 500 .6875rem/1.4 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--wine-l); }
+.house__p { margin-top: 1.25rem; max-width: 34ch; color: rgba(242,237,228,.75); }
+.house__btns { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.house__btns .btn { text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; }
+.house__btns .btn:hover { color: var(--paper); }
+.house__btns small { font-size: .625rem; letter-spacing: .12em; opacity: .7; }
+.btn--line { background: transparent; color: var(--paper); border-color: rgba(242,237,228,.45); }
+.btn--line:hover { border-color: var(--paper); }
+.house__pics { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: 1fr 1fr; gap: .75rem; aspect-ratio: 16 / 10; }
+.house__ph { padding: 0; border: 0; background: var(--ink-2); overflow: hidden; cursor: zoom-in; }
+.house__ph--0 { grid-row: 1 / 3; }
+.house__ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--swift); }
+.house__ph:hover img { transform: scale(1.05); }
+.house--soon { grid-template-columns: 1fr; padding: clamp(2rem, 4vw, 3rem); border: 1px dashed rgba(242,237,228,.3); }
+.house--soon .house__name { font-size: clamp(2rem, 1.2rem + 2.4vw, 3.4rem); }
+.archive { margin-top: clamp(5rem, 10vw, 8rem); }
+.archive__head { padding: 0 var(--gut); margin-bottom: 1.5rem; color: rgba(242,237,228,.6); }
+@media (max-width: 860px) {
+  .house, .house--alt { grid-template-columns: 1fr; }
+  .house--alt .house__text { order: 0; }
+  .house__pics { aspect-ratio: 4 / 3; }
+}
+
+/* ── contactos: formulário simples ───────────────────────────────────── */
+.cform { align-self: start; }
+.cform .field:first-child { margin-top: 0; }
+.cform__two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; }
+.cform__send { margin-top: 2rem; }
+@media (max-width: 560px) { .cform__two { grid-template-columns: 1fr; } }

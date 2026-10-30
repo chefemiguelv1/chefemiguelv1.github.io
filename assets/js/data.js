@@ -7,16 +7,23 @@ var PROJECTS = [
   // ── current
   { group: 'now', name: 'Time Out Market', place: 'Lisboa', year: '2014 —', img: 'MerRib_10-1600x875.jpg',
     pt: 'Cozinha regional de Norte a Sul, no Mercado da Ribeira.', en: 'Regional cooking from North to South, at Mercado da Ribeira.',
-    link: 'https://www.timeoutmarket.com/lisboa/' },
+    link: 'https://www.timeoutmarket.com/lisboa/',
+    photos: ['MerRib_10-1600x875.jpg', 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg', 'pratos/MCS_Mercado_TO_2025_05_caldo_verde.jpg', 'pratos/MCS_Mercado_TO_2025_03_lombo_bacalhau.jpg', 'pratos/MCS_Mercado_TO_2025_06_arroz_enchidos.jpg', 'pratos/MCS_Mercado_TO_2025_04_vitela.jpg', 'pratos/MCS_Mercado_TO_2025_01_lula.jpg'] },
   { group: 'now', name: 'Casario', place: 'Ribeira, Porto', year: '2018 —', img: 'Casario_01_2560x1400-1980x1083.jpg',
     pt: 'A quatro mãos com José Guedes, à beira do Douro.', en: 'Four hands with José Guedes, by the Douro.',
-    link: 'https://www.google.com/maps/search/Casario+Ribeira+Porto' },
+    link: 'https://www.grancruzhouse.pt/restaurant',
+    photos: ['Casario_01_2560x1400-1980x1083.jpg', 'pratos/Casario_vieira_acafrao.jpg', 'pratos/Casario_robalo.jpg', 'pratos/Casario_polvo_agriao.jpg', 'pratos/Casario_rodovalho.jpg', 'pratos/Casario_terrina_sapateira.jpg', 'pratos/Casario_novilho.jpg', 'pratos/Casario_tartelete_choco.jpg'] },
   { group: 'now', name: 'deCastro Gaia', place: 'Vila Nova de Gaia', year: '2012 —', img: 'deCastro_Gaia_01_2560x1400-1980x1083.jpg',
     pt: 'Cozinha petisqueira no Espaço Porto Cruz.', en: 'Portuguese small plates at Espaço Porto Cruz.',
-    link: 'https://www.google.com/maps/search/deCastro+Gaia' },
+    link: 'https://www.espacoportocruz.pt/espaco/restaurante-decastro-gaia',
+    photos: ['deCastro_Gaia_01_2560x1400-1980x1083.jpg', 'pratos/de_castro_arroz_marisco.jpg', 'pratos/de_castro_camarao_alho.jpg', 'pratos/de_castro_bisaro_arroz_cog.jpg', 'pratos/de_castro_dourada.jpg', 'pratos/de_castro_raia.jpg', 'pratos/de_castro_feijao_tripas.jpg', 'pratos/de_castro_morcela.jpg', 'pratos/de_castro_pudim_alho_frances.jpg', 'pratos/de_castro_tarte_queijo.jpg', 'pratos/de_castro_bolo_choco.jpg'] },
   { group: 'now', name: 'Cantina de Ventozelo', place: 'Douro', year: '2019 —', img: 'Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg',
     pt: 'Cozinha de proximidade na Quinta de Ventozelo.', en: 'Local, seasonal cooking at Quinta de Ventozelo.',
-    link: 'https://www.google.com/maps/search/Cantina+de+Ventozelo' },
+    link: 'https://hotel.quintadeventozelo.pt/cantina',
+    photos: ['Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg', 'pratos/Cantina_Ventozelo_Almoco_Alcatra-Barosa-Arroz-Tomate.jpg', 'pratos/MCS_Cantina_007.jpg', 'pratos/MCS_Cantina_005.jpg', 'pratos/MCS_Cantina_003.jpg', 'pratos/MCS_Cantina_001.jpg'] },
+  // ── coming soon (details to come from the chef)
+  { group: 'soon', name: 'Madeira', place: 'Madeira', year: 'Em breve', yearEn: 'Coming soon',
+    pt: 'Um novo restaurante. Mais novidades em breve.', en: 'A new restaurant. More news soon.' },
   // ── archive
   { group: 'archive', name: 'Bull & Bear', place: 'Porto', year: '1997 — 2008', img: 'BB_1280_01.jpg',
     pt: 'No edifício da Bolsa. Garfo de Ouro e 25 melhores da Europa (FT).', en: 'In the Stock Exchange building. Among Europe’s 25 best (FT).' },
@@ -30,6 +37,19 @@ var PROJECTS = [
     pt: 'Consultoria: Serralves, Gulbenkian, Sonae, Vista Alegre.', en: 'Consulting: Serralves, Gulbenkian, Sonae, Vista Alegre.' },
   { group: 'archive', name: 'Restaurante do Miguel', place: 'Foz, Porto', year: '1994', img: 'MCS_site_base_home_2560x1400_pb-1980x1083.jpg',
     pt: 'Um dos 12 melhores restaurantes de Portugal (Exame).', en: 'One of Portugal’s 12 best restaurants (Exame).' }
+];
+
+// Signature dishes: a provisional list made from the photos on his current site,
+// to be replaced by the list the chef sends (photo, name, house, one line).
+var SIGNATURE = [
+  { img: 'pratos/Casario_vieira_acafrao.jpg', pt: 'Vieira com açafrão', en: 'Scallop with saffron', house: 'Casario' },
+  { img: 'pratos/de_castro_arroz_marisco.jpg', pt: 'Arroz de marisco', en: 'Seafood rice', house: 'deCastro Gaia' },
+  { img: 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg', pt: 'Bacalhau à Brás', en: 'Bacalhau à Brás', house: 'Time Out Market' },
+  { img: 'pratos/Casario_polvo_agriao.jpg', pt: 'Polvo e agrião', en: 'Octopus and watercress', house: 'Casario' },
+  { img: 'pratos/Cantina_Ventozelo_Almoco_Alcatra-Barosa-Arroz-Tomate.jpg', pt: 'Alcatra barrosã, arroz de tomate', en: 'Barrosã beef, tomato rice', house: 'Cantina de Ventozelo' },
+  { img: 'pratos/de_castro_pudim_alho_frances.jpg', pt: 'Pudim de alho-francês', en: 'Leek pudding', house: 'deCastro Gaia' },
+  { img: 'pratos/Casario_terrina_sapateira.jpg', pt: 'Terrina de sapateira', en: 'Brown crab terrine', house: 'Casario' },
+  { img: 'pratos/MCS_Mercado_TO_2025_05_caldo_verde.jpg', pt: 'Caldo verde', en: 'Caldo verde', house: 'Time Out Market' }
 ];
 
 var TIMELINE = [
@@ -110,9 +130,10 @@ var I18N = {
     'press.h3': 'Garfo de Ouro · Bull & Bear, 2003',
     'press.h4': 'Three recipes in the Larousse Gastronomique · 2007',
     'gal.eyebrow': 'Gallery', 'gal.title': 'Dishes, houses<br><em>and moments</em>',
-    'hero.phrase': 'Portuguese cooking <em>with soul.</em>', 'ig.eyebrow': 'Instagram', 'ig.title': 'Follow<br><em>the kitchen</em>', 'ig.posts': 'posts', 'ig.followers': 'followers', 'ig.following': 'following', 'ig.follow': 'Follow', 'ig.message': 'Send message', 'ig.messageShort': 'Message', 'ig.tabPosts': 'Posts', 'ig.more': 'See more posts', 'ig.open': 'See more on Instagram',
+    'hero.phrase': 'Portuguese cooking <em>with soul.</em>', 'nav.dishes': 'Dishes', 'sig.eyebrow': 'Signature dishes', 'sig.title': 'A library<br><em>of dishes</em>', 'sig.note': 'The dishes he created and that stayed. Not a menu: a memory of Portuguese cooking, for those who love to eat and those who cook.', 'proj.gallery': 'See gallery', 'proj.book': 'Book a table', 'proj.photos': 'photos', 'cf.phone': 'Phone (optional)', 'cf.msg': 'Message', 'cf.send': 'Send message', 'cf.thanksNote': 'Your message arrived. We will reply shortly.',
+    'ig.eyebrow': 'Instagram', 'ig.title': 'Follow<br><em>the kitchen</em>', 'ig.posts': 'posts', 'ig.followers': 'followers', 'ig.following': 'following', 'ig.follow': 'Follow', 'ig.message': 'Send message', 'ig.messageShort': 'Message', 'ig.tabPosts': 'Posts', 'ig.more': 'See more posts', 'ig.open': 'See more on Instagram',
     'contact.eyebrow': 'Contact', 'contact.title': 'Shall we<br>set the table?',
-    'contact.note': 'Private events, consulting or press. Three quick questions — the reply comes by email.',
+    'contact.note': 'Events, consulting, press or anything else: write to us. The reply comes by email.',
     'q1.q': 'How can we help?', 'q1.a': 'Private event', 'q1.b': 'Consulting', 'q1.c': 'Press', 'q1.d': 'Something else',
     'q2.evento': 'For how many guests?', 'q2.consultoria': 'What kind of project?', 'q2.imprensa': 'What is it for?', 'q2.outro': 'What is it about?',
     'q2.more': 'Tell us a little more',
