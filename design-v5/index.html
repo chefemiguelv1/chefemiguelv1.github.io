@@ -23,7 +23,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 60px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -42,20 +42,28 @@ section { padding: clamp(4.5rem, 8vw, 7rem) var(--gut); }
 .head__aside { max-width: 24rem; color: var(--muted); font-size: .95rem; }
 
 /* barra */
-.bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 60px; padding: 0 var(--gut); background: #000; color: #fff; }
-.bar__mark { font: 700 1.45rem/1 var(--sans); letter-spacing: -.03em; white-space: nowrap; }
-.bar__right { display: flex; align-items: center; height: 100%; }
-.bar__nav { display: flex; align-items: center; gap: 1.55rem; font: 600 .84rem/1 var(--sans); text-transform: uppercase; }
-.bar__nav > a { display: inline-flex; align-items: center; height: 60px; }
-.bar__nav a.on { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
-.bar__nav svg { width: 11px; height: 11px; }
-.bar__lang { margin-left: 1.8rem; padding-left: 1.8rem; border-left: 1px solid rgba(255,255,255,.25); font: 700 .72rem var(--sans); letter-spacing: .06em; }
-.bar__lang b { color: #fff; }
-.bar__lang span { color: rgba(255,255,255,.45); }
-.bar__burger { display: none; background: none; border: 0; padding: 0; font: 700 .72rem var(--sans); text-transform: uppercase; align-items: center; gap: .5rem; }
+.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 76px; padding: 0 var(--gut); color: #fff; transition: background .35s, color .35s, height .35s, box-shadow .35s; }
+.bar::before { content: ""; position: absolute; inset: 0 0 -40px; z-index: -1; background: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,0)); transition: opacity .35s; pointer-events: none; }
+.bar.solid { height: 64px; background: rgba(242,237,228,.94); color: var(--ink); box-shadow: 0 1px 0 var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.bar.solid::before { opacity: 0; }
+.bar__mark { display: flex; flex-direction: column; gap: .3rem; white-space: nowrap; }
+.bar__mark b { font: 700 1.2rem/1 var(--sans); letter-spacing: -.02em; }
+.bar__mark small { font: 600 .6rem/1 var(--sans); letter-spacing: .32em; text-transform: uppercase; opacity: .7; }
+.bar__right { display: flex; align-items: center; gap: 1.8rem; height: 100%; }
+.bar__nav { display: flex; align-items: center; gap: 1.7rem; height: 100%; font: 600 .74rem/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+.bar__nav > a { position: relative; display: inline-flex; align-items: center; height: 100%; }
+.bar__nav > a::after { content: ""; position: absolute; left: 0; right: 0; bottom: calc(50% - 1rem); height: 1px; background: currentColor; transform: scaleX(0); transition: transform .3s; }
+.bar__nav > a:hover::after { transform: scaleX(1); }
+.bar__nav svg { width: 10px; height: 10px; }
+.lang { display: inline-flex; padding: 3px; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; }
+.lang button { min-width: 36px; padding: .42rem .55rem; border: 0; border-radius: 999px; background: none; color: inherit; font: 700 .68rem/1 var(--sans); letter-spacing: .08em; }
+.lang button.on { background: #fff; color: var(--ink); }
+.bar.solid .lang { border-color: rgba(20,17,15,.3); }
+.bar.solid .lang button.on { background: var(--ink); color: var(--paper); }
+.bar__burger { display: none; background: none; border: 0; padding: 0; font: 700 .7rem var(--sans); letter-spacing: .12em; text-transform: uppercase; align-items: center; gap: .55rem; }
 
 /* submenus (computador) */
-.dd { position: relative; height: 60px; display: flex; align-items: center; }
+.dd { position: relative; height: 100%; display: flex; align-items: center; }
 .dd__btn { display: inline-flex; align-items: center; gap: .4rem; background: none; border: 0; padding: 0; font: inherit; text-transform: inherit; }
 .dd__btn svg { transition: transform .2s; }
 .dd.open .dd__btn svg { transform: rotate(180deg); }
@@ -81,7 +89,7 @@ section { padding: clamp(4.5rem, 8vw, 7rem) var(--gut); }
 body.locked { overflow: hidden; }
 
 /* 01 início */
-.hero { position: relative; height: calc(100vh - 60px); min-height: 520px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 var(--gut) clamp(2.5rem, 5vw, 4rem); color: #fff; background: #000; overflow: hidden; }
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 var(--gut) clamp(2.5rem, 5vw, 4rem); color: #fff; background: #000; overflow: hidden; }
 .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,0) 48%); }
 .hero > :not(.hero__img) { position: relative; z-index: 2; }
@@ -264,7 +272,8 @@ body.locked { overflow: hidden; }
   .path__list img { display: none; }
 }
 @media (max-width: 960px) {
-  .bar__nav, .bar__lang { display: none; }
+  .bar__nav { display: none; }
+  .bar__right { gap: 1rem; }
   .bar__burger { display: inline-flex; }
   .chef, .contact, .press__top, .collab { grid-template-columns: 1fr; }
   .chef__photo { position: static; }
@@ -276,8 +285,12 @@ body.locked { overflow: hidden; }
 }
 @media (max-width: 600px) {
   html { scrollbar-width: none; }
-  .bar__mark { font-size: 1.1rem; }
-  .hero { height: 78vh; min-height: 0; padding-bottom: 1.8rem; }
+  .bar { height: 64px; }
+  .bar__mark b { font-size: 1rem; }
+  .bar__mark small { font-size: .52rem; letter-spacing: .28em; }
+  .lang button { min-width: 32px; padding: .4rem .45rem; font-size: .64rem; }
+  .bar__burger span { display: none; }
+  .hero { height: 88svh; min-height: 0; padding-bottom: 1.8rem; }
   .hero::before { background: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,0) 36%); }
   .hero__img { object-position: 58% 50%; }
   .hero .label, .hero__lede { display: none; }
@@ -328,7 +341,7 @@ body.locked { overflow: hidden; }
 <body>
 
 <header class="bar">
-  <a class="bar__mark" href="#top">Chef Miguel Castro e Silva</a>
+  <a class="bar__mark" href="#top"><b>Miguel Castro e Silva</b><small>Cozinheiro</small></a>
   <div class="bar__right">
     <nav class="bar__nav">
       <a href="#chef">O Chef</a>
@@ -354,14 +367,14 @@ body.locked { overflow: hidden; }
       <a href="#galeria">Galeria</a>
       <a href="#contactos">Contactos</a>
     </nav>
-    <span class="bar__lang"><b>PT</b> <span>/ EN</span></span>
-    <button class="bar__burger" id="burger" type="button" aria-expanded="false"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h20M0 7h20M0 13h20"/></svg>Menu</button>
+    <div class="lang" role="group" aria-label="Língua"><button type="button" class="on" lang="pt">PT</button><button type="button" lang="en">EN</button></div>
+    <button class="bar__burger" id="burger" type="button" aria-expanded="false"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h20M0 7h20M0 13h20"/></svg><span>Menu</span></button>
   </div>
 </header>
 
 <div class="mnav" id="mnav" aria-hidden="true">
   <div class="mnav__top">
-    <span class="bar__mark">Chef Miguel Castro e Silva</span>
+    <span class="bar__mark"><b>Miguel Castro e Silva</b><small>Cozinheiro</small></span>
     <button class="mnav__close" id="mclose" type="button"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2l12 12M14 2L2 14"/></svg>Fechar</button>
   </div>
   <nav class="mnav__list">
@@ -379,7 +392,7 @@ body.locked { overflow: hidden; }
     <a href="#galeria">Galeria</a>
     <a href="#contactos">Contactos</a>
   </nav>
-  <div class="mnav__foot"><span>PT / EN</span><a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener">Instagram</a></div>
+  <div class="mnav__foot"><a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener">Instagram</a></div>
 </div>
 
 <main id="top">
@@ -388,7 +401,7 @@ body.locked { overflow: hidden; }
   <section class="hero">
     <img class="hero__img" src="../assets/img/MCS_projetos-0x0.jpg" alt="Miguel Castro e Silva a empratar">
     <p class="label">Cozinheiro · Porto, 1961</p>
-    <h1>Cozinha portuguesa de autor.</h1>
+    <h1>Cozinha portuguesa com alma.</h1>
     <div class="hero__row">
       <p class="hero__lede">Do Porto ao Douro, de Lisboa ao mundo, há mais de trinta anos.</p>
       <a class="btn" href="#projetos">Ver os restaurantes</a>
@@ -671,6 +684,16 @@ body.locked { overflow: hidden; }
     d.querySelectorAll('.dd__menu a').forEach(function (a) { a.addEventListener('click', function () { closeAll(); }); });
   });
   document.addEventListener('click', function () { closeAll(); });
+
+  // bar: transparent over the hero, solid after it
+  var bar = document.querySelector('.bar'), hero = document.querySelector('.hero');
+  function onScroll() { bar.classList.toggle('solid', scrollY > hero.offsetHeight - 90); }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // language: only the switch for now; the English texts come after the layout is closed
+  document.querySelectorAll('.lang').forEach(function (g) {
+    g.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; g.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); }); });
+  });
 
   // mobile menu
   var mnav = document.getElementById('mnav'), burger = document.getElementById('burger');
