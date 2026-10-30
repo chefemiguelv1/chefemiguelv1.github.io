@@ -14,47 +14,73 @@
   --paper-2: #E8E1D5;
   --ink: #14110F;
   --wine: #7A1E2C;
-  --rose: #C4535F;
+  --sand: #CDBFA9;
   --muted: #6F675E;
   --line: rgba(20, 17, 15, .14);
   --line-light: rgba(242, 237, 228, .16);
-  --serif: "Inter", Arial, sans-serif;
   --sans: "Inter", Arial, sans-serif;
   --gut: clamp(1.25rem, 4.5vw, 4.5rem);
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+html { scroll-behavior: smooth; scroll-padding-top: 60px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-h1, h2, h3, p, figure { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+h1, h2, h3, p, figure, blockquote, dl, dd { margin: 0; }
 ul { padding: 0; margin: 0; list-style: none; }
+em { font-style: normal; }
 
-.label { font: 600 .7rem/1.4 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
-.label .n { font: 700 1rem/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--wine); margin-right: .55rem; }
-.title { margin-top: 1rem; font: 700 clamp(2.5rem, 5.6vw, 4.8rem)/1 var(--serif); letter-spacing: -.02em; }
+/* textos comuns */
+.label { font: 700 .7rem/1.4 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.label .n { font: 700 1rem/1 var(--sans); letter-spacing: 0; color: var(--wine); margin-right: .55rem; }
+.title { margin-top: 1rem; font: 800 clamp(2.5rem, 5.6vw, 4.8rem)/1 var(--sans); letter-spacing: -.035em; }
 .title em { color: var(--wine); }
 section { padding: clamp(4.5rem, 8vw, 7rem) var(--gut); }
-.head { margin-bottom: clamp(2.5rem, 4vw, 3.5rem); }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem 3rem; flex-wrap: wrap; margin-bottom: clamp(2.5rem, 4vw, 3.5rem); }
+.head__aside { max-width: 24rem; color: var(--muted); font-size: .95rem; }
 
-/* menu */
-/* Inter typography, as on the current site (Twenty Twenty theme) */
-em { font-style: normal; }
-.label { letter-spacing: .08em; font-weight: 700; }
-.title { letter-spacing: -.035em; font-weight: 800; }
-
+/* barra */
 .bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 60px; padding: 0 var(--gut); background: #000; color: #fff; }
 .bar__mark { font: 700 1.45rem/1 var(--sans); letter-spacing: -.03em; white-space: nowrap; }
 .bar__right { display: flex; align-items: center; height: 100%; }
-.bar__nav { display: flex; align-items: center; gap: 1.55rem; font: 600 .84rem/1 var(--sans); letter-spacing: -.005em; text-transform: uppercase; }
-.bar__nav a { display: inline-flex; align-items: center; gap: .4rem; }
+.bar__nav { display: flex; align-items: center; gap: 1.55rem; font: 600 .84rem/1 var(--sans); text-transform: uppercase; }
+.bar__nav > a { display: inline-flex; align-items: center; height: 60px; }
 .bar__nav a.on { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .bar__nav svg { width: 11px; height: 11px; }
-.bar__search { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-left: 1.8rem; padding-left: 1.8rem; border-left: 1px solid rgba(255,255,255,.25); height: 32px; justify-content: center; font: 700 .62rem var(--sans); }
-.bar__burger { display: none; background: none; color: inherit; border: 0; padding: 0; font: 700 .72rem var(--sans); text-transform: uppercase; align-items: center; gap: .5rem; }
+.bar__lang { margin-left: 1.8rem; padding-left: 1.8rem; border-left: 1px solid rgba(255,255,255,.25); font: 700 .72rem var(--sans); letter-spacing: .06em; }
+.bar__lang b { color: #fff; }
+.bar__lang span { color: rgba(255,255,255,.45); }
+.bar__burger { display: none; background: none; border: 0; padding: 0; font: 700 .72rem var(--sans); text-transform: uppercase; align-items: center; gap: .5rem; }
 
-/* início — fotografia a toda a largura, como na biografia do site atual */
+/* submenus (computador) */
+.dd { position: relative; height: 60px; display: flex; align-items: center; }
+.dd__btn { display: inline-flex; align-items: center; gap: .4rem; background: none; border: 0; padding: 0; font: inherit; text-transform: inherit; }
+.dd__btn svg { transition: transform .2s; }
+.dd.open .dd__btn svg { transform: rotate(180deg); }
+.dd__menu { position: absolute; top: 100%; left: -1.2rem; min-width: 250px; padding: .7rem 0; background: #000; border-top: 1px solid rgba(255,255,255,.12); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .2s, transform .2s, visibility .2s; }
+.dd.open .dd__menu { opacity: 1; visibility: visible; transform: none; }
+.dd__menu a { display: block; padding: .65rem 1.2rem; font: 500 .9rem/1.3 var(--sans); text-transform: none; color: rgba(255,255,255,.85); }
+.dd__menu a:hover { color: #fff; background: rgba(255,255,255,.07); }
+.dd__menu small { display: block; margin-top: .1rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+
+/* menu do telemóvel */
+.mnav { position: fixed; inset: 0; z-index: 30; display: flex; flex-direction: column; background: #000; color: #fff; opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s; }
+.mnav.open { opacity: 1; visibility: visible; }
+.mnav__top { display: flex; justify-content: space-between; align-items: center; height: 60px; padding: 0 var(--gut); border-bottom: 1px solid rgba(255,255,255,.12); }
+.mnav__close { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; color: #fff; font: 700 .72rem var(--sans); text-transform: uppercase; }
+.mnav__list { flex: 1; overflow-y: auto; padding: 1rem var(--gut) 2rem; }
+.mnav__list > a, .mnav__sub > button { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1.05rem 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.12); background: none; color: #fff; font: 700 1.5rem/1.1 var(--sans); letter-spacing: -.03em; text-align: left; }
+.mnav__sub > button svg { width: 16px; height: 16px; transition: transform .2s; }
+.mnav__sub.open > button svg { transform: rotate(180deg); }
+.mnav__sub div { display: none; padding: .4rem 0 .8rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+.mnav__sub.open div { display: block; }
+.mnav__sub div a { display: block; padding: .55rem 0 .55rem 1rem; font: 500 1.02rem var(--sans); color: rgba(255,255,255,.75); }
+.mnav__foot { padding: 1.2rem var(--gut) 1.6rem; display: flex; gap: 1.4rem; font: 700 .72rem var(--sans); text-transform: uppercase; color: rgba(255,255,255,.6); }
+body.locked { overflow: hidden; }
+
+/* 01 início */
 .hero { position: relative; height: calc(100vh - 60px); min-height: 520px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 var(--gut) clamp(2.5rem, 5vw, 4rem); color: #fff; background: #000; overflow: hidden; }
 .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,0) 48%); }
@@ -63,94 +89,140 @@ em { font-style: normal; }
 .hero h1 { margin-top: .9rem; max-width: 15ch; font: 800 clamp(2.6rem, 6.6vw, 6.2rem)/.98 var(--sans); letter-spacing: -.045em; }
 .hero__row { margin-top: 1.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
 .hero__lede { max-width: 30rem; font-size: 1.08rem; line-height: 1.55; color: rgba(255,255,255,.88); }
-.film { display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1.4rem; background: #fff; color: #000; font: 700 .78rem var(--sans); text-transform: uppercase; }
+.btn { display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1.4rem; background: #fff; color: #000; font: 700 .78rem var(--sans); text-transform: uppercase; }
 
-/* o chef */
-.chef { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
-.chef img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 30%; }
-.statement { margin-top: 1.5rem; font: 700 clamp(1.9rem, 3.2vw, 3rem)/1.12 var(--serif); letter-spacing: -.015em; }
+/* 02 o chef */
+.chef { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+.chef__photo { position: sticky; top: 90px; }
+.chef__photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 30%; }
+.chef__photo figcaption { margin-top: .8rem; font-size: .8rem; color: var(--muted); }
+.statement { margin-top: 1.5rem; font: 700 clamp(1.8rem, 3vw, 2.8rem)/1.12 var(--sans); letter-spacing: -.025em; }
 .statement em { color: var(--wine); }
-.chef__text { margin-top: 1.8rem; max-width: 30rem; color: #3B3530; }
-.facts { display: flex; gap: clamp(2rem, 5vw, 4rem); margin-top: 2.6rem; padding-top: 1.6rem; border-top: 1px solid var(--ink); }
-.facts b { display: block; font: 700 3rem/1 var(--serif); color: var(--wine); }
-.facts span { display: block; margin-top: .5rem; font-size: .82rem; color: var(--muted); }
+.chef__text { margin-top: 2rem; columns: 2; column-gap: 2.5rem; color: #3B3530; font-size: .98rem; }
+.chef__text p { margin-bottom: 1.1rem; break-inside: avoid; }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--ink); }
+.facts b { display: block; font: 800 2.4rem/1 var(--sans); letter-spacing: -.03em; color: var(--wine); }
+.facts span { display: block; margin-top: .5rem; font-size: .8rem; line-height: 1.45; color: var(--muted); }
 
-/* projetos */
+/* 03 projetos */
 .projects { background: var(--ink); color: var(--paper); }
 .projects .label { color: rgba(242,237,228,.55); }
-.projects .label .n, .projects .title em { color: var(--rose); }
+.projects .label .n, .projects .title em { color: var(--sand); }
+.projects .head__aside { color: rgba(242,237,228,.6); }
 .houses { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 2vw, 2rem); }
-.house img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
-.house h3 { margin-top: 1.1rem; font: 700 1.7rem/1.1 var(--serif); }
-.house p { margin-top: .4rem; font: 600 .66rem var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--rose); }
+.house { background: none; border: 0; padding: 0; text-align: left; color: inherit; }
+.house__img { overflow: hidden; }
+.house img { width: 100%; aspect-ratio: 4/5; object-fit: cover; transition: transform .6s, opacity .3s; opacity: .55; }
+.house:hover img, .house.on img { opacity: 1; }
+.house:hover img { transform: scale(1.03); }
+.house h3 { margin-top: 1.1rem; font: 700 1.6rem/1.1 var(--sans); letter-spacing: -.025em; }
+.house p { margin-top: .4rem; font: 600 .66rem var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--sand); }
+.house small { display: block; margin-top: .6rem; font-size: .85rem; line-height: 1.5; color: rgba(242,237,228,.7); }
+.house.on h3 { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.plates { margin-top: clamp(3rem, 5vw, 4.5rem); padding-top: 1.6rem; border-top: 1px solid var(--line-light); }
+.plates__head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
+.plates__head h3 { font: 700 1.25rem/1.2 var(--sans); letter-spacing: -.02em; }
+.plates__head h3 span { color: var(--sand); }
+.arrows { display: flex; gap: .5rem; }
+.arrows button { width: 44px; height: 44px; border: 1px solid var(--line-light); background: none; color: var(--paper); font-size: 1.1rem; }
+.arrows button:hover { background: var(--paper); color: var(--ink); }
+.track { display: none; grid-auto-flow: column; grid-auto-columns: clamp(220px, 24vw, 340px); gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.track::-webkit-scrollbar { display: none; }
+.track.on { display: grid; }
+.dish { scroll-snap-align: start; cursor: zoom-in; }
+.dish img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.dish figcaption { margin-top: .7rem; font-size: .9rem; font-weight: 500; }
+.collab { margin-top: clamp(3rem, 5vw, 4.5rem); display: grid; grid-template-columns: 12rem 1fr; gap: 1.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line-light); }
+.collab ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem 2rem; }
+.collab b { display: block; font: 700 1.05rem/1.3 var(--sans); }
+.collab li span { font-size: .82rem; color: rgba(242,237,228,.6); }
 
-/* percurso */
-.path__list { max-width: 900px; border-top: 1px solid var(--line); }
-.path__list li { display: grid; grid-template-columns: 7rem 1fr; gap: 1.5rem; align-items: baseline; padding: 1.3rem 0; border-bottom: 1px solid var(--line); }
-.path__list b { font: 700 2rem/1 var(--serif); color: var(--wine); }
-.path__list span { font: 600 1.35rem/1.25 var(--serif); }
+/* 04 percurso */
+.path__list { border-top: 1px solid var(--line); }
+.path__list li { display: grid; grid-template-columns: 9rem 1fr 1.3fr 140px; gap: 2rem; align-items: center; padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+.path__list b { font: 800 1.7rem/1 var(--sans); letter-spacing: -.03em; color: var(--wine); }
+.path__list h3 { font: 700 1.3rem/1.2 var(--sans); letter-spacing: -.02em; }
+.path__list h3 small { display: block; margin-top: .3rem; font: 600 .66rem var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.path__list p { font-size: .92rem; line-height: 1.55; color: #3B3530; }
+.path__list img { width: 140px; aspect-ratio: 4/3; object-fit: cover; filter: grayscale(1); transition: filter .4s; }
+.path__list li:hover img { filter: none; }
 
-/* livros */
+/* 05 livros */
 .books { background: var(--paper-2); }
-.shelf { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 4vw, 3.5rem); max-width: 980px; }
+.shelf { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 4vw, 3.5rem); max-width: 1040px; }
 .shelf img { width: 100%; box-shadow: 0 26px 36px -22px rgba(0,0,0,.5); }
-.shelf .y { margin-top: 1.2rem; font: 700 1rem var(--serif); color: var(--wine); }
-.shelf h3 { font: 600 1.25rem/1.2 var(--serif); }
+.shelf .y { margin-top: 1.2rem; font: 700 .9rem var(--sans); color: var(--wine); }
+.shelf h3 { font: 700 1.2rem/1.25 var(--sans); letter-spacing: -.015em; }
+.shelf p:last-child { margin-top: .4rem; font-size: .88rem; line-height: 1.5; color: var(--muted); }
 
-/* imprensa */
-.press blockquote { margin: 0 0 3rem; max-width: 48rem; font: 700 clamp(1.9rem, 3.8vw, 3.3rem)/1.15 var(--serif); }
-.press cite { display: block; margin-top: 1rem; font: normal 600 .7rem var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
-.clips { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+/* 06 imprensa */
+.press__top { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+.press blockquote { font: 700 clamp(1.8rem, 3.4vw, 3rem)/1.15 var(--sans); letter-spacing: -.025em; }
+.press cite { display: block; margin-top: 1rem; font: normal 600 .7rem var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.awards { border-top: 1px solid var(--ink); }
+.awards li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.awards b { font-weight: 800; color: var(--wine); }
+.awards span { font-size: .95rem; line-height: 1.45; }
+.awards small { display: block; color: var(--muted); font-size: .8rem; }
+.clips { margin-top: clamp(3rem, 5vw, 4.5rem); display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
 .clips img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: #fff; box-shadow: 0 16px 26px -16px rgba(0,0,0,.45); }
+.clips figcaption { margin-top: .6rem; font: 600 .66rem var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 
-/* galeria */
+/* 07 galeria */
 .gallery { padding-top: 0; }
-.grid6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
-.grid6 img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
+.tabs button { padding: .6rem 1.1rem; border: 1px solid var(--line); background: none; font: 600 .72rem var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.tabs button.on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+.grid figure { cursor: zoom-in; overflow: hidden; }
+.grid figure.wide { grid-column: span 2; }
+.grid img { width: 100%; height: 100%; aspect-ratio: 4/3; object-fit: cover; transition: transform .6s; }
+.grid figure:hover img { transform: scale(1.03); }
+.grid figcaption { display: none; }
+.grid figure[hidden] { display: none; }
 
 /* redes sociais */
 .social { background: var(--paper-2); }
 .social__wrap { display: grid; grid-template-columns: 2fr 1fr; gap: clamp(1.25rem, 3vw, 2.5rem); align-items: start; }
 .card { background: var(--paper); border: 1px solid var(--line); padding: clamp(1.25rem, 2.5vw, 2rem); }
 .profile { display: flex; align-items: center; gap: 1rem; }
-.profile__pic { width: 64px; height: 64px; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, var(--rose), var(--wine)); flex: none; }
+.profile__pic { width: 64px; height: 64px; border-radius: 50%; padding: 3px; background: var(--ink); flex: none; }
 .profile__pic img { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--paper); background: var(--paper); }
-.profile__name { font: 600 1.35rem/1.15 var(--serif); }
+.profile__name { font: 700 1.25rem/1.15 var(--sans); letter-spacing: -.02em; }
 .profile__handle { display: flex; align-items: center; gap: .4rem; margin-top: .2rem; font-size: .85rem; color: var(--muted); }
-.follow { margin-left: auto; display: inline-flex; align-items: center; gap: .55rem; padding: .75rem 1.3rem; border-radius: 0; background: var(--ink); color: var(--paper); font: 600 .7rem var(--sans); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.follow { margin-left: auto; display: inline-flex; align-items: center; padding: .75rem 1.3rem; background: var(--ink); color: var(--paper); font: 600 .7rem var(--sans); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 .follow--wine { background: var(--wine); }
-.card__bio { margin-top: 1.1rem; font-size: .92rem; color: #3B3530; }
-.card__tags { margin-top: .7rem; display: flex; flex-wrap: wrap; gap: .4rem; }
-.card__tags span { padding: .3rem .7rem; border: 1px solid var(--line); border-radius: 0; font-size: .75rem; color: var(--muted); }
 .feed { margin-top: 1.4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-.feed a { position: relative; display: block; aspect-ratio: 1; overflow: hidden; }
-.feed img { width: 100%; height: 100%; object-fit: cover; }
-.feed a.reel::after { content: ""; position: absolute; top: 10px; right: 10px; width: 18px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 3l10 6-10 6z' fill='%23F2EDE4'/%3E%3C/svg%3E") center/contain no-repeat; }
-.card__more { margin-top: 1.2rem; display: flex; justify-content: space-between; align-items: center; font: 600 .7rem var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--wine); }
-.card__more span { color: var(--muted); font-weight: 500; letter-spacing: .06em; text-transform: none; }
+.feed img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.card__more { margin-top: 1.2rem; display: block; font: 600 .7rem var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--wine); }
 .fb__cover { height: 120px; margin: calc(-1 * clamp(1.25rem, 2.5vw, 2rem)) calc(-1 * clamp(1.25rem, 2.5vw, 2rem)) 1.2rem; background: url("../assets/img/Casario_01_2560x1400-1980x1083.jpg") center/cover; }
 .fb__post { margin-top: 1.3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
-.fb__post img { width: 100%; aspect-ratio: 16/10; object-fit: cover; margin-top: .8rem; }
 .fb__post p { font-size: .9rem; color: #3B3530; }
-.fb__meta { display: flex; gap: .5rem; align-items: center; font-size: .75rem; color: var(--muted); margin-bottom: .6rem; }
-.fb__meta img { width: 28px; height: 28px; margin: 0; border-radius: 50%; aspect-ratio: 1; }
-.social__note { margin-top: 1.4rem; font-size: .78rem; color: var(--muted); }
+.fb__post img { width: 100%; aspect-ratio: 16/10; object-fit: cover; margin-top: .8rem; }
 .ico { width: 16px; height: 16px; flex: none; }
 
-/* contactos */
+/* 08 contactos */
 .contact { background: var(--wine); color: var(--paper); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 7vw, 7rem); }
 .contact .label { color: rgba(242,237,228,.7); }
 .contact .label .n { color: var(--paper); }
 .contact .title em { color: var(--paper); opacity: .75; }
-.contact__note { margin-top: 1.6rem; color: rgba(242,237,228,.85); }
+.contact__note { margin-top: 1.6rem; max-width: 26rem; color: rgba(242,237,228,.85); }
+.reasons { margin-top: 2.2rem; border-top: 1px solid rgba(242,237,228,.3); }
+.reasons li { padding: .95rem 0; border-bottom: 1px solid rgba(242,237,228,.3); }
+.reasons b { display: block; font-weight: 700; }
+.reasons span { font-size: .88rem; color: rgba(242,237,228,.75); }
 .contact__social { margin-top: 2rem; display: flex; gap: 1.8rem; font: 600 .72rem var(--sans); letter-spacing: .16em; text-transform: uppercase; }
 .contact__social a { display: inline-flex; align-items: center; gap: .5rem; }
-.foot__social { display: flex; gap: .9rem; }
-.foot__social a { width: 38px; height: 38px; border: 1px solid rgba(242,237,228,.3); border-radius: 50%; display: grid; place-items: center; color: var(--paper); }
-.field { display: block; margin-bottom: 1.4rem; font: 600 .66rem var(--sans); letter-spacing: .16em; text-transform: uppercase; color: rgba(242,237,228,.8); }
-.field span { display: flex; justify-content: space-between; align-items: center; margin-top: .4rem; height: 2.7rem; border-bottom: 1px solid rgba(242,237,228,.4); font: 400 1rem var(--sans); letter-spacing: 0; text-transform: none; color: var(--paper); }
-.field span.area { height: 5.5rem; }
-.send { display: inline-block; margin-top: .4rem; padding: 1rem 2rem; background: var(--paper); color: var(--wine); border-radius: 0; font: 600 .74rem var(--sans); letter-spacing: .16em; text-transform: uppercase; }
+.opts { display: flex; flex-wrap: wrap; gap: .5rem; margin: .7rem 0 1.8rem; }
+.opts button { padding: .6rem 1rem; border: 1px solid rgba(242,237,228,.45); background: none; color: var(--paper); font: 600 .74rem var(--sans); }
+.opts button.on { background: var(--paper); color: var(--wine); border-color: var(--paper); }
+.flabel { font: 600 .66rem var(--sans); letter-spacing: .16em; text-transform: uppercase; color: rgba(242,237,228,.8); }
+.field { display: block; margin-bottom: 1.4rem; }
+.field input, .field textarea { display: block; width: 100%; margin-top: .4rem; padding: .6rem 0; border: 0; border-bottom: 1px solid rgba(242,237,228,.45); background: none; color: var(--paper); font: 400 1rem var(--sans); outline: none; resize: vertical; }
+.field input:focus, .field textarea:focus { border-color: var(--paper); }
+.field input::placeholder, .field textarea::placeholder { color: rgba(242,237,228,.4); }
+.send { margin-top: .4rem; padding: 1rem 2rem; border: 0; background: var(--paper); color: var(--wine); font: 700 .74rem var(--sans); letter-spacing: .16em; text-transform: uppercase; }
+.sent { margin-top: 1rem; font-size: .9rem; color: rgba(242,237,228,.85); }
 
 /* rodapé */
 .foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 2rem var(--gut); background: var(--ink); color: rgba(242,237,228,.6); font: 500 .7rem var(--sans); letter-spacing: .14em; text-transform: uppercase; }
@@ -158,69 +230,63 @@ em { font-style: normal; }
 .etiqueta-mawebs::before { content: ""; position: absolute; inset: 4px; border: 1px dashed rgba(0,0,0,.3); }
 .etiqueta-mawebs__nome { font: 800 12px/1.5 Arial, sans-serif; letter-spacing: .15em; }
 .etiqueta-mawebs__local { font: 400 8.5px/1.5 Consolas, monospace; letter-spacing: .15em; color: rgba(0,0,0,.5); }
+.foot__social { display: flex; gap: .9rem; }
+.foot__social a { width: 38px; height: 38px; border: 1px solid rgba(242,237,228,.3); border-radius: 50%; display: grid; place-items: center; color: var(--paper); }
 
+/* fotografia em grande */
+.lb { position: fixed; inset: 0; z-index: 40; display: grid; grid-template-columns: 64px 1fr 64px; grid-template-rows: 64px 1fr auto; align-items: center; background: #0B0B0B; color: #fff; opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s; }
+.lb.open { opacity: 1; visibility: visible; }
+.lb img { grid-column: 2; grid-row: 2; max-width: 100%; max-height: calc(100vh - 170px); margin: 0 auto; object-fit: contain; }
+.lb__x { grid-column: 1 / -1; grid-row: 1; justify-self: end; margin-right: var(--gut); background: none; border: 0; font: 700 .72rem var(--sans); text-transform: uppercase; }
+.lb__p, .lb__n { grid-row: 2; background: none; border: 0; font-size: 1.6rem; height: 100%; }
+.lb__p { grid-column: 1; } .lb__n { grid-column: 3; }
+.lb__cap { grid-column: 1 / -1; grid-row: 3; padding: 1.2rem var(--gut) 1.6rem; text-align: center; }
+.lb__cap b { display: block; font-weight: 700; }
+.lb__cap span { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+
+@media (max-width: 1100px) {
+  .path__list li { grid-template-columns: 7rem 1fr 1.3fr; }
+  .path__list img { display: none; }
+}
 @media (max-width: 960px) {
-  .bar__nav { display: none; }
+  .bar__nav, .bar__lang { display: none; }
   .bar__burger { display: inline-flex; }
-  .bar__search { display: none; }
-  .chef, .contact, .social__wrap { grid-template-columns: 1fr; }
+  .chef, .contact, .social__wrap, .press__top, .collab { grid-template-columns: 1fr; }
+  .chef__photo { position: static; }
   .houses { grid-template-columns: 1fr 1fr; }
+  .collab ul { grid-template-columns: 1fr 1fr; }
   .clips { grid-template-columns: repeat(3, 1fr); }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .facts { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
   html { scrollbar-width: none; }
-  .bar { padding: 1.1rem var(--gut); }
   .bar__mark { font-size: 1.1rem; }
-  .chef img { aspect-ratio: 1; }
-  .facts b { font-size: 2.4rem; }
-  .house h3 { font-size: 1.3rem; }
-  .path__list li { grid-template-columns: 4.5rem 1fr; gap: 1rem; }
-  .path__list b { font-size: 1.6rem; }
-  .path__list span { font-size: 1.15rem; }
-  .shelf { gap: .8rem; }
-  .shelf h3 { font-size: .95rem; }
-  .grid6 { grid-template-columns: 1fr 1fr; }
-  .profile { flex-wrap: wrap; }
-  .profile .follow { margin-left: 0; width: 100%; justify-content: center; }
-  .profile__pic { width: 54px; height: 54px; }
-  .foot { flex-direction: column; text-align: center; }
-
-  /* topo no telemóvel: foto inteira, só o título e "Ver o filme" */
   .hero { height: 78vh; min-height: 0; padding-bottom: 1.8rem; }
   .hero::before { background: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,0) 36%); }
   .hero__img { object-position: 58% 50%; }
   .hero .label, .hero__lede { display: none; }
   .hero h1 { font-size: 2.1rem; letter-spacing: -.035em; max-width: 12ch; }
   .hero__row { margin-top: .9rem; }
-  .film { padding: 0 0 .25rem; background: none; color: #fff; border-bottom: 1px solid rgba(255,255,255,.7); }
-  .film path { fill: #fff; }
+  .btn { padding: 0 0 .25rem; background: none; color: #fff; border-bottom: 1px solid rgba(255,255,255,.7); }
+  .chef__photo img { aspect-ratio: 1; }
+  .chef__text { columns: 1; }
+  .facts b { font-size: 2rem; }
+  .house h3 { font-size: 1.2rem; }
+  .house small { display: none; }
+  .track { grid-auto-columns: 78%; }
+  .arrows { display: none; }
+  .collab ul { grid-template-columns: 1fr; }
+  .path__list li { grid-template-columns: 1fr; gap: .4rem; }
+  .shelf { gap: .8rem; }
+  .shelf h3 { font-size: .9rem; }
+  .shelf p:last-child { display: none; }
+  .grid figure.wide { grid-column: auto; }
+  .profile { flex-wrap: wrap; }
+  .profile .follow { margin-left: 0; width: 100%; justify-content: center; }
+  .foot { flex-direction: column; text-align: center; }
+  .lb { grid-template-columns: 44px 1fr 44px; }
 }
-
-/* ── submenus (computador) ── */
-.dd { position: relative; height: 60px; display: flex; align-items: center; }
-.dd__btn { display: inline-flex; align-items: center; gap: .4rem; background: none; border: 0; padding: 0; color: inherit; font: inherit; text-transform: inherit; cursor: pointer; }
-.dd__btn svg { transition: transform .2s; }
-.dd.open .dd__btn svg { transform: rotate(180deg); }
-.dd__menu { position: absolute; top: 100%; left: -1.2rem; min-width: 250px; padding: .7rem 0; background: #000; border-top: 1px solid rgba(255,255,255,.12); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .2s, transform .2s, visibility .2s; }
-.dd.open .dd__menu { opacity: 1; visibility: visible; transform: none; }
-.dd__menu a { display: block; padding: .65rem 1.2rem; font: 500 .9rem/1.3 var(--sans); text-transform: none; letter-spacing: 0; color: rgba(255,255,255,.85); }
-.dd__menu a:hover { color: #fff; background: rgba(255,255,255,.07); }
-.dd__menu small { display: block; margin-top: .1rem; font-size: .72rem; color: rgba(255,255,255,.5); }
-
-/* ── menu do telemóvel (painel) ── */
-.mnav { position: fixed; inset: 0; z-index: 30; display: flex; flex-direction: column; background: #000; color: #fff; opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s; }
-.mnav.open { opacity: 1; visibility: visible; }
-.mnav__top { display: flex; justify-content: space-between; align-items: center; height: 60px; padding: 0 var(--gut); border-bottom: 1px solid rgba(255,255,255,.12); }
-.mnav__close { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; color: #fff; font: 700 .72rem var(--sans); text-transform: uppercase; cursor: pointer; }
-.mnav__list { flex: 1; overflow-y: auto; padding: 1rem var(--gut) 2rem; }
-.mnav__list > a, .mnav__sub > button { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1.05rem 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.12); background: none; color: #fff; font: 700 1.5rem/1.1 var(--sans); letter-spacing: -.03em; text-align: left; cursor: pointer; }
-.mnav__sub > button svg { width: 16px; height: 16px; transition: transform .2s; }
-.mnav__sub.open > button svg { transform: rotate(180deg); }
-.mnav__sub div { display: none; padding: .4rem 0 .8rem; border-bottom: 1px solid rgba(255,255,255,.12); }
-.mnav__sub.open div { display: block; }
-.mnav__sub div a { display: block; padding: .55rem 0 .55rem 1rem; font: 500 1.02rem var(--sans); color: rgba(255,255,255,.75); }
-.mnav__foot { padding: 1.2rem var(--gut) 1.6rem; display: flex; gap: 1.4rem; font: 700 .72rem var(--sans); text-transform: uppercase; color: rgba(255,255,255,.6); }
-body.locked { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -229,14 +295,14 @@ body.locked { overflow: hidden; }
   <a class="bar__mark" href="#top">Chef Miguel Castro e Silva</a>
   <div class="bar__right">
     <nav class="bar__nav">
-      <a class="on" href="#chef">Biografia</a>
+      <a href="#chef">O Chef</a>
       <div class="dd">
-        <button class="dd__btn" type="button" aria-expanded="false">Restaurantes <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <button class="dd__btn" type="button" aria-expanded="false">Projetos <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8"/></svg></button>
         <div class="dd__menu">
-          <a href="#r-tom">Time Out Market<small>Lisboa</small></a>
-          <a href="#r-casario">Casario<small>Ribeira, Porto</small></a>
-          <a href="#r-gaia">deCastro Gaia<small>Vila Nova de Gaia</small></a>
-          <a href="#r-ventozelo">Cantina de Ventozelo<small>Douro</small></a>
+          <a href="#projetos" data-house="casario">Casario<small>Ribeira, Porto</small></a>
+          <a href="#projetos" data-house="gaia">deCastro Gaia<small>Vila Nova de Gaia</small></a>
+          <a href="#projetos" data-house="tom">Time Out Market<small>Lisboa</small></a>
+          <a href="#projetos" data-house="ventozelo">Cantina de Ventozelo<small>Douro</small></a>
         </div>
       </div>
       <a href="#percurso">Percurso</a>
@@ -252,7 +318,7 @@ body.locked { overflow: hidden; }
       <a href="#galeria">Galeria</a>
       <a href="#contactos">Contactos</a>
     </nav>
-    <span class="bar__search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg>Pesquisar</span>
+    <span class="bar__lang"><b>PT</b> <span>/ EN</span></span>
     <button class="bar__burger" id="burger" type="button" aria-expanded="false"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h20M0 7h20M0 13h20"/></svg>Menu</button>
   </div>
 </header>
@@ -263,10 +329,10 @@ body.locked { overflow: hidden; }
     <button class="mnav__close" id="mclose" type="button"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2l12 12M14 2L2 14"/></svg>Fechar</button>
   </div>
   <nav class="mnav__list">
-    <a href="#chef">Biografia</a>
+    <a href="#chef">O Chef</a>
     <div class="mnav__sub">
-      <button type="button">Restaurantes <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></button>
-      <div><a href="#r-tom">Time Out Market</a><a href="#r-casario">Casario</a><a href="#r-gaia">deCastro Gaia</a><a href="#r-ventozelo">Cantina de Ventozelo</a></div>
+      <button type="button">Projetos <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div><a href="#projetos" data-house="casario">Casario</a><a href="#projetos" data-house="gaia">deCastro Gaia</a><a href="#projetos" data-house="tom">Time Out Market</a><a href="#projetos" data-house="ventozelo">Cantina de Ventozelo</a></div>
     </div>
     <a href="#percurso">Percurso</a>
     <div class="mnav__sub">
@@ -275,176 +341,298 @@ body.locked { overflow: hidden; }
     </div>
     <a href="#imprensa">Imprensa</a>
     <a href="#galeria">Galeria</a>
-    <a href="#redes">Redes sociais</a>
     <a href="#contactos">Contactos</a>
   </nav>
-  <div class="mnav__foot"><span>Instagram</span><span>Facebook</span></div>
+  <div class="mnav__foot"><span>PT / EN</span><span>Instagram</span><span>Facebook</span></div>
 </div>
 
 <main id="top">
 
+  <!-- 01 Início -->
   <section class="hero">
     <img class="hero__img" src="../assets/img/MCS_projetos-0x0.jpg" alt="Miguel Castro e Silva a empratar">
     <p class="label">Cozinheiro · Porto, 1961</p>
     <h1>Cozinha portuguesa de autor.</h1>
     <div class="hero__row">
-      <p class="hero__lede">Do Porto ao Douro, de Lisboa ao mundo — há mais de trinta e cinco anos.</p>
-      <span class="film"><svg width="9" height="10" viewBox="0 0 9 10"><path d="M0 0L9 5L0 10Z" fill="#000"/></svg>Ver o filme</span>
+      <p class="hero__lede">Do Porto ao Douro, de Lisboa ao mundo, há mais de trinta anos.</p>
+      <a class="btn" href="#projetos">Ver os restaurantes</a>
     </div>
   </section>
 
+  <!-- 02 O Chef -->
   <section class="chef" id="chef">
-    <img src="../assets/img/MCS_site_base_home_2560x1400_pb-1980x1083.jpg" alt="Miguel Castro e Silva">
+    <figure class="chef__photo">
+      <img src="../assets/img/MCS_site_base_home_2560x1400_pb-1980x1083.jpg" alt="Miguel Castro e Silva">
+      <figcaption>Miguel Castro e Silva, Porto</figcaption>
+    </figure>
     <div>
-      <p class="label"><span class="n">01</span>O Chef</p>
-      <h2 class="statement">Uma cozinha portuguesa <em>com assinatura</em>, feita com tempo.</h2>
-      <p class="chef__text">Cozinheiro, consultor e autor. Começou em 1992, no Porto, e hoje assina casas em Lisboa, Porto, Gaia e no Douro.</p>
+      <p class="label"><span class="n">02</span>O Chef</p>
+      <h2 class="statement">Chegou à cozinha depois da música, da biologia e da indústria têxtil. <em>Nunca mais saiu dela.</em></h2>
+      <div class="chef__text">
+        <p>Miguel Castro e Silva nasceu no Porto em 1961. Antes de cozinhar tocou piano, depois baixo, e trabalhou alguns anos como técnico de som. Foi estudar Biologia para a Alemanha, curso que deixou a meio, e pagou as contas com turnos em restaurantes. De regresso ao Porto, passou pela indústria têxtil como diretor de produto.</p>
+        <p>Em 1992 mudou de vida e abriu o primeiro restaurante, numa quinta da Maia. Dois anos depois chegou à Foz com o Restaurante do Miguel e, em 1997, ao edifício da Bolsa, com o Bull &amp; Bear.</p>
+        <p>Foi dos primeiros a mexer no receituário português quando isso ainda soava a desrespeito, e dos primeiros no país a cozinhar a baixa temperatura. Deu aulas na escola Ferrandi, em Paris, tem três receitas no Larousse Gastronomique e cozinhou por Portugal na China, em França, na Bélgica, na Hungria e no Brasil.</p>
+        <p>Em 2009 mudou-se para Lisboa, onde abriu o deCastro e esteve à frente do Largo e do Less. Hoje a sua cozinha está no Casario, no deCastro Gaia, no Time Out Market e na Cantina de Ventozelo.</p>
+      </div>
       <div class="facts">
-        <div><b>35</b><span>anos de cozinha</span></div>
-        <div><b>4</b><span>casas abertas</span></div>
-        <div><b>3</b><span>livros</span></div>
+        <div><b>1992</b><span>Primeiro restaurante</span></div>
+        <div><b>4</b><span>Casas abertas hoje</span></div>
+        <div><b>3</b><span>Livros publicados</span></div>
+        <div><b>2017</b><span>Prémio de carreira</span></div>
       </div>
     </div>
   </section>
 
+  <!-- 03 Projetos -->
   <section class="projects" id="projetos">
-    <div class="head"><p class="label"><span class="n">02</span>Projetos</p><h2 class="title">Onde se come <em>hoje</em></h2></div>
+    <div class="head">
+      <div><p class="label"><span class="n">03</span>Projetos</p><h2 class="title">Onde se come <em>hoje</em></h2></div>
+      <p class="head__aside">Escolha uma casa para ver os pratos.</p>
+    </div>
     <div class="houses">
-      <article class="house" id="r-tom"><img src="../assets/img/MerRib_10-1600x875.jpg" alt=""><h3>Time Out Market</h3><p>Lisboa</p></article>
-      <article class="house" id="r-casario"><img src="../assets/img/Casario_01_2560x1400-1980x1083.jpg" alt=""><h3>Casario</h3><p>Porto</p></article>
-      <article class="house" id="r-gaia"><img src="../assets/img/deCastro_Gaia_01_2560x1400-1980x1083.jpg" alt=""><h3>deCastro Gaia</h3><p>Vila Nova de Gaia</p></article>
-      <article class="house" id="r-ventozelo"><img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt=""><h3>Cantina de Ventozelo</h3><p>Douro</p></article>
+      <button class="house on" type="button" data-house="casario">
+        <div class="house__img"><img src="../assets/img/Casario_01_2560x1400-1980x1083.jpg" alt=""></div>
+        <h3>Casario</h3><p>Ribeira, Porto</p>
+        <small>Desde 2018, a quatro mãos com José Guedes.</small>
+      </button>
+      <button class="house" type="button" data-house="gaia">
+        <div class="house__img"><img src="../assets/img/deCastro_Gaia_01_2560x1400-1980x1083.jpg" alt=""></div>
+        <h3>deCastro Gaia</h3><p>Vila Nova de Gaia</p>
+        <small>No Espaço Porto Cruz, desde 2012.</small>
+      </button>
+      <button class="house" type="button" data-house="tom">
+        <div class="house__img"><img src="../assets/img/MerRib_10-1600x875.jpg" alt=""></div>
+        <h3>Time Out Market</h3><p>Lisboa</p>
+        <small>Ao balcão, no Mercado da Ribeira, desde 2014.</small>
+      </button>
+      <button class="house" type="button" data-house="ventozelo">
+        <div class="house__img"><img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt=""></div>
+        <h3>Cantina de Ventozelo</h3><p>Douro</p>
+        <small>A cozinha da região, na Quinta de Ventozelo.</small>
+      </button>
+    </div>
+
+    <div class="plates">
+      <div class="plates__head">
+        <h3>À mesa · <span id="plateName">Casario</span></h3>
+        <div class="arrows"><button type="button" data-dir="-1" aria-label="Anterior">←</button><button type="button" data-dir="1" aria-label="Seguinte">→</button></div>
+      </div>
+      <div class="track on" data-track="casario" data-place="Casario · Ribeira, Porto">
+        <figure class="dish"><img src="img/Casario_robalo.jpg" alt="" loading="lazy"><figcaption>Robalo</figcaption></figure>
+        <figure class="dish"><img src="img/Casario_vieira_acafrao.jpg" alt="" loading="lazy"><figcaption>Vieira com açafrão</figcaption></figure>
+        <figure class="dish"><img src="img/Casario_polvo_agriao.jpg" alt="" loading="lazy"><figcaption>Polvo e agrião</figcaption></figure>
+        <figure class="dish"><img src="img/Casario_rodovalho.jpg" alt="" loading="lazy"><figcaption>Rodovalho</figcaption></figure>
+        <figure class="dish"><img src="img/Casario_terrina_sapateira.jpg" alt="" loading="lazy"><figcaption>Terrina de sapateira</figcaption></figure>
+        <figure class="dish"><img src="img/Casario_novilho.jpg" alt="" loading="lazy"><figcaption>Novilho</figcaption></figure>
+        <figure class="dish"><img src="img/Casario_tartelete_choco.jpg" alt="" loading="lazy"><figcaption>Tartelete de chocolate</figcaption></figure>
+      </div>
+      <div class="track" data-track="gaia" data-place="deCastro · Vila Nova de Gaia">
+        <figure class="dish"><img src="img/de_castro_arroz_marisco.jpg" alt="" loading="lazy"><figcaption>Arroz de marisco</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_camarao_alho.jpg" alt="" loading="lazy"><figcaption>Camarão ao alho</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_bisaro_arroz_cog.jpg" alt="" loading="lazy"><figcaption>Bísaro e arroz de cogumelos</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_dourada.jpg" alt="" loading="lazy"><figcaption>Dourada</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_feijao_tripas.jpg" alt="" loading="lazy"><figcaption>Feijão com tripas</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_raia.jpg" alt="" loading="lazy"><figcaption>Raia</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_morcela.jpg" alt="" loading="lazy"><figcaption>Morcela</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_pudim_alho_frances.jpg" alt="" loading="lazy"><figcaption>Pudim de alho-francês</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_tarte_queijo.jpg" alt="" loading="lazy"><figcaption>Tarte de queijo</figcaption></figure>
+        <figure class="dish"><img src="img/de_castro_bolo_choco.jpg" alt="" loading="lazy"><figcaption>Bolo de chocolate</figcaption></figure>
+      </div>
+      <div class="track" data-track="tom" data-place="Time Out Market · Lisboa">
+        <figure class="dish"><img src="img/2025_MCS_Mercado_Bacalhau_bras_peq.jpg" alt="" loading="lazy"><figcaption>Bacalhau à Brás</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Mercado_TO_2025_03_lombo_bacalhau.jpg" alt="" loading="lazy"><figcaption>Lombo de bacalhau</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Mercado_TO_2025_06_arroz_enchidos.jpg" alt="" loading="lazy"><figcaption>Arroz de enchidos</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Mercado_TO_2025_04_vitela.jpg" alt="" loading="lazy"><figcaption>Vitela</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Mercado_TO_2025_01_lula.jpg" alt="" loading="lazy"><figcaption>Lula</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Mercado_TO_2025_05_caldo_verde.jpg" alt="" loading="lazy"><figcaption>Caldo verde</figcaption></figure>
+      </div>
+      <div class="track" data-track="ventozelo" data-place="Cantina de Ventozelo · Douro">
+        <figure class="dish"><img src="img/Cantina_Ventozelo_Almoco_Alcatra-Barosa-Arroz-Tomate.jpg" alt="" loading="lazy"><figcaption>Alcatra barrosã, arroz de tomate</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Cantina_007.jpg" alt="" loading="lazy"><figcaption>O almoço da Cantina</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Cantina_005.jpg" alt="" loading="lazy"><figcaption>Sopa e pão da casa</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Cantina_003.jpg" alt="" loading="lazy"><figcaption>À mesa na Cantina</figcaption></figure>
+        <figure class="dish"><img src="img/MCS_Cantina_001.jpg" alt="" loading="lazy"><figcaption>A cozinha da Cantina</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="collab">
+      <p class="label">Colaborações</p>
+      <ul>
+        <li><b>Gran Cruz</b><span>Parceiro no Casario e no deCastro Gaia</span></li>
+        <li><b>Quinta de Ventozelo</b><span>Cozinha da Cantina, desde 2019</span></li>
+        <li><b>Time Out Market Lisboa</b><span>Espaço próprio no Mercado da Ribeira</span></li>
+        <li><b>Escola Ferrandi, Paris</b><span>Deu aulas de cozinha portuguesa</span></li>
+        <li><b>Larousse Gastronomique</b><span>Três receitas publicadas</span></li>
+        <li><b>Consultoria</b><span>Cartas e cozinhas para outros restaurantes</span></li>
+      </ul>
     </div>
   </section>
 
+  <!-- 04 Percurso -->
   <section class="path" id="percurso">
-    <div class="head"><p class="label"><span class="n">03</span>Percurso</p><h2 class="title">Do Porto para o <em>mundo</em></h2></div>
+    <div class="head">
+      <div><p class="label"><span class="n">04</span>Percurso</p><h2 class="title">Do Porto para o <em>mundo</em></h2></div>
+    </div>
     <ul class="path__list">
-      <li><b>1992</b><span>O primeiro restaurante</span></li>
-      <li><b>1997</b><span>Bull &amp; Bear, no Porto</span></li>
-      <li><b>2009</b><span>Muda-se para Lisboa</span></li>
-      <li><b>2014</b><span>Time Out Market</span></li>
-      <li><b>2019</b><span>Cantina de Ventozelo, no Douro</span></li>
+      <li><b>1992</b><h3>Quinta dos Vales<small>Maia</small></h3><p>O primeiro restaurante, numa quinta nos arredores do Porto.</p><img src="../assets/img/MCS_restaurantes_01-0x0.jpg" alt="" loading="lazy"></li>
+      <li><b>1994</b><h3>Restaurante do Miguel<small>Foz do Porto</small></h3><p>Entre os doze melhores do país para a revista Exame.</p><img src="../assets/img/MCS_site_livro_na_cozinha_1200x700-0x0.jpg" alt="" loading="lazy"></li>
+      <li><b>1997</b><h3>Bull &amp; Bear<small>Porto · até 2008</small></h3><p>No edifício da Bolsa. Garfo de Ouro, três Sóis Repsol e um dos 25 melhores da Europa para o Financial Times.</p><img src="../assets/img/BB_1280_01.jpg" alt="" loading="lazy"></li>
+      <li><b>2001</b><h3>Paris, Xangai, Larousse<small>Até 2007</small></h3><p>Ensina na Ferrandi, cozinha em Xangai para a Presidência da República e assina três receitas no Larousse.</p><img src="../assets/img/MCS_Ideias_Soltas_2560x1400_01-1980x1083.jpg" alt="" loading="lazy"></li>
+      <li><b>2009</b><h3>deCastro, Largo, Less<small>Lisboa · até 2019</small></h3><p>Muda-se para a capital. Abre o deCastro e dirige as cozinhas do Largo e do Less.</p><img src="../assets/img/deCastro_01-1980x1083.jpg" alt="" loading="lazy"></li>
+      <li><b>2012</b><h3>deCastro Gaia<small>Vila Nova de Gaia</small></h3><p>Regressa ao Norte com a Gran Cruz, no Espaço Porto Cruz.</p><img src="../assets/img/deCastro_Gaia_01_2560x1400-1980x1083.jpg" alt="" loading="lazy"></li>
+      <li><b>2014</b><h3>Time Out Market<small>Lisboa</small></h3><p>No Mercado da Ribeira, ao balcão, a cozinha regional de norte a sul.</p><img src="../assets/img/MerRib_10-1600x875.jpg" alt="" loading="lazy"></li>
+      <li><b>2018</b><h3>Casario<small>Ribeira, Porto</small></h3><p>Na Ribeira do Porto, a quatro mãos com José Guedes.</p><img src="../assets/img/Casario_01_2560x1400-1980x1083.jpg" alt="" loading="lazy"></li>
+      <li><b>2019</b><h3>Cantina de Ventozelo<small>Douro</small></h3><p>Na Quinta de Ventozelo, a cozinha da região feita com o que está por perto.</p><img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt="" loading="lazy"></li>
     </ul>
   </section>
 
+  <!-- 05 Livros -->
   <section class="books" id="livros">
-    <div class="head"><p class="label"><span class="n">04</span>Livros</p><h2 class="title">A cozinha, <em>por escrito</em></h2></div>
+    <div class="head"><div><p class="label"><span class="n">05</span>Livros</p><h2 class="title">A cozinha, <em>por escrito</em></h2></div></div>
     <div class="shelf">
-      <figure id="l-aromas"><img src="../assets/img/Livro_uma_cozinha_de_aromas_capa-1.jpg" alt=""><p class="y">2001</p><h3>Uma Cozinha de Aromas</h3></figure>
-      <figure id="l-food"><img src="../assets/img/Livro_The_Food_and_cooking_Portugal_CAPA.jpg" alt=""><p class="y">2007</p><h3>The Food &amp; Cooking of Portugal</h3></figure>
-      <figure id="l-cozinha"><img src="../assets/img/Livro_Na_cozinha_de_MCS_CAPA.jpg" alt=""><p class="y">2016</p><h3>Na Cozinha de Miguel Castro e Silva</h3></figure>
+      <figure id="l-aromas"><img src="../assets/img/Livro_uma_cozinha_de_aromas_capa-1.jpg" alt="Uma Cozinha de Aromas"><p class="y">2001</p><h3>Uma Cozinha de Aromas</h3></figure>
+      <figure id="l-food"><img src="../assets/img/Livro_The_Food_and_cooking_Portugal_CAPA.jpg" alt="The Food &amp; Cooking of Portugal"><p class="y">2007</p><h3>The Food &amp; Cooking of Portugal</h3></figure>
+      <figure id="l-cozinha"><img src="../assets/img/Livro_Na_cozinha_de_MCS_CAPA.jpg" alt="Na Cozinha de Miguel Castro e Silva"><p class="y">2016</p><h3>Na Cozinha de Miguel Castro e Silva</h3></figure>
     </div>
   </section>
 
+  <!-- 06 Imprensa -->
   <section class="press" id="imprensa">
-    <div class="head"><p class="label"><span class="n">05</span>Imprensa</p><h2 class="title">O que se <em>escreveu</em></h2></div>
-    <blockquote>“Um dos chefs do momento na cidade.”<cite>Time Out Lisboa</cite></blockquote>
+    <div class="head"><div><p class="label"><span class="n">06</span>Imprensa</p><h2 class="title">Distinções <em>e media</em></h2></div></div>
+    <div class="press__top">
+      <blockquote>“Um dos chefs do momento na cidade.”<cite>Time Out Lisboa</cite></blockquote>
+      <ul class="awards">
+        <li><b>2000</b><span>Cozinheiro do Ano<small>Academia Portuguesa de Gastronomia</small></span></li>
+        <li><b>2003</b><span>Garfo de Ouro<small>Expresso · Bull &amp; Bear</small></span></li>
+        <li><b>2004</b><span>Três Sóis Repsol<small>Bull &amp; Bear</small></span></li>
+        <li><b>2004</b><span>25 melhores restaurantes da Europa<small>Financial Times</small></span></li>
+        <li><b>2017</b><span>Prémio de carreira David Lopes Ramos<small>Revista de Vinhos</small></span></li>
+      </ul>
+    </div>
     <div class="clips">
-      <img src="../assets/img/imprensa_time_out_largo.jpg" alt="">
-      <img src="../assets/img/imprensa_fugas_ventozelo.jpg" alt="">
-      <img src="../assets/img/imprensa_visao_less.jpg" alt="">
-      <img src="../assets/img/imprensa_evasoes_de_castro.jpg" alt="">
-      <img src="../assets/img/imprensa_revista_vinhos_ventozelo.jpg" alt="">
-      <img src="../assets/img/imprensa_mutante_TOM.jpg" alt="">
+      <figure><img src="../assets/img/imprensa_time_out_largo.jpg" alt=""><figcaption>Time Out</figcaption></figure>
+      <figure><img src="../assets/img/imprensa_fugas_ventozelo.jpg" alt=""><figcaption>Fugas</figcaption></figure>
+      <figure><img src="../assets/img/imprensa_visao_less.jpg" alt=""><figcaption>Visão</figcaption></figure>
+      <figure><img src="../assets/img/imprensa_evasoes_de_castro.jpg" alt=""><figcaption>Evasões</figcaption></figure>
+      <figure><img src="../assets/img/imprensa_revista_vinhos_ventozelo.jpg" alt=""><figcaption>Revista de Vinhos</figcaption></figure>
+      <figure><img src="../assets/img/imprensa_mutante_TOM.jpg" alt=""><figcaption>Mutante</figcaption></figure>
     </div>
   </section>
 
+  <!-- 07 Galeria -->
   <section class="gallery" id="galeria">
-    <div class="head"><p class="label"><span class="n">06</span>Galeria</p><h2 class="title">Pratos <em>e momentos</em></h2></div>
-    <div class="grid6">
-      <img src="../assets/img/MCS_restaurantes_02-0x0.jpg" alt="">
-      <img src="../assets/img/MCS_restaurantes_01-0x0.jpg" alt="">
-      <img src="../assets/img/MCS_imprensa-0x0.jpg" alt="">
-      <img src="../assets/img/MCS_Ideias_Soltas_2560x1400_01-1980x1083.jpg" alt="">
-      <img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt="">
-      <img src="../assets/img/MCS_site_livro_na_cozinha_1200x700-0x0.jpg" alt="">
+    <div class="head">
+      <div><p class="label"><span class="n">07</span>Galeria</p><h2 class="title">Pratos, espaços <em>e momentos</em></h2></div>
+      <div class="tabs" id="gtabs">
+        <button type="button" class="on" data-f="all">Tudo</button><button type="button" data-f="pratos">Gastronomia</button><button type="button" data-f="espacos">Espaços</button><button type="button" data-f="momentos">Momentos</button>
+      </div>
+    </div>
+    <div class="grid" id="ggrid">
+      <figure class="wide" data-c="momentos"><img src="../assets/img/MCS_projetos-0x0.jpg" alt="" loading="lazy"><figcaption>Na cozinha</figcaption></figure>
+      <figure data-c="pratos"><img src="img/Casario_vieira_acafrao.jpg" alt="" loading="lazy"><figcaption>Vieira com açafrão · Casario</figcaption></figure>
+      <figure data-c="pratos"><img src="img/de_castro_arroz_marisco.jpg" alt="" loading="lazy"><figcaption>Arroz de marisco · deCastro Gaia</figcaption></figure>
+      <figure data-c="espacos"><img src="../assets/img/Casario_01_2560x1400-1980x1083.jpg" alt="" loading="lazy"><figcaption>Casario · Ribeira, Porto</figcaption></figure>
+      <figure data-c="pratos"><img src="img/2025_MCS_Mercado_Bacalhau_bras_peq.jpg" alt="" loading="lazy"><figcaption>Bacalhau à Brás · Time Out Market</figcaption></figure>
+      <figure class="wide" data-c="espacos"><img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt="" loading="lazy"><figcaption>Cantina de Ventozelo · Douro</figcaption></figure>
+      <figure data-c="momentos"><img src="../assets/img/MCS_imprensa-0x0.jpg" alt="" loading="lazy"><figcaption>Ao fogão</figcaption></figure>
+      <figure data-c="pratos"><img src="img/Casario_robalo.jpg" alt="" loading="lazy"><figcaption>Robalo · Casario</figcaption></figure>
+      <figure data-c="espacos"><img src="../assets/img/MerRib_10-1600x875.jpg" alt="" loading="lazy"><figcaption>Time Out Market · Lisboa</figcaption></figure>
+      <figure data-c="pratos"><img src="img/Cantina_Ventozelo_Almoco_Alcatra-Barosa-Arroz-Tomate.jpg" alt="" loading="lazy"><figcaption>Alcatra barrosã · Cantina de Ventozelo</figcaption></figure>
+      <figure data-c="momentos"><img src="../assets/img/MCS_Ideias_Soltas_2560x1400_01-1980x1083.jpg" alt="" loading="lazy"><figcaption>Ideias soltas</figcaption></figure>
+      <figure data-c="espacos"><img src="../assets/img/deCastro_Gaia_01_2560x1400-1980x1083.jpg" alt="" loading="lazy"><figcaption>deCastro Gaia</figcaption></figure>
+      <figure data-c="pratos"><img src="img/de_castro_camarao_alho.jpg" alt="" loading="lazy"><figcaption>Camarão ao alho · deCastro Gaia</figcaption></figure>
+      <figure data-c="momentos"><img src="../assets/img/MCS_restaurantes_02-0x0.jpg" alt="" loading="lazy"><figcaption>Serviço</figcaption></figure>
+      <figure data-c="pratos"><img src="img/Casario_polvo_agriao.jpg" alt="" loading="lazy"><figcaption>Polvo e agrião · Casario</figcaption></figure>
+      <figure data-c="espacos"><img src="../assets/img/BB_1280_01.jpg" alt="" loading="lazy"><figcaption>Bull &amp; Bear · Porto</figcaption></figure>
     </div>
   </section>
 
+  <!-- Redes sociais -->
   <section class="social" id="redes">
-    <div class="head"><p class="label"><span class="n">07</span>Redes sociais</p><h2 class="title">Acompanhe a <em>cozinha</em></h2></div>
+    <div class="head"><div><p class="label">Redes sociais</p><h2 class="title">Acompanhe a <em>cozinha</em></h2></div></div>
     <div class="social__wrap">
-
       <article class="card">
         <div class="profile">
           <span class="profile__pic"><img src="../assets/img/logo.png" alt=""></span>
           <div>
             <p class="profile__name">Miguel Castro e Silva</p>
-            <p class="profile__handle">
-              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
-              @chef_castrosilvamiguel
-            </p>
+            <p class="profile__handle"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>@chef_castrosilvamiguel</p>
           </div>
           <a class="follow follow--wine">Seguir</a>
         </div>
-        <p class="card__bio">Pratos, bastidores e as casas do dia a dia — do Mercado da Ribeira ao Douro.</p>
-        <div class="card__tags"><span>#cozinhaportuguesa</span><span>#porto</span><span>#lisboa</span><span>#douro</span></div>
         <div class="feed">
-          <a><img src="../assets/img/MCS_restaurantes_02-0x0.jpg" alt=""></a>
-          <a class="reel"><img src="../assets/img/MCS_projetos-0x0.jpg" alt=""></a>
-          <a><img src="../assets/img/MCS_site_livro_na_cozinha_1200x700-0x0.jpg" alt=""></a>
-          <a><img src="../assets/img/MCS_restaurantes_01-0x0.jpg" alt=""></a>
-          <a><img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt=""></a>
-          <a class="reel"><img src="../assets/img/MCS_imprensa-0x0.jpg" alt=""></a>
+          <img src="img/Casario_terrina_sapateira.jpg" alt="" loading="lazy">
+          <img src="../assets/img/MCS_projetos-0x0.jpg" alt="" loading="lazy">
+          <img src="img/de_castro_raia.jpg" alt="" loading="lazy">
+          <img src="img/MCS_Mercado_TO_2025_05_caldo_verde.jpg" alt="" loading="lazy">
+          <img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt="" loading="lazy">
+          <img src="img/Casario_tartelete_choco.jpg" alt="" loading="lazy">
         </div>
-        <a class="card__more">Ver no Instagram →<span>últimas publicações</span></a>
+        <a class="card__more">Ver no Instagram →</a>
       </article>
-
       <article class="card">
         <div class="fb__cover"></div>
         <div class="profile">
           <span class="profile__pic"><img src="../assets/img/logo.png" alt=""></span>
           <div>
             <p class="profile__name">Chef Miguel Castro e Silva</p>
-            <p class="profile__handle">
-              <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.5V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.4H8v3h2.5V21z"/></svg>
-              Página oficial
-            </p>
+            <p class="profile__handle"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.5V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.4H8v3h2.5V21z"/></svg>Página oficial</p>
           </div>
         </div>
-        <a class="follow" style="margin-top:1.2rem">Gostar da página</a>
         <div class="fb__post">
-          <div class="fb__meta"><img src="../assets/img/logo.png" alt="">Publicação recente</div>
           <p>Na Cantina de Ventozelo, a cozinha faz-se com o que o Douro dá.</p>
-          <img src="../assets/img/Cantina_de_Ventozelo_02_2560x1400-1980x1083.jpg" alt="">
+          <img src="img/MCS_Cantina_007.jpg" alt="" loading="lazy">
         </div>
       </article>
     </div>
-    <p class="social__note">Pré-visualização: no site final, as publicações aparecem automaticamente a partir das contas dele.</p>
   </section>
 
+  <!-- 08 Contactos -->
   <section class="contact" id="contactos">
     <div>
       <p class="label"><span class="n">08</span>Contactos</p>
       <h2 class="title">Vamos pôr<br>a <em>mesa</em>?</h2>
-      <p class="contact__note">Eventos privados, consultoria ou imprensa.</p>
+      <p class="contact__note">Para eventos, consultoria ou imprensa, deixe uma mensagem. A resposta chega por email.</p>
+      <ul class="reasons">
+        <li><b>Eventos</b><span>Jantares privados e eventos de empresa</span></li>
+        <li><b>Consultoria</b><span>Cartas, cozinhas e aberturas de restaurantes</span></li>
+        <li><b>Imprensa</b><span>Entrevistas, fotografias e participações</span></li>
+      </ul>
       <p class="contact__social">
         <a><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
         <a><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.5V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.4H8v3h2.5V21z"/></svg>Facebook</a>
       </p>
     </div>
-    <div>
-      <label class="field">Assunto<span>Evento privado <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#F2EDE4" stroke-width="1.3"/></svg></span></label>
-      <label class="field">Nome<span></span></label>
-      <label class="field">Email<span></span></label>
-      <label class="field">Mensagem<span class="area"></span></label>
-      <span class="send">Enviar</span>
-    </div>
+    <form id="cform">
+      <p class="flabel">Assunto</p>
+      <div class="opts" id="opts">
+        <button type="button" class="on">Evento</button><button type="button">Consultoria</button><button type="button">Imprensa</button><button type="button">Outro</button>
+      </div>
+      <label class="field flabel">Nome<input type="text" name="nome" placeholder="O seu nome" required></label>
+      <label class="field flabel">Email<input type="email" name="email" placeholder="nome@exemplo.pt" required></label>
+      <label class="field flabel">Mensagem<textarea name="mensagem" rows="4" placeholder="Conte-nos o que tem em mente"></textarea></label>
+      <button class="send" type="submit">Enviar</button>
+      <p class="sent" id="sent" hidden>Obrigado. Respondemos em breve.</p>
+    </form>
   </section>
 </main>
 
 <footer class="foot">
   <p>© 2026 Miguel Castro e Silva</p>
-  <a class="etiqueta-mawebs">
-    <span class="etiqueta-mawebs__nome">MA WEBS</span>
-    <span class="etiqueta-mawebs__local">FEITO À MÃO EM MAFRA</span>
-  </a>
+  <span class="etiqueta-mawebs"><span class="etiqueta-mawebs__nome">MA WEBS</span><span class="etiqueta-mawebs__local">FEITO À MÃO EM MAFRA</span></span>
   <div class="foot__social">
     <a aria-label="Instagram"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a>
     <a aria-label="Facebook"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.5V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.4H8v3h2.5V21z"/></svg></a>
   </div>
 </footer>
+
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb__x" type="button" id="lbx">Fechar ✕</button>
+  <button class="lb__p" type="button" id="lbp" aria-label="Anterior">←</button>
+  <img id="lbi" alt="">
+  <button class="lb__n" type="button" id="lbn" aria-label="Seguinte">→</button>
+  <div class="lb__cap"><b id="lbc"></b><span id="lbh"></span></div>
+</div>
 
 <script>
   // desktop submenus: open on click (and hover with a mouse), close when clicking outside or on an item
@@ -460,7 +648,6 @@ body.locked { overflow: hidden; }
     d.querySelectorAll('.dd__menu a').forEach(function (a) { a.addEventListener('click', function () { closeAll(); }); });
   });
   document.addEventListener('click', function () { closeAll(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeAll(); closeMenu(); } });
 
   // mobile menu
   var mnav = document.getElementById('mnav'), burger = document.getElementById('burger');
@@ -470,6 +657,60 @@ body.locked { overflow: hidden; }
   document.getElementById('mclose').addEventListener('click', closeMenu);
   mnav.querySelectorAll('.mnav__sub > button').forEach(function (b) { b.addEventListener('click', function () { b.parentElement.classList.toggle('open'); }); });
   mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+  // projects: picking a house shows its dishes (also from the menus)
+  var houses = document.querySelectorAll('.house'), tracks = document.querySelectorAll('.track'), plateName = document.getElementById('plateName');
+  function pickHouse(id) {
+    houses.forEach(function (h) { h.classList.toggle('on', h.dataset.house === id); });
+    tracks.forEach(function (t) { var on = t.dataset.track === id; t.classList.toggle('on', on); if (on) t.scrollLeft = 0; });
+    plateName.textContent = document.querySelector('.house[data-house="' + id + '"] h3').textContent;
+  }
+  houses.forEach(function (h) { h.addEventListener('click', function () { pickHouse(h.dataset.house); }); });
+  document.querySelectorAll('a[data-house]').forEach(function (a) { a.addEventListener('click', function () { pickHouse(a.dataset.house); }); });
+  document.querySelectorAll('.arrows [data-dir]').forEach(function (b) {
+    b.addEventListener('click', function () { var t = document.querySelector('.track.on'); t.scrollBy({ left: (t.querySelector('.dish').offsetWidth + 16) * +b.dataset.dir, behavior: 'smooth' }); });
+  });
+
+  // gallery filter
+  var gfig = document.querySelectorAll('#ggrid figure');
+  document.getElementById('gtabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    gfig.forEach(function (f) { f.hidden = b.dataset.f !== 'all' && f.dataset.c !== b.dataset.f; });
+  });
+
+  // enlarge photo: moves through the visible photos of the same group
+  var lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc'), lbh = document.getElementById('lbh');
+  var list = [], cur = 0;
+  function show(i) {
+    cur = (i + list.length) % list.length;
+    var f = list[cur], cap = f.querySelector('figcaption').textContent.split(' · ');
+    var track = f.closest('.track');
+    lbi.src = f.querySelector('img').src;
+    lbc.textContent = cap[0];
+    lbh.textContent = track ? track.dataset.place : (cap[1] || '');
+  }
+  function openLb(f) {
+    var group = f.closest('.track') || f.closest('.grid');
+    list = [].filter.call(group.querySelectorAll('figure'), function (x) { return !x.hidden; });
+    show(list.indexOf(f)); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('locked');
+  }
+  function closeLb() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('locked'); }
+  document.querySelectorAll('.dish, #ggrid figure').forEach(function (f) { f.addEventListener('click', function () { openLb(f); }); });
+  document.getElementById('lbx').addEventListener('click', closeLb);
+  document.getElementById('lbp').addEventListener('click', function () { show(cur - 1); });
+  document.getElementById('lbn').addEventListener('click', function () { show(cur + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeAll(); closeMenu(); closeLb(); }
+    if (lb.classList.contains('open') && e.key === 'ArrowRight') show(cur + 1);
+    if (lb.classList.contains('open') && e.key === 'ArrowLeft') show(cur - 1);
+  });
+
+  // contact: one subject at a time; the form is not wired to email yet
+  var opts = document.getElementById('opts');
+  opts.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; opts.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); }); });
+  document.getElementById('cform').addEventListener('submit', function (e) { e.preventDefault(); document.getElementById('sent').hidden = false; this.reset(); });
 </script>
 </body>
 </html>
