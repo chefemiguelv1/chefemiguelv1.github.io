@@ -8,7 +8,7 @@ var PROJECTS = [
   { group: 'now', name: 'Time Out Market', place: 'Lisboa', year: '2014', img: 'MerRib_10-1600x875.jpg',
     pt: 'Cozinha regional de Norte a Sul, no Mercado da Ribeira.', en: 'Regional cooking from North to South, at Mercado da Ribeira.',
     link: 'https://www.timeoutmarket.com/lisboa/',
-    cover: 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg',
+    cover: 'restaurantes/time-out-market.jpg',
     photos: ['MerRib_10-1600x875.jpg', 'pratos/2025_MCS_Mercado_Bacalhau_bras_peq.jpg', 'pratos/MCS_Mercado_TO_2025_05_caldo_verde.jpg', 'pratos/MCS_Mercado_TO_2025_03_lombo_bacalhau.jpg', 'pratos/MCS_Mercado_TO_2025_06_arroz_enchidos.jpg', 'pratos/MCS_Mercado_TO_2025_04_vitela.jpg', 'pratos/MCS_Mercado_TO_2025_01_lula.jpg'] },
   { group: 'now', name: 'Casario', place: 'Ribeira, Porto', year: '2018', img: 'Casario_01_2560x1400-1980x1083.jpg',
     pt: 'A quatro mãos com José Guedes, à beira do Douro.', en: 'Four hands with José Guedes, by the Douro.',
