@@ -811,3 +811,26 @@ a.clip { display: block; text-decoration: none; color: inherit; }
   .foot__ral { margin-left: auto; margin-right: auto; text-align: center; }
   .foot__row { grid-template-columns: 1fr; }
 }
+
+/* footer, organised in columns like the MA Webs site */
+.foot { padding: clamp(4rem, 8vw, 6.5rem) var(--gut) 0; }
+.foot__top { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(4, minmax(0, 1fr)); gap: 2.5rem clamp(1.5rem, 3vw, 3rem); padding-bottom: clamp(2.5rem, 5vw, 3.5rem); border-bottom: 1px solid rgba(242,237,228,.14); justify-items: start; text-align: left; }
+.foot__name { font: 700 1.35rem/1.1 var(--sans); letter-spacing: -.03em; text-decoration: none; }
+.foot__brand p { margin-top: 1rem; max-width: 32ch; font: 400 .875rem/1.65 var(--sans); letter-spacing: 0; text-transform: none; line-height: 1.65; color: rgba(242,237,228,.65); }
+.foot__col { display: grid; gap: .7rem; align-content: start; }
+.foot__col h4 { margin: 0 0 .4rem; font: 600 .6875rem/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--wine-l); }
+.foot__col a { font-size: .875rem; color: rgba(242,237,228,.8); text-decoration: none; transition: color .25s; }
+.foot__col a:hover { color: var(--paper); }
+.foot__legal { display: flex; flex-wrap: wrap; gap: .6rem 1.8rem; padding: 1.75rem 0; border-bottom: 1px solid rgba(242,237,228,.14); }
+.foot__legal a { font-size: .8125rem; color: rgba(242,237,228,.7); text-decoration: none; }
+.foot__legal a:hover { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+.foot__row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0; padding: 1.75rem 0; border-top: 0; font-size: .75rem; letter-spacing: .04em; text-transform: none; color: rgba(242,237,228,.55); }
+.foot__mark { margin: clamp(1rem, 3vw, 2rem) 0 -.12em; font: 700 calc((100vw - 2 * var(--gut)) / 11.6)/.8 var(--sans); letter-spacing: -.05em; white-space: nowrap; text-align: center; color: rgba(242,237,228,.06); user-select: none; }
+@media (max-width: 960px) {
+  .foot__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .foot__row { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 760px) { .foot__legal { justify-content: flex-start; text-align: left; } .foot__row { text-align: left; } }

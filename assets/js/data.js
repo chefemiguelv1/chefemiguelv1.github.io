@@ -171,7 +171,7 @@ var I18N = {
     'q3.q': 'How do we reply?', 'q3.name': 'Name', 'q3.rgpd': 'I have read the <a href="privacidade.html" target="_blank">privacy policy</a> and agree my details are used only to answer this message.',
     'q.back': '← Back', 'q.next': 'Continue', 'q.send': 'Send request',
     'q.thanks': 'Thank you. <em>Talk soon.</em>', 'q.thanksNote': 'Your request reached the team. We will reply shortly.',
-    'foot.mawebs': 'Handmade in Mafra', 'foot.privacy': 'Privacy policy', 'foot.cookies': 'Cookie policy', 'foot.terms': 'Terms of use', 'foot.complaints': 'Complaints Book', 'foot.ral': 'In a consumer dispute, consumers may turn to an alternative dispute resolution body. More information on the Consumer Portal, at <a href="https://www.consumidor.gov.pt" target="_blank" rel="noopener">consumidor.gov.pt</a>.', 'foot.rights': '© 2026 Miguel Castro e Silva. All rights reserved.', 'proj.site': 'Visit the website', 'books.buy': 'Where to find it'
+    'foot.mawebs': 'Handmade in Mafra', 'foot.about': 'Cook. Portuguese cooking with soul, from Porto to the Douro, since 1992.', 'foot.hChef': 'The chef', 'foot.bio': 'Biography', 'foot.hMore': 'More', 'foot.write': 'Send a message', 'foot.disputes': 'Dispute resolution', 'foot.privacy': 'Privacy policy', 'foot.cookies': 'Cookie policy', 'foot.terms': 'Terms of use', 'foot.complaints': 'Complaints Book', 'foot.ral': 'In a consumer dispute, consumers may turn to an alternative dispute resolution body. More information on the Consumer Portal, at <a href="https://www.consumidor.gov.pt" target="_blank" rel="noopener">consumidor.gov.pt</a>.', 'foot.rights': '© 2026 Miguel Castro e Silva. All rights reserved.', 'proj.site': 'Visit the website', 'books.buy': 'Where to find it'
   }
 };
 
