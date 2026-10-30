@@ -22,9 +22,11 @@
 
   function renderProjects() {
     $('#index').innerHTML = PROJECTS.filter(function (p) { return p.group === 'archive'; }).map(function (p) {
+      var years = lang === 'en' ? p.year.replace(' a ', ' to ') : p.year;
       return '<li class="card fade"><div class="card__img"><img src="' + IMG + p.img + '" alt="" loading="lazy"></div>' +
-        '<p class="card__year">' + esc(p.year) + '</p><h4 class="card__name">' + esc(p.name) + '</h4>' +
-        '<p class="card__place">' + esc(p.place) + '</p><p class="card__p">' + esc(t(p)) + '</p></li>';
+        '<h4 class="card__name">' + esc(p.name) + '</h4>' +
+        '<p class="card__meta">' + esc(p.place) + (years ? ' · ' + esc(years) : '') + '</p>' +
+        '<p class="card__p">' + esc(t(p)) + '</p></li>';
     }).join('');
     watch($$('#index .card'));
   }
@@ -32,19 +34,15 @@
 
   // restaurants: one full panel per house, the Madeira teaser, the archive as cards
   function renderHouses() {
-    var label = { gal: (lang === 'en' ? I18N.en['proj.gallery'] : 'Ver galeria'), book: (lang === 'en' ? I18N.en['proj.book'] : 'Reservar'), photos: (lang === 'en' ? I18N.en['proj.photos'] : 'fotografias') };
-    var list = PROJECTS.filter(function (p) { return p.group === 'now'; });
-    $('#houses').innerHTML = list.map(function (p, i) {
+    var book = (lang === 'en' ? I18N.en['proj.book'] : 'Reservar mesa'), site = (lang === 'en' ? I18N.en['proj.site'] : 'Visitar o site'), since = lang === 'en' ? 'since ' : 'desde ';
+    $('#houses').innerHTML = PROJECTS.filter(function (p) { return p.group === 'now'; }).map(function (p) {
       return '<article class="resto fade">' +
-        '<button type="button" class="resto__img" data-house="' + i + '" data-at="0" aria-label="' + label.gal + ': ' + esc(p.name) + '"><img src="' + IMG + (p.cover || p.photos[0]) + '" alt="" loading="lazy"></button>' +
+        '<a class="resto__img" href="' + p.link + '" target="_blank" rel="noopener" aria-label="' + site + ': ' + esc(p.name) + '"><img src="' + IMG + (p.cover || p.photos[0]) + '" alt="" loading="lazy"></a>' +
         '<div class="resto__body">' +
-          '<p class="resto__place">' + esc(p.place) + ' · ' + (lang === 'en' ? 'since ' : 'desde ') + esc(p.year.replace(/\s*—\s*$/, '')) + '</p>' +
+          '<p class="resto__place">' + esc(p.place) + ' · ' + since + esc(p.year) + '</p>' +
           '<h3 class="resto__name">' + esc(p.name) + '</h3>' +
           '<p class="resto__p">' + esc(t(p)) + '</p>' +
-          '<div class="resto__btns">' +
-            '<button type="button" class="btn btn--line" data-house="' + i + '" data-at="0">' + label.gal + ' <small>' + p.photos.length + '</small></button>' +
-            (p.link ? '<a class="btn" href="' + p.link + '" target="_blank" rel="noopener">' + label.book + ' ↗</a>' : '') +
-          '</div>' +
+          '<div class="resto__btns"><a class="btn" href="' + p.link + '" target="_blank" rel="noopener">' + book + ' ↗</a></div>' +
         '</div></article>';
     }).join('');
     var soon = PROJECTS.filter(function (p) { return p.group === 'soon'; })[0];
@@ -54,26 +52,26 @@
 
   // dishes and gallery: rails dragged sideways, one per category
   function railHTML(key, title, items) {
-    return '<div class="rail"><div class="rail__head"><h3 class="rail__title">' + esc(title) + '</h3>' +
+    return '<div class="rail"><div class="rail__head">' + (title ? '<h3 class="rail__title">' + esc(title) + '</h3>' : '<span></span>') +
       '<div class="rail__nav"><button type="button" data-rail-dir="-1" aria-label="Anterior">←</button><button type="button" data-rail-dir="1" aria-label="Seguinte">→</button></div></div>' +
       '<div class="rail__stage"><div class="rail__track">' + items.map(function (it, i) {
         return '<figure class="shot' + (it.video ? ' shot--film' : '') + '"><button type="button" class="shot__plate" data-rail="' + key + '" data-at="' + i + '">' +
           '<img src="' + IMG + it.img + '" alt="" loading="lazy" draggable="false">' +
           (it.video ? '<span class="shot__play"><i><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></i></span>' : '') +
-          '</button><figcaption>' + esc(it.cap) + (it.sub ? '<span>' + esc(it.sub) + '</span>' : '') + '</figcaption></figure>';
+          '</button></figure>';
       }).join('') + '</div></div></div>';
   }
   var RAILS = {};
   function renderRails() {
     RAILS = {};
     $('#dish-rails').innerHTML = DISH_CATS.map(function (c) {
-      var items = DISHES.filter(function (x) { return x.cat === c.key; }).map(function (x) { return { img: x.img, cap: t(x), sub: x.house }; });
+      var items = DISHES.filter(function (x) { return x.cat === c.key; }).map(function (x) { return { img: x.img, cap: '' }; });
       RAILS[c.key] = items;
       return railHTML(c.key, t(c), items);
     }).join('');
     RAILS.photos = GALLERY.filter(function (g) { return !g.video; }).map(function (g) { return { img: g.img, cap: t(g) }; });
     RAILS.films = GALLERY.filter(function (g) { return g.video; }).map(function (g) { return { img: g.img, cap: t(g), video: g.video }; });
-    $('#gal-rails').innerHTML = railHTML('photos', (lang === 'en' ? I18N.en['gal.photos'] : 'Fotografias'), RAILS.photos) + railHTML('films', (lang === 'en' ? I18N.en['gal.films'] : 'Vídeos'), RAILS.films);
+    $('#gal-rails').innerHTML = railHTML('photos', '', RAILS.photos) + railHTML('films', '', RAILS.films);
     $$('.rail__stage').forEach(dragScroll);
   }
 
@@ -111,16 +109,17 @@
   function renderBooks() {
     $('#shelf').innerHTML = BOOKS.map(function (b) {
       return '<article class="book fade"><div class="book__cover"><img src="' + IMG + b.img + '" alt="Capa: ' + esc(b.title) + '" loading="lazy"></div>' +
-        '<p class="book__y">' + b.year + '</p><h3 class="book__t">' + esc(b.title) + '</h3><p class="book__p">' + esc(t(b)) + '</p></article>';
+        '<p class="book__y">' + b.year + '</p><h3 class="book__t">' + esc(b.title) + '</h3><p class="book__p">' + esc(t(b)) + '</p>' +
+        (b.buy ? '<a class="book__buy" href="' + b.buy + '" target="_blank" rel="noopener">' + (lang === 'en' ? I18N.en['books.buy'] : 'Onde encontrar') + ' ↗</a>' : '') + '</article>';
     }).join('');
     watch($$('#shelf .book'));
   }
 
   function renderPress() {
-    var one = PRESS.map(function (p, i) {
-      return '<button class="clip" type="button" data-press="' + i + '"><img src="' + IMG + p[0] + '" alt="Recorte: ' + esc(p[1]) + '" loading="lazy"><span>' + esc(p[1]) + '</span></button>';
+    var one = PRESS.map(function (p) {
+      return '<a class="clip" href="' + p[2] + '" target="_blank" rel="noopener"><img src="' + IMG + p[0] + '" alt="Recorte: ' + esc(p[1]) + '" loading="lazy"><span>' + esc(p[1]) + ' ↗</span></a>';
     }).join('');
-    $('#marquee').innerHTML = one + one.replace(/<button /g, '<button aria-hidden="true" tabindex="-1" ');
+    $('#marquee').innerHTML = one + one.replace(/<a class="clip"/g, '<a class="clip" aria-hidden="true" tabindex="-1"');
   }
 
   function renderGallery() {
