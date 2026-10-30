@@ -55,39 +55,14 @@
 <main id="top">
 
   <!-- ── 01 Início: a film made of his kitchen ──────────────────────── -->
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero hero--simple" aria-labelledby="hero-title">
+    <!-- Video still to be chosen: drop it in assets/video/hero.mp4 and it plays here. -->
     <div class="hero__reel" id="reel" aria-hidden="true">
-      <!-- If assets/video/hero.mp4 exists it plays; otherwise the stills run as a film. -->
-      <video id="hero-video" muted playsinline loop preload="none" poster="assets/img/MCS_projetos-0x0.jpg"></video>
-      <img src="assets/img/MCS_imprensa-0x0.jpg" alt="" class="is-on">
-      <img src="assets/img/MCS_projetos-0x0.jpg" alt="">
-      <img src="assets/img/MCS_restaurantes_02-0x0.jpg" alt="">
-      <img src="assets/img/MCS_restaurantes_01-0x0.jpg" alt="">
-      <img src="assets/img/MCS_Ideias_Soltas_2560x1400_01-1980x1083.jpg" alt="">
+      <video id="hero-video" muted playsinline loop preload="none"></video>
     </div>
     <div class="hero__veil" aria-hidden="true"></div>
-
     <div class="hero__inner">
-      <p class="eyebrow hero__eyebrow fade" data-i18n="hero.eyebrow">Cozinheiro · Porto, 1961</p>
-      <h1 class="hero__title" id="hero-title">
-        <span class="line"><span class="rise">Miguel</span></span>
-        <span class="line"><span class="rise"><em>Castro</em> e Silva</span></span>
-      </h1>
-      <p class="hero__lede fade" data-i18n="hero.lede">Trinta e cinco anos a reinventar a cozinha portuguesa — do Porto ao Douro, de Lisboa ao mundo.</p>
-    </div>
-
-    <button class="seal" type="button" id="play-film" aria-label="Ver o filme">
-      <svg viewBox="0 0 200 200" class="seal__ring" aria-hidden="true">
-        <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
-        <text textLength="488" lengthAdjust="spacing"><textPath href="#circ" textLength="488" lengthAdjust="spacing" data-i18n="hero.seal">VER O FILME · VER O FILME · VER O FILME · </textPath></text>
-      </svg>
-      <span class="seal__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-    </button>
-
-    <div class="hero__foot">
-      <span data-i18n="hero.since">Desde 1992</span>
-      <span class="hero__count"><b id="reel-n">01</b> / 05</span>
-      <a href="#chef" class="hero__cue" data-i18n="hero.cue">Descer</a>
+      <h1 class="hero__phrase" id="hero-title"><span class="line"><span class="rise" data-i18n="hero.phrase">Cozinha portuguesa <em>com alma.</em></span></span></h1>
     </div>
   </section>
 

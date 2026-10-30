@@ -118,12 +118,11 @@
     frames[cur].classList.add('is-on');
     $('#reel-n').textContent = String(cur + 1).padStart(2, '0');
   }
-  if (!reduced) reelTimer = setInterval(nextFrame, 5200);
+  if (!reduced && frames.length > 1) reelTimer = setInterval(nextFrame, 5200);
 
   var vid = $('#hero-video');
   vid.addEventListener('loadeddata', function () {
     reel.classList.add('has-video'); clearInterval(reelTimer);
-    $('.hero__count').style.visibility = 'hidden';
     vid.play().catch(function () {});
   });
   vid.src = 'assets/video/hero.mp4';
@@ -279,7 +278,7 @@
       open(PRESS.map(function (x) { return { src: IMG + x[0], cap: x[1] }; }), +p.dataset.press);
     }
   });
-  $('#play-film').addEventListener('click', function () {
+  if ($('#play-film')) $('#play-film').addEventListener('click', function () {
     open([{ video: 'xBet9sDm69s', cap: 'Miguel Castro e Silva' }], 0);
   });
 
