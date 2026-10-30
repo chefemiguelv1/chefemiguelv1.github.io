@@ -1,2 +1,285 @@
-<!doctype html>
-<html lang="pt-PT"><head><meta charset="utf-8"><title>Miguel Castro e Silva — Cozinheiro</title><meta http-equiv="refresh" content="0; url=design-v5/index.html"></head><body><a href="design-v5/index.html">Abrir o site</a></body></html>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miguel Castro e Silva — Cozinheiro</title>
+<meta name="description" content="Miguel Castro e Silva. Cozinheiro, Porto 1961. Trinta e cinco anos de cozinha portuguesa — restaurantes, livros, consultoria.">
+<meta name="theme-color" content="#14110F">
+<link rel="icon" href="assets/img/logo.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Miguel Castro e Silva — Cozinheiro">
+<meta property="og:description" content="Trinta e cinco anos de cozinha portuguesa.">
+<meta property="og:image" content="assets/img/MCS_projetos-0x0.jpg">
+<meta property="og:locale" content="pt_PT">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ── Bar ──────────────────────────────────────────────────────────── -->
+<header class="bar" id="bar">
+  <a class="bar__mark" href="#top" aria-label="Miguel Castro e Silva — início">
+    <img src="assets/img/logo.png" alt="" width="34" height="34">
+    <span>Miguel Castro e Silva</span>
+  </a>
+  <nav class="bar__nav" aria-label="Secções">
+    <a href="#chef" data-i18n="nav.chef">O Chef</a>
+    <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+    <a href="#percurso" data-i18n="nav.path">Percurso</a>
+    <a href="#livros" data-i18n="nav.books">Livros</a>
+    <a href="#imprensa" data-i18n="nav.press">Imprensa</a>
+    <a href="#galeria" data-i18n="nav.gallery">Galeria</a>
+  </nav>
+  <button class="bar__lang" type="button" id="lang" aria-label="Idioma / Language"><span class="is-on">PT</span>/<span>EN</span></button>
+  <a class="bar__cta" href="#contactos" data-i18n="nav.contact">Contactos</a>
+  <button class="bar__burger" type="button" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <a href="#chef" data-i18n="nav.chef">O Chef</a>
+  <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+  <a href="#percurso" data-i18n="nav.path">Percurso</a>
+  <a href="#livros" data-i18n="nav.books">Livros</a>
+  <a href="#imprensa" data-i18n="nav.press">Imprensa</a>
+  <a href="#galeria" data-i18n="nav.gallery">Galeria</a>
+  <a href="#contactos" data-i18n="nav.contact">Contactos</a>
+</div>
+
+<main id="top">
+
+  <!-- ── 01 Início: a film made of his kitchen ──────────────────────── -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__reel" id="reel" aria-hidden="true">
+      <!-- If assets/video/hero.mp4 exists it plays; otherwise the stills run as a film. -->
+      <video id="hero-video" muted playsinline loop preload="none" poster="assets/img/MCS_projetos-0x0.jpg"></video>
+      <img src="assets/img/MCS_imprensa-0x0.jpg" alt="" class="is-on">
+      <img src="assets/img/MCS_projetos-0x0.jpg" alt="">
+      <img src="assets/img/MCS_restaurantes_02-0x0.jpg" alt="">
+      <img src="assets/img/MCS_restaurantes_01-0x0.jpg" alt="">
+      <img src="assets/img/MCS_Ideias_Soltas_2560x1400_01-1980x1083.jpg" alt="">
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <p class="eyebrow hero__eyebrow fade" data-i18n="hero.eyebrow">Cozinheiro · Porto, 1961</p>
+      <h1 class="hero__title" id="hero-title">
+        <span class="line"><span class="rise">Miguel</span></span>
+        <span class="line"><span class="rise"><em>Castro</em> e Silva</span></span>
+      </h1>
+      <p class="hero__lede fade" data-i18n="hero.lede">Trinta e cinco anos a reinventar a cozinha portuguesa — do Porto ao Douro, de Lisboa ao mundo.</p>
+    </div>
+
+    <button class="seal" type="button" id="play-film" aria-label="Ver o filme">
+      <svg viewBox="0 0 200 200" class="seal__ring" aria-hidden="true">
+        <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+        <text textLength="488" lengthAdjust="spacing"><textPath href="#circ" textLength="488" lengthAdjust="spacing" data-i18n="hero.seal">VER O FILME · VER O FILME · VER O FILME · </textPath></text>
+      </svg>
+      <span class="seal__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+    </button>
+
+    <div class="hero__foot">
+      <span data-i18n="hero.since">Desde 1992</span>
+      <span class="hero__count"><b id="reel-n">01</b> / 05</span>
+      <a href="#chef" class="hero__cue" data-i18n="hero.cue">Descer</a>
+    </div>
+  </section>
+
+  <!-- ── 02 O Chef ───────────────────────────────────────────────────── -->
+  <section class="chef" id="chef" aria-labelledby="chef-title">
+    <p class="eyebrow fade"><span class="num">01</span> <span data-i18n="chef.eyebrow">O Chef</span></p>
+    <h2 class="statement" id="chef-title" data-split data-i18n="chef.statement">Foi dos primeiros a brincar com a cozinha tradicional portuguesa — quando isso ainda era quase uma ofensa.</h2>
+
+    <div class="chef__grid">
+      <figure class="chef__portrait plate">
+        <img src="assets/img/MCS_site_base_home_2560x1400_pb-1980x1083.jpg" alt="Retrato de Miguel Castro e Silva, a preto e branco, de jaleca" loading="lazy">
+      </figure>
+      <div class="chef__text">
+        <p class="fade" data-i18n="chef.p1">Antes da cozinha esteve a música — piano, depois baixo, depois técnico de som. Estudou Biologia na Alemanha, onde fazia uns extras em restaurantes para compor o sustento. De volta ao Porto, foi diretor de produto no têxtil.</p>
+        <p class="fade" data-i18n="chef.p2">Em 1992, num volte-face, abre o primeiro restaurante na Maia. Seguem-se o Restaurante do Miguel, na Foz, e o Bull &amp; Bear, no edifício da Bolsa — onde consolida a reputação dentro e fora do país.</p>
+        <p class="fade" data-i18n="chef.p3">Hoje é consultor, autor e a assinatura por trás de casas em Lisboa, Porto, Gaia e no Douro. Representou Portugal em Hong Kong, Xangai, Paris, Bordéus, Bruxelas, Budapeste e São Paulo.</p>
+      </div>
+    </div>
+
+    <dl class="facts">
+      <div class="fact fade"><dt><span class="count" data-to="35">35</span></dt><dd data-i18n="facts.years">anos de cozinha</dd></div>
+      <div class="fact fade"><dt><span class="count" data-to="3">3</span></dt><dd data-i18n="facts.books">livros publicados</dd></div>
+      <div class="fact fade"><dt>2000</dt><dd data-i18n="facts.chef">Cozinheiro do Ano · Academia Portuguesa de Gastronomia</dd></div>
+      <div class="fact fade"><dt>2017</dt><dd data-i18n="facts.award">Prémio de carreira David Lopes Ramos · Revista de Vinhos</dd></div>
+    </dl>
+  </section>
+
+  <!-- ── 03 Projetos: an index you hover ─────────────────────────────── -->
+  <section class="projects" id="projetos" aria-labelledby="proj-title">
+    <div class="sec-head">
+      <p class="eyebrow fade"><span class="num">02</span> <span data-i18n="proj.eyebrow">Projetos</span></p>
+      <h2 class="sec-title rise-block" id="proj-title" data-i18n="proj.title">Onde se come<br><em>hoje</em></h2>
+      <div class="tabs" role="tablist" aria-label="Filtro">
+        <button role="tab" class="tab is-on" aria-selected="true" data-filter="now" data-i18n="proj.now">Atuais</button>
+        <button role="tab" class="tab" aria-selected="false" data-filter="archive" data-i18n="proj.archive">Arquivo</button>
+      </div>
+    </div>
+    <ol class="index" id="index"></ol>
+    <div class="hover-plate" id="hover-plate" aria-hidden="true"><img alt=""></div>
+  </section>
+
+  <!-- ── 04 Percurso: years that travel sideways ─────────────────────── -->
+  <section class="path" id="percurso" aria-labelledby="path-title">
+    <div class="path__pin">
+      <div class="path__head">
+        <p class="eyebrow"><span class="num">03</span> <span data-i18n="path.eyebrow">Percurso</span></p>
+        <h2 class="sec-title" id="path-title" data-i18n="path.title">Do Porto<br>para o <em>mundo</em></h2>
+        <div class="path__bar"><i id="path-progress"></i></div>
+      </div>
+      <div class="path__track" id="path-track"></div>
+    </div>
+  </section>
+
+  <!-- ── 05 Livros ───────────────────────────────────────────────────── -->
+  <section class="books" id="livros" aria-labelledby="books-title">
+    <div class="sec-head">
+      <p class="eyebrow fade"><span class="num">04</span> <span data-i18n="books.eyebrow">Livros</span></p>
+      <h2 class="sec-title" id="books-title" data-i18n="books.title">A cozinha,<br><em>por escrito</em></h2>
+    </div>
+    <div class="shelf" id="shelf"></div>
+  </section>
+
+  <!-- ── 06 Imprensa ─────────────────────────────────────────────────── -->
+  <section class="press" id="imprensa" aria-labelledby="press-title">
+    <div class="sec-head">
+      <p class="eyebrow fade"><span class="num">05</span> <span data-i18n="press.eyebrow">Imprensa</span></p>
+      <h2 class="sec-title" id="press-title" data-i18n="press.title">O que se<br><em>escreveu</em></h2>
+    </div>
+    <blockquote class="quote fade">
+      <p data-i18n="press.quote">“Um dos chefs do momento na cidade.”</p>
+      <cite>Time Out Lisboa · 2010</cite>
+    </blockquote>
+    <div class="marquee" id="marquee"></div>
+    <ul class="honours fade">
+      <li><b>FT</b><span data-i18n="press.h1">Bull &amp; Bear entre os 25 melhores restaurantes da Europa · Financial Times, 2004</span></li>
+      <li><b>IWWC</b><span data-i18n="press.h2">1.º lugar entre os dez chefs de referência em Portugal · 2004</span></li>
+      <li><b>Expresso</b><span data-i18n="press.h3">Garfo de Ouro · Bull &amp; Bear, 2003</span></li>
+      <li><b>Larousse</b><span data-i18n="press.h4">Três receitas no Larousse Gastronomique · 2007</span></li>
+    </ul>
+  </section>
+
+  <!-- ── 07 Galeria ──────────────────────────────────────────────────── -->
+  <section class="gallery" id="galeria" aria-labelledby="gal-title">
+    <div class="sec-head">
+      <p class="eyebrow fade"><span class="num">06</span> <span data-i18n="gal.eyebrow">Galeria</span></p>
+      <h2 class="sec-title" id="gal-title" data-i18n="gal.title">Pratos, casas<br><em>e momentos</em></h2>
+    </div>
+    <div class="mosaic" id="mosaic"></div>
+  </section>
+
+  <!-- ── Instagram: perfil como na app (dados em assets/ig/feed.js) ───── -->
+  <section class="insta" id="instagram" aria-labelledby="ig-title">
+    <div class="sec-head">
+      <p class="eyebrow fade"><span data-i18n="ig.eyebrow">Instagram</span></p>
+      <h2 class="sec-title" id="ig-title" data-i18n="ig.title">Acompanhe<br><em>a cozinha</em></h2>
+    </div>
+    <div class="igw" id="igw">
+      <div class="igw__top">
+        <a class="igw__pic" data-ig><img id="igAvatar" alt=""></a>
+        <div class="igw__info">
+          <a class="igw__user" data-ig><span id="igUser"></span></a>
+          <p class="igw__name" id="igName"></p>
+          <p class="igw__stats"><span><b id="igPosts"></b> <span data-i18n="ig.posts">publicações</span></span><span><b id="igFollowers"></b> <span data-i18n="ig.followers">seguidores</span></span><span><b id="igFollowing"></b> <span data-i18n="ig.following">a seguir</span></span></p>
+          <p class="igw__bio" id="igBio"></p>
+          <a class="igw__site" id="igSite"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span></span></a>
+        </div>
+      </div>
+      <div class="igw__btns">
+        <a class="blue" data-ig data-i18n="ig.follow">Seguir</a>
+        <a data-ig><span class="igw__long" data-i18n="ig.message">Enviar mensagem</span><span class="igw__short" data-i18n="ig.messageShort">Mensagem</span></a>
+        <a data-ig aria-label="Perfil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M19 8v6M16 11h6"/></svg></a>
+      </div>
+      <div class="igw__tabs" id="igTabs">
+        <button type="button" class="on" data-t="all"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h5v5H3zM9.5 3h5v5h-5zM16 3h5v5h-5zM3 9.5h5v5H3zM9.5 9.5h5v5h-5zM16 9.5h5v5h-5zM3 16h5v5H3zM9.5 16h5v5h-5zM16 16h5v5h-5z"/></svg><span data-i18n="ig.tabPosts">Publicações</span></button>
+        <button type="button" data-t="reel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>Reels</button>
+      </div>
+      <div class="igw__scroll"><div class="igw__grid short" id="igGrid"></div></div>
+      <div class="igw__end"><button class="igw__more" id="igMore" type="button" data-i18n="ig.more">Ver mais publicações</button><a data-ig data-i18n="ig.open">Ver mais no Instagram</a></div>
+    </div>
+  </section>
+
+  <!-- ── 08 Contactos: a short questionnaire ─────────────────────────── -->
+  <section class="contact" id="contactos" aria-labelledby="contact-title">
+    <div class="contact__lead">
+      <p class="eyebrow"><span class="num">07</span> <span data-i18n="contact.eyebrow">Contactos</span></p>
+      <h2 class="sec-title" id="contact-title" data-i18n="contact.title">Vamos<br>pôr a mesa?</h2>
+      <p class="contact__note" data-i18n="contact.note">Eventos privados, consultoria ou imprensa. Três perguntas rápidas — a resposta chega por email.</p>
+      <ul class="contact__social">
+        <li><a href="https://www.instagram.com/chef_castrosilvamiguel/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@chefmiguelcastroesilva9269" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+
+    <form class="quiz" id="quiz" novalidate>
+      <div class="quiz__steps" aria-hidden="true"><i class="is-on"></i><i></i><i></i></div>
+
+      <fieldset class="quiz__step is-on" data-step="1">
+        <legend><span class="quiz__n">1/3</span> <span data-i18n="q1.q">Em que podemos ajudar?</span></legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="motivo" value="evento"><span data-i18n="q1.a">Evento privado</span></label>
+          <label class="choice"><input type="radio" name="motivo" value="consultoria"><span data-i18n="q1.b">Consultoria</span></label>
+          <label class="choice"><input type="radio" name="motivo" value="imprensa"><span data-i18n="q1.c">Imprensa</span></label>
+          <label class="choice"><input type="radio" name="motivo" value="outro"><span data-i18n="q1.d">Outro assunto</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="quiz__step" data-step="2">
+        <legend><span class="quiz__n">2/3</span> <span id="q2-label" data-i18n="q2.evento">Para quantas pessoas, e quando?</span></legend>
+        <div class="choices" id="q2-choices"></div>
+        <label class="field"><span data-i18n="q2.more">Conte-nos um pouco mais</span><textarea name="detalhe" rows="3"></textarea></label>
+        <div class="quiz__nav"><button type="button" class="link-btn" data-back data-i18n="q.back">← Voltar</button><button type="button" class="btn" data-next data-i18n="q.next">Continuar</button></div>
+      </fieldset>
+
+      <fieldset class="quiz__step" data-step="3">
+        <legend><span class="quiz__n">3/3</span> <span data-i18n="q3.q">Como lhe respondemos?</span></legend>
+        <label class="field"><span data-i18n="q3.name">Nome</span><input name="nome" autocomplete="name" required></label>
+        <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="check"><input type="checkbox" name="rgpd" required><span data-i18n="q3.rgpd">Aceito que os meus dados sejam usados apenas para responder a este pedido.</span></label>
+        <div class="quiz__nav"><button type="button" class="link-btn" data-back data-i18n="q.back">← Voltar</button><button type="submit" class="btn btn--wine" data-i18n="q.send">Enviar pedido</button></div>
+      </fieldset>
+
+      <div class="quiz__done" hidden>
+        <p class="quiz__thanks" data-i18n="q.thanks">Obrigado. <em>Até já.</em></p>
+        <p data-i18n="q.thanksNote">O pedido chegou à equipa. Respondemos em breve.</p>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <p class="foot__big" aria-hidden="true">Castro e Silva</p>
+  <div class="foot__row">
+    <p>© 2026 Miguel Castro e Silva</p>
+    <a class="etiqueta-mawebs" href="https://mawebs.com" target="_blank" rel="noopener" aria-label="Site feito pela MA Webs — mawebs.com">
+      <span class="etiqueta-mawebs__nome">MA Webs</span>
+      <span class="etiqueta-mawebs__local" data-i18n="foot.mawebs">Feito à mão em Mafra</span>
+    </a>
+    <p class="foot__r" data-i18n="foot.demo">Proposta de layout · versão de demonstração</p>
+  </div>
+</footer>
+
+<!-- ── Lightbox (photos, press, film) ─────────────────────────────────── -->
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Visualizador">
+  <button class="lb__close" type="button" id="lb-close" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  <button class="lb__nav lb__nav--prev" type="button" id="lb-prev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8"/></svg></button>
+  <button class="lb__nav lb__nav--next" type="button" id="lb-next" aria-label="Seguinte"><svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8"/></svg></button>
+  <figure class="lb__stage"><div class="lb__frame" id="lb-frame"></div><figcaption class="lb__cap" id="lb-cap"></figcaption></figure>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/ig/feed.js"></script>
+<script src="assets/js/instagram.js"></script>
+</body>
+</html>

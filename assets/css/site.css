@@ -531,3 +531,64 @@ em { font-style: italic; }
   .grain { display: none; }
   .marquee { animation: none; overflow-x: auto; width: auto; }
 }
+
+/* ── Instagram: perfil como na app (dados em assets/ig/feed.js) ── */
+.insta { padding: 0 0 clamp(6rem, 12vw, 10rem); }
+.insta .igw { margin: 0 var(--gut); }
+@media (min-width: 1060px) { .insta .igw { margin: 0 auto; } }
+.igw { max-width: 980px; margin: 0 auto; background: #fff; color: #000; border-radius: 18px; box-shadow: 0 30px 60px -36px rgba(0,0,0,.35); overflow: hidden; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.igw a { color: inherit; text-decoration: none; }
+.igw__top { display: grid; grid-template-columns: 150px 1fr; gap: 2.2rem; align-items: center; padding: 2rem clamp(1.25rem, 4vw, 3rem) 1.2rem; }
+.igw__pic { width: 150px; height: 150px; border-radius: 50%; padding: 3px; background: linear-gradient(45deg, #F9CE34, #EE2A7B 50%, #6228D7); }
+.igw__pic img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid #fff; }
+.igw__user { display: flex; align-items: center; gap: .6rem; font-size: 1.35rem; font-weight: 700; }
+.igw__name { margin-top: .2rem; font-size: .9rem; color: #262626; }
+.igw__stats { display: flex; gap: 1.6rem; margin-top: .9rem; font-size: .95rem; }
+.igw__stats b { font-weight: 700; }
+.igw__bio { margin-top: .9rem; font-size: .9rem; }
+.igw__site { display: inline-flex; align-items: center; gap: .3rem; margin-top: .2rem; font-size: .9rem; font-weight: 600; color: #00376B !important; }
+.igw__btns { display: grid; grid-template-columns: 1fr 1fr 44px; gap: .5rem; padding: 0 clamp(1.25rem, 4vw, 3rem) 1.4rem; }
+.igw__btns a { display: grid; place-items: center; height: 40px; border-radius: 10px; background: #EFEFEF; font-size: .88rem; font-weight: 600; }
+.igw__btns a.blue { background: #4A5DF9; color: #fff; }
+.igw__btns a:hover { filter: brightness(.95); }
+.igw__tabs { display: flex; justify-content: center; gap: clamp(3rem, 12vw, 9rem); border-top: 1px solid #DBDBDB; }
+.igw__tabs button { display: flex; align-items: center; gap: .4rem; padding: .9rem 0; margin-top: -1px; border: 0; border-top: 2px solid transparent; background: none; color: #8E8E8E; font: 600 .72rem/1 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.igw__tabs button.on { color: #000; border-top-color: #000; }
+.igw__tabs svg { width: 14px; height: 14px; }
+.igw__scroll { max-height: 640px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.igw__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+.igw__grid a { position: relative; display: block; aspect-ratio: 3/4; overflow: hidden; background: #EFEFEF; }
+.igw__grid img { width: 100%; height: 100%; object-fit: cover; }
+.igw__grid a[hidden] { display: none; }
+.igw__grid a > svg { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; filter: drop-shadow(0 0 3px rgba(0,0,0,.4)); }
+.igw__grid a::after { content: "Ver no Instagram"; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.4); color: #fff; font-size: .82rem; font-weight: 700; opacity: 0; transition: opacity .2s; }
+.igw__grid a:hover::after { opacity: 1; }
+.igw__end { padding: 1.4rem; text-align: center; border-top: 1px solid #EFEFEF; }
+.igw__end a { font-size: .88rem; font-weight: 600; color: #4A5DF9 !important; }
+.igw__short, .igw__more { display: none; }
+.igw__more { width: 100%; margin-bottom: .9rem; padding: .7rem; border: 1px solid #DBDBDB; border-radius: 8px; background: none; color: #000; font: 600 .85rem -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+@media (max-width: 600px) {
+  .igw { border-radius: 14px; }
+  .igw__top { grid-template-columns: 86px 1fr; grid-template-areas: "pic user" "pic stats"; column-gap: 1.1rem; row-gap: .55rem; padding: 1.3rem 1rem 1rem; }
+  .igw__info { display: contents; }
+  .igw__pic { grid-area: pic; width: 86px; height: 86px; }
+  .igw__pic img { border-width: 3px; }
+  .igw__user { grid-area: user; min-width: 0; font-size: 1.05rem; }
+  .igw__user span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .igw__stats { grid-area: stats; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: .4rem; margin: 0; font-size: .76rem; line-height: 1.25; }
+  .igw__stats span { display: flex; flex-direction: column; white-space: nowrap; }
+  .igw__stats b { font-size: .95rem; }
+  .igw__name, .igw__bio, .igw__site { grid-column: 1 / -1; margin: -.3rem 0 0; font-size: .85rem; line-height: 1.35; }
+  .igw__name { margin-top: .4rem; font-weight: 600; color: #000; }
+  .igw__btns { grid-template-columns: 1fr 1fr 34px; gap: .4rem; padding: 0 1rem 1rem; }
+  .igw__btns a { height: 34px; border-radius: 8px; font-size: .82rem; white-space: nowrap; }
+  .igw__long { display: none; }
+  .igw__short { display: inline; }
+  .igw__tabs { gap: 0; }
+  .igw__tabs button { flex: 1; justify-content: center; font-size: .66rem; }
+  .igw__scroll { max-height: none; overflow: visible; }
+  .igw__grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .igw__grid.short a:nth-child(n+10) { display: none; }
+  .igw__grid a::after { display: none; }
+  .igw__more { display: block; }
+}

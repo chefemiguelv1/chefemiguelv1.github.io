@@ -110,6 +110,7 @@ var I18N = {
     'press.h3': 'Garfo de Ouro · Bull & Bear, 2003',
     'press.h4': 'Three recipes in the Larousse Gastronomique · 2007',
     'gal.eyebrow': 'Gallery', 'gal.title': 'Dishes, houses<br><em>and moments</em>',
+    'ig.eyebrow': 'Instagram', 'ig.title': 'Follow<br><em>the kitchen</em>', 'ig.posts': 'posts', 'ig.followers': 'followers', 'ig.following': 'following', 'ig.follow': 'Follow', 'ig.message': 'Send message', 'ig.messageShort': 'Message', 'ig.tabPosts': 'Posts', 'ig.more': 'See more posts', 'ig.open': 'See more on Instagram',
     'contact.eyebrow': 'Contact', 'contact.title': 'Shall we<br>set the table?',
     'contact.note': 'Private events, consulting or press. Three quick questions — the reply comes by email.',
     'q1.q': 'How can we help?', 'q1.a': 'Private event', 'q1.b': 'Consulting', 'q1.c': 'Press', 'q1.d': 'Something else',
