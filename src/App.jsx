@@ -1,41 +1,23 @@
-import { useEffect } from 'react';
-import {
-  Grain, Bar, Drawer, Hero, Chef, Path, Dishes, Restaurants,
-  Books, Press, Gallery, Instagram, Contact, Footer, Lightbox
-} from './components';
+import Header from './v1/Header.jsx';
+import { Hero, Chef } from './v1/Intro.jsx';
+import Restaurants from './v1/Restaurants.jsx';
+import { Path, Books, Press, Gallery } from './v1/Sections.jsx';
+import { Instagram, Contact, Footer } from './v1/Closing.jsx';
+import { LightboxProvider } from './lightbox.jsx';
+import './styles/v1.css';
+import './styles/extra.css';
 
-// The page behaviour (language, rails, lightbox, Instagram feed...) is the same
-// code as the static site. It runs once React has put the markup on the page.
-const SCRIPTS = ['assets/js/data.js', 'assets/js/site.js', 'assets/ig/feed.js', 'assets/js/instagram.js'];
-
-function loadInOrder(list) {
-  return list.reduce((done, src) => done.then(() => new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = src;
-    s.onload = resolve;
-    s.onerror = () => reject(new Error('Could not load ' + src));
-    document.body.appendChild(s);
-  })), Promise.resolve());
-}
-
+// Version 1 layout (the one Melody and Miguel preferred), with the dishes
+// shown under the restaurant where they were born.
 export default function App() {
-  useEffect(() => {
-    if (window.__mcsStarted) return;
-    window.__mcsStarted = true;
-    loadInOrder(SCRIPTS).catch((e) => console.error(e));
-  }, []);
-
   return (
-    <>
-      <Grain />
-      <Bar />
-      <Drawer />
+    <LightboxProvider>
+      <Header />
       <main id="top">
         <Hero />
         <Chef />
-        <Path />
-        <Dishes />
         <Restaurants />
+        <Path />
         <Books />
         <Press />
         <Gallery />
@@ -43,7 +25,6 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-      <Lightbox />
-    </>
+    </LightboxProvider>
   );
 }
