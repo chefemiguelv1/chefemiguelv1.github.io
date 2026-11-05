@@ -1,6 +1,7 @@
 import Header from './v1/Header.jsx';
 import { Hero, Chef } from './v1/Intro.jsx';
 import Restaurants from './v1/Restaurants.jsx';
+import Wines from './v1/Wines.jsx';
 import { Path, Books, Press, Gallery } from './v1/Sections.jsx';
 import { Instagram, Contact, Footer } from './v1/Closing.jsx';
 import { LightboxProvider } from './lightbox.jsx';
@@ -18,6 +19,7 @@ export default function App() {
         <Chef />
         <Restaurants />
         <Path />
+        <Wines />
         <Books />
         <Press />
         <Gallery />

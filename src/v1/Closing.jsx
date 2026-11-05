@@ -107,7 +107,7 @@ export function Footer() {
       <div className="sitefoot__cols">
         <div><h4>Contactos</h4><p>Miguel Castro e Silva</p><p>Cozinheiro e consultor</p><a href="#contactos">Enviar mensagem</a></div>
         <div><h4>Restaurantes</h4>{now.map((h) => <a key={h.id} href={h.link} {...out}>{h.name}</a>)}</div>
-        <div><h4>O Chef</h4><a href="#chef">Biografia</a><a href="#percurso">Percurso</a><a href="#livros">Livros</a><a href="#imprensa">Imprensa</a><a href="#galeria">Galeria</a></div>
+        <div><h4>O Chef</h4><a href="#chef">Biografia</a><a href="#percurso">Percurso</a><a href="#vinhos">Vinhos</a><a href="#livros">Livros</a><a href="#imprensa">Imprensa</a><a href="#galeria">Galeria</a></div>
         <div><h4>Informação legal</h4><a href="privacidade.html">Política de privacidade</a><a href="cookies.html">Política de cookies</a><a href="termos.html">Termos de utilização</a><a href="termos.html#litigios">Resolução de litígios</a><a href="https://www.livroreclamacoes.pt" {...out}>Livro de Reclamações</a></div>
         <div><h4>Seguir</h4><a href={INSTAGRAM} {...out}>Instagram</a></div>
       </div>

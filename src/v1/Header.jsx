@@ -66,6 +66,7 @@ export default function Header() {
               {CURRENT.map((h) => <a key={h.id} href="#restaurantes" onClick={() => pickHouse(h.id)}>{h.name}<small>{h.place}</small></a>)}
             </Dropdown>
             <a href="#percurso">Percurso</a>
+            <a href="#vinhos">Vinhos</a>
             <Dropdown label="Livros">
               {BOOKS.map((b) => <a key={b.id} href={'#' + b.id}>{b.title}<small>{b.year}</small></a>)}
             </Dropdown>
@@ -94,6 +95,7 @@ export default function Header() {
             <div>{CURRENT.map((h) => <a key={h.id} href="#restaurantes" onClick={() => { pickHouse(h.id); close(); }}>{h.name}</a>)}</div>
           </div>
           <a href="#percurso" onClick={close}>Percurso</a>
+          <a href="#vinhos" onClick={close}>Vinhos</a>
           <div className={'mnav__sub' + (sub === 'l' ? ' open' : '')}>
             <button type="button" onClick={() => setSub(sub === 'l' ? null : 'l')}>Livros <Chevron w={1.6} /></button>
             <div>{BOOKS.map((b) => <a key={b.id} href={'#' + b.id} onClick={close}>{b.title}</a>)}</div>

@@ -70,3 +70,21 @@
 
 /* house cards: content from the top, so uneven texts do not shift the photos */
 .house { display: flex; flex-direction: column; justify-content: flex-start; align-self: start; }
+
+/* wines: dark, like the bottle photos */
+.wines { background: #000; color: var(--paper); }
+.wines .label { color: rgba(242,237,228,.55); }
+.wines .title em { color: var(--sand); }
+.wines__all { margin: 0 calc(-1 * var(--gut)); }
+.wines__all img { width: 100%; height: auto; }
+.wines__quote { max-width: 46rem; margin: clamp(2.5rem, 5vw, 4rem) auto; text-align: center; font: 600 clamp(1.25rem, 1rem + 1vw, 1.75rem)/1.4 var(--sans); letter-spacing: -.01em; }
+.wines__quote cite { display: block; margin-top: 1rem; font: normal 600 .7rem var(--sans); letter-spacing: .2em; text-transform: uppercase; color: rgba(242,237,228,.55); }
+.wines__list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2rem); }
+.wine__img { display: block; width: 100%; padding: 0; border: 0; background: #000; overflow: hidden; cursor: zoom-in; }
+.wine__img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; transition: transform .8s; }
+.wine__img:hover img { transform: scale(1.04); }
+.wine__region { margin-top: 1rem; font: 600 .66rem var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--sand); }
+.wine h3 { margin-top: .4rem; font: 700 1.1rem/1.25 var(--sans); letter-spacing: -.02em; }
+.wine__text { margin-top: .5rem; font-size: .85rem; line-height: 1.55; color: rgba(242,237,228,.7); }
+@media (max-width: 1100px) { .wines__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .wines__list { grid-template-columns: 1fr 1fr; } .wine__text { font-size: .8rem; } }
