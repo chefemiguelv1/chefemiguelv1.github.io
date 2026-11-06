@@ -141,3 +141,34 @@
 .bar.solid .bar__logo { box-shadow: none; }
 .mnav .bar__logo { box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
 @media (max-width: 600px) { .bar__logo { width: 30px; height: 30px; } .bar__mark { gap: .6rem; } }
+
+/* ══ 06/11: no more wine/purple; a quiet warm grey accent and a white contact ══ */
+:root { --wine: #8A8075; }
+.title em, .statement em { color: #8A8075; }
+.contact { background: #FFFFFF; color: var(--ink); border-top: 1px solid var(--line); }
+.contact .label { color: var(--muted); }
+.contact .title em { color: #8A8075; opacity: 1; }
+.contact__note { color: #3b3530; }
+.contact__social a { color: var(--ink); }
+.contact .flabel { color: var(--muted); }
+.contact .field input, .contact .field textarea { color: var(--ink); border-bottom-color: var(--line); }
+.contact .field input:focus, .contact .field textarea:focus { border-color: var(--ink); }
+.contact .field input::placeholder, .contact .field textarea::placeholder { color: rgba(20,17,15,.35); }
+.contact .send { background: var(--ink); color: #fff; }
+.contact .sent { color: #3b3530; }
+.consent { color: #3b3530; }
+.consent input { accent-color: var(--ink); }
+.shelf__buy { color: var(--ink); }
+
+/* restaurants: address under the dishes title; second row of six */
+.plates__info { margin-top: .35rem; font-size: .8rem; color: rgba(242,237,228,.6); }
+.houses--old { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 960px) { .houses--old { grid-template-columns: 1fr 1fr; } }
+
+/* books: one line under the title */
+.shelf__note { margin-top: .35rem; font-size: .85rem; line-height: 1.5; color: var(--muted); }
+
+/* press: ten clippings, two rows */
+.clips { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 960px) { .clips { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .clips { grid-template-columns: 1fr 1fr; } }

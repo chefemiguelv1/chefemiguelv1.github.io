@@ -33,7 +33,7 @@ export default function Restaurants() {
   const items = house.dishes.map((d) => ({ img: d.img, title: d.name, place }));
 
   const Card = ({ h }) => (
-    <button className={'house' + (h.id === id ? ' on' : '') + (h.group === 'archive' ? ' house--old' : '')} type="button" onClick={() => pick(h.id)}>
+    <button className={'house' + (h.id === id ? ' on' : '') + (h.group !== 'now' ? ' house--old' : '')} type="button" onClick={() => pick(h.id)}>
       <div className="house__img"><img src={h.cover} alt="" loading="lazy" /></div>
       <h3>{h.name}</h3>
       <p>{h.place}{h.years ? ' · ' + h.years : ''}</p>
@@ -53,7 +53,7 @@ export default function Restaurants() {
 
       <div className="plates" ref={plates}>
         <div className="plates__head">
-          <h3>À mesa · <span>{house.name}</span></h3>
+          <div><h3>À mesa · <span>{house.name}</span></h3>{house.info && <p className="plates__info">{house.info}</p>}</div>
           <div className="plates__right">
             {house.link && <a className="plates__book" href={house.link} target="_blank" rel="noopener">Reservar mesa ↗</a>}
             <div className="arrows"><button type="button" aria-label="Anterior" onClick={() => move(-1)}>←</button><button type="button" aria-label="Seguinte" onClick={() => move(1)}>→</button></div>
@@ -70,9 +70,9 @@ export default function Restaurants() {
       </div>
 
       <div className="archive">
-        <p className="label">Antes</p>
+        <p className="label">Outros projetos e casas anteriores</p>
         <div className="houses houses--old">
-          {HOUSES.filter((h) => h.group === 'archive').map((h) => <Card key={h.id} h={h} />)}
+          {HOUSES.filter((h) => h.group !== 'now').map((h) => <Card key={h.id} h={h} />)}
         </div>
       </div>
 

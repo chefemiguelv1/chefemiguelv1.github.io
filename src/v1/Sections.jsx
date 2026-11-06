@@ -9,7 +9,7 @@ export function Path() {
       <div className="head"><div><p className="label">Percurso</p><h2 className="title">Do Porto para o <em>mundo</em></h2></div></div>
       <ul className="path__list">
         {TIMELINE.map((s) => (
-          <li key={s.y + s.t}><b>{s.y}</b><h3>{s.t}<small>{s.where}</small></h3><p>{s.p}</p><img src={s.img} alt="" loading="lazy" /></li>
+          <li key={s.y + s.t}><b>{s.y}</b><h3>{s.t}<small>{s.where}</small></h3><p>{s.p}</p>{s.img ? <img src={s.img} alt="" loading="lazy" /> : <span />}</li>
         ))}
       </ul>
     </section>
@@ -24,7 +24,7 @@ export function Books() {
         {BOOKS.map((b) => (
           <figure id={b.id} key={b.id}>
             <img src={b.img} alt={b.title} />
-            <p className="y">{b.year}</p><h3>{b.title}</h3>
+            <p className="y">{b.year}</p><h3>{b.title}</h3><p className="shelf__note">{b.note}</p>
             <a className="shelf__buy" href={b.buy} target="_blank" rel="noopener">Onde encontrar ↗</a>
           </figure>
         ))}

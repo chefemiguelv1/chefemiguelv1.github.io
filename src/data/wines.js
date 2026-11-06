@@ -9,13 +9,13 @@ export const WINES_INTRO = {
 
 export const WINES = [
   { name: 'Quinta de Ventozelo Field Blend', region: 'Douro DOC', img: V + 'MCS_VINHOS_Ventozelo_Field_Blend_02.jpg',
-    text: 'Tinta Roriz, Viosinho e Rabigato, escolhidos por ele nas vinhas da Quinta.' },
+    text: 'Branco de Tinta Roriz, Viosinho e Rabigato; tinto de Tinta Amarela, Tinta Roriz e Alicante Bouschet. Vinhas escolhidas por ele na Quinta.' },
   { name: 'Quinta de Ventozelo Varietais', region: 'Douro DOC', img: V + 'MCS_VINHOS_Ventozelo_varietais.jpg',
-    text: 'Um Viosinho e um Syrah, com o lote final selecionado por Miguel Castro e Silva.' },
+    text: 'Um Viosinho (DOC Douro) e um Syrah (IGP Duriense), com o lote final selecionado por ele.' },
   { name: 'Dalva Porto', region: 'Porto DOC', img: V + 'MCS_VINHOS_dalva_03.jpg',
-    text: 'Um Porto Branco mais seco e aberto, pensado para degustar à mesa.' },
+    text: 'Um Porto Branco mais seco e aberto, das Caves C. da Silva, pensado para degustar à mesa.' },
   { name: 'Ribeiro Santo', region: 'Dão DOC', img: V + 'MCS_VINHOS_ribeiro_santo_2.jpg',
-    text: 'Branco de Malvasia Fina e Encruzado; tinto de Touriga Nacional, Alfrocheiro e Tinta Roriz.' },
+    text: 'Branco de Malvasia Fina e Encruzado; tinto de Touriga Nacional, Alfrocheiro e Tinta Roriz. Produtor Carlos Lucas.' },
   { name: 'Rui Reguinga', region: 'Alentejo, Portalegre', img: V + 'MCS_VINHOS_rui_reguinga_2.jpg',
-    text: 'Branco e tinto, com o enólogo Rui Reguinga.' }
+    text: 'Branco de Arinto, Fernão Pires e Roupeiro; tinto de Aragonez, Trincadeira e Alicante Bouschet. Com o enólogo Rui Reguinga.' }
 ];

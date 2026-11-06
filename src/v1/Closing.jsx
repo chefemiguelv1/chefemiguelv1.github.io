@@ -72,7 +72,7 @@ export function Contact() {
       <div>
         <p className="label">Contactos</p>
         <h2 className="title">Vamos pôr<br />a <em>mesa</em>?</h2>
-        <p className="contact__note">Eventos, consultoria, imprensa ou outro assunto: deixe uma mensagem. A resposta chega por email.</p>
+        <p className="contact__note">Eventos, consultoria, imprensa ou outro assunto: deixe uma mensagem. Para reservas, contacte diretamente cada restaurante.</p>
         <p className="contact__social">
           <a href={INSTAGRAM} {...out}><svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" /></svg>Instagram</a>
         </p>

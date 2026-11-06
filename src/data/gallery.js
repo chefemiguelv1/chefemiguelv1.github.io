@@ -22,11 +22,14 @@ export const GALLERY = [
   { c: 'espacos', img: C + 'cantina-ventozelo/Cantina_de_Ventozelo_02.jpg', cap: 'Cantina de Ventozelo' },
   { c: 'pratos', img: C + 'ideias-soltas/MCS_Ideias_Soltas_11_A.jpg', cap: 'Ideias Soltas' },
   { c: 'espacos', img: C + 'largo/Largo_001.jpg', cap: 'Largo · Chiado, Lisboa' },
-  { c: 'pratos', img: C + 'casario/Casario_polvo_agriao.jpg', cap: 'Polvo e agrião · Casario' },
-  { c: 'momentos', img: C + 'cantina-ventozelo/MCS_Cantina_003.jpg', cap: 'Na cozinha da Cantina' },
+  { c: 'pratos', img: C + 'casario/Casario_polvo_agriao.jpg', cap: 'Polvo com batata doce e agrião · Casario' },
+  { c: 'espacos', img: C + 'cantina-incomum/MCS_Cantina_002.jpg', cap: 'de Cantina Incomum' },
   { c: 'pratos', img: C + 'ideias-soltas/MCS_Ideias_Soltas_06.jpg', cap: 'Ideias Soltas' },
   { c: 'espacos', img: 'assets/img/restaurantes/bull-bear.jpg', cap: 'Bull & Bear · Porto' },
-  { c: 'pratos', img: C + 'decastro-gaia/de_castro_camarao_alho.jpg', cap: 'Camarão ao alho · deCastro Gaia' }
+  { c: 'pratos', img: C + 'decastro-gaia/de_castro_camarao_alho.jpg', cap: 'Camarão com malagueta e alho · deCastro Gaia' },
+  { c: 'espacos', img: C + 'decastro-gaia/de_castro_espa_01.jpg', cap: 'Esplanada do deCastro Gaia' },
+  { c: 'espacos', img: C + 'time-out-market/MerRib_10.jpg', cap: 'Time Out Market · Lisboa' },
+  { c: 'momentos', img: 'assets/img/MCS_bio_003.jpg', cap: 'Miguel Castro e Silva' }
 ];
 
 // Films (YouTube). The first is the show cooking at Peixe em Lisboa 2013.
