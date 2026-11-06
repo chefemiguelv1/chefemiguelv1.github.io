@@ -4,14 +4,27 @@ import { GALLERY, FILMS } from '../data/gallery.js';
 import { useLightbox } from '../lightbox.jsx';
 
 export function Path() {
+  const [open, setOpen] = useState(false);
+  const FIRST = 6;
+  const list = open ? TIMELINE : TIMELINE.slice(0, FIRST);
+  const toggle = () => {
+    if (open) document.getElementById('percurso')?.scrollIntoView({ behavior: 'smooth' });
+    setOpen(!open);
+  };
   return (
     <section className="path" id="percurso">
       <div className="head"><div><p className="label">Percurso</p><h2 className="title">Do Porto para o <em>mundo</em></h2></div></div>
-      <ul className="path__list">
-        {TIMELINE.map((s) => (
+      <ul className={'path__list' + (open ? '' : ' is-short')}>
+        {list.map((s) => (
           <li key={s.y + s.t}><b>{s.y}</b><h3>{s.t}<small>{s.where}</small></h3><p>{s.p}</p>{s.img ? <img src={s.img} alt="" loading="lazy" /> : <span />}</li>
         ))}
       </ul>
+      <div className="path__more">
+        <button type="button" onClick={toggle} aria-expanded={open}>
+          {open ? 'Mostrar menos' : 'Ver percurso completo'} <span aria-hidden="true">{open ? '↑' : '↓'}</span>
+        </button>
+        {!open && <small>Mais {TIMELINE.length - FIRST} momentos, de {TIMELINE[FIRST].y} a {TIMELINE[TIMELINE.length - 1].y}</small>}
+      </div>
     </section>
   );
 }

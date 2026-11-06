@@ -172,3 +172,12 @@
 .clips { grid-template-columns: repeat(5, 1fr); }
 @media (max-width: 960px) { .clips { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 600px) { .clips { grid-template-columns: 1fr 1fr; } }
+
+/* Percurso: lista curta com "ver percurso completo" */
+.path__list.is-short { position: relative; }
+.path__list.is-short li:last-child { opacity: .45; }
+.path__more { display: flex; flex-direction: column; align-items: center; gap: .7rem; margin-top: 2.2rem; }
+.path__more button { font: 700 .72rem var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); background: transparent; border: 1px solid var(--ink); padding: .95rem 1.8rem; cursor: pointer; transition: background .25s, color .25s; }
+.path__more button:hover { background: var(--ink); color: #fff; }
+.path__more button span { margin-left: .4rem; }
+.path__more small { font-size: .78rem; color: var(--muted); }
