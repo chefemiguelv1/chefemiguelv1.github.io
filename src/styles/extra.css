@@ -134,3 +134,10 @@
 .gallery .film__img svg { width: 16px; }
 .gallery .film__t { font-size: .82rem; }
 @media (max-width: 600px) { .gstrip__shot { height: 200px; } .gallery .film { width: 220px; } }
+
+/* top left: logo beside the name */
+.bar__mark { flex-direction: row; align-items: center; gap: .75rem; }
+.bar__logo { width: 36px; height: 36px; border-radius: 50%; flex: none; box-shadow: 0 0 0 1px rgba(255,255,255,.35); transition: box-shadow .35s; }
+.bar.solid .bar__logo { box-shadow: none; }
+.mnav .bar__logo { box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
+@media (max-width: 600px) { .bar__logo { width: 30px; height: 30px; } .bar__mark { gap: .6rem; } }

@@ -58,7 +58,7 @@ export default function Header() {
   return (
     <>
       <header className={'bar' + (solid ? ' solid' : '')}>
-        <a className="bar__mark" href="#top"><b>Miguel Castro e Silva</b><small>Cozinheiro</small></a>
+        <a className="bar__mark" href="#top"><img className="bar__logo" src="assets/img/logo.png" alt="" width="36" height="36" /><b>Miguel Castro e Silva</b></a>
         <div className="bar__right">
           <nav className="bar__nav">
             <a href="#chef">O Chef</a>
@@ -83,7 +83,7 @@ export default function Header() {
 
       <div className={'mnav' + (menu ? ' open' : '')} aria-hidden={!menu}>
         <div className="mnav__top">
-          <span className="bar__mark"><b>Miguel Castro e Silva</b><small>Cozinheiro</small></span>
+          <span className="bar__mark"><img className="bar__logo" src="assets/img/logo.png" alt="" width="36" height="36" /><b>Miguel Castro e Silva</b></span>
           <button className="mnav__close" type="button" onClick={close}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 2l12 12M14 2L2 14" /></svg>Fechar
           </button>
