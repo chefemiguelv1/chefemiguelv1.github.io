@@ -47,19 +47,26 @@ export function Books() {
 }
 
 export function Press() {
+  const [all, setAll] = useState(false);
+  const awards = all ? AWARDS : AWARDS.slice(0, 4);
+  const clips = all ? CLIPS : CLIPS.slice(0, 5);
   return (
     <section className="press" id="imprensa">
       <div className="head"><div><p className="label">Imprensa</p><h2 className="title">Distinções <em>e media</em></h2></div></div>
-      <div className="press__top">
-        <blockquote>“Um dos chefs do momento na cidade.”<cite>Time Out Lisboa</cite></blockquote>
-        <ul className="awards">
-          {AWARDS.map((a) => <li key={a.y + a.t}><b>{a.y}</b><span>{a.t}<small>{a.s}</small></span></li>)}
-        </ul>
-      </div>
+      <h3 className="press__sub">Prémios</h3>
+      <ul className="prizes">
+        {awards.map((a) => <li key={a.y + a.t}><b>{a.y}</b><span>{a.t}</span><small>{a.s}</small></li>)}
+      </ul>
+      <h3 className="press__sub">Na imprensa</h3>
       <div className="clips">
-        {CLIPS.map((c) => (
-          <a key={c.name} href={c.url} target="_blank" rel="noopener"><figure><img src={c.img} alt={'Recorte: ' + c.name} /><figcaption>{c.name} ↗</figcaption></figure></a>
+        {clips.map((c) => (
+          <a key={c.name} href={c.url} target="_blank" rel="noopener"><figure><img src={c.img} alt={'Artigo: ' + c.name} loading="lazy" /><figcaption>{c.name}<span>Ler artigo ↗</span></figcaption></figure></a>
         ))}
+      </div>
+      <div className="path__more">
+        <button type="button" onClick={() => { if (all) document.getElementById('imprensa')?.scrollIntoView({ behavior: 'smooth' }); setAll(!all); }} aria-expanded={all}>
+          {all ? 'Mostrar menos' : 'Ver mais prémios e artigos'} <span aria-hidden="true">{all ? '↑' : '↓'}</span>
+        </button>
       </div>
     </section>
   );
