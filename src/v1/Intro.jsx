@@ -3,12 +3,7 @@ export function Hero() {
   return (
     <section className="hero">
       <img className="hero__img" src="assets/img/MCS_projetos-0x0.jpg" alt="Miguel Castro e Silva a empratar" />
-      <p className="label">Cozinheiro · Porto, 1961</p>
       <h1>Cozinha portuguesa com alma.</h1>
-      <div className="hero__row">
-        <p className="hero__lede">Do Porto ao Douro, de Lisboa ao mundo, há mais de trinta anos.</p>
-        <a className="btn" href="#restaurantes">Ver os restaurantes</a>
-      </div>
     </section>
   );
 }

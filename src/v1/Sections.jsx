@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TIMELINE, BOOKS, AWARDS, CLIPS } from '../data/content.js';
 import { GALLERY, FILMS } from '../data/gallery.js';
 import { useLightbox } from '../lightbox.jsx';
@@ -54,12 +54,28 @@ export function Press() {
 
 const TABS = [['all', 'Tudo'], ['pratos', 'Gastronomia'], ['espacos', 'Espaços'], ['momentos', 'Momentos'], ['videos', 'Vídeos']];
 
+// Gallery: one clean strip of photos (all the same height, dragged sideways),
+// then the films. The tabs choose what the strip shows.
 export function Gallery() {
   const [f, setF] = useState('all');
   const open = useLightbox();
-  const photos = GALLERY.filter((g) => f === 'all' || g.c === f);
+  const strip = useRef(null);
+  const drag = useRef({ down: false, moved: false, x: 0, left: 0 });
+  const photos = f === 'videos' ? [] : GALLERY.filter((g) => f === 'all' || g.c === f);
   const films = f === 'all' || f === 'videos' ? FILMS : [];
-  const photoItems = photos.map((g) => ({ img: g.img, title: g.cap.split(' · ')[0], place: g.cap.split(' · ')[1] || '' }));
+  const items = photos.map((g) => ({ img: g.img, title: g.cap.split(' · ')[0], place: g.cap.split(' · ')[1] || '' }));
+
+  useEffect(() => { if (strip.current) strip.current.scrollLeft = 0; }, [f]);
+  const move = (d) => strip.current && strip.current.scrollBy({ left: d * strip.current.clientWidth * .8, behavior: 'smooth' });
+  // press and drag with a mouse; fingers and trackpads already scroll it
+  const down = (e) => { if (e.pointerType !== 'mouse') return; drag.current = { down: true, moved: false, x: e.clientX, left: strip.current.scrollLeft }; };
+  const over = (e) => {
+    const d = drag.current; if (!d.down) return;
+    const dx = e.clientX - d.x; if (!d.moved && Math.abs(dx) < 5) return;
+    d.moved = true; strip.current.classList.add('is-dragging'); strip.current.scrollLeft = d.left - dx;
+  };
+  const up = () => { drag.current.down = false; strip.current && strip.current.classList.remove('is-dragging'); };
+  const click = (i) => { if (drag.current.moved) { drag.current.moved = false; return; } open(items, i); };
 
   return (
     <section className="gallery" id="galeria">
@@ -70,26 +86,29 @@ export function Gallery() {
         </div>
       </div>
       {photos.length > 0 && (
-        <div className="grid">
-          {photos.map((g, i) => (
-            <figure key={g.img} className={g.wide ? 'wide' : ''} onClick={() => open(photoItems, i)}>
-              <img src={g.img} alt={g.cap} loading="lazy" />
-            </figure>
-          ))}
-        </div>
-      )}
-      {films.length > 0 && (
-        <>
-          {f === 'all' && <p className="label films__label">Vídeos</p>}
-          <div className="films">
-            {films.map((v) => (
-              <button key={v.id} type="button" className="film" onClick={() => open([{ video: v.id, title: v.title }], 0)}>
-                <span className="film__img"><img src={v.thumb} alt="" loading="lazy" /><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></i></span>
-                <span className="film__t">{v.title}</span>
+        <div className="gstrip">
+          <div className="gstrip__nav">
+            <button type="button" aria-label="Anterior" onClick={() => move(-1)}>←</button>
+            <button type="button" aria-label="Seguinte" onClick={() => move(1)}>→</button>
+          </div>
+          <div className="gstrip__track" ref={strip} onPointerDown={down} onPointerMove={over} onPointerUp={up} onPointerLeave={up}>
+            {photos.map((g, i) => (
+              <button type="button" key={g.img} className="gstrip__shot" onClick={() => click(i)} aria-label={g.cap}>
+                <img src={g.img} alt="" loading="lazy" draggable="false" />
               </button>
             ))}
           </div>
-        </>
+        </div>
+      )}
+      {films.length > 0 && (
+        <div className="films">
+          {films.map((v) => (
+            <button key={v.id} type="button" className="film" onClick={() => open([{ video: v.id, title: v.title }], 0)}>
+              <span className="film__img"><img src={v.thumb} alt="" loading="lazy" /><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></i></span>
+              <span className="film__t">{v.title}</span>
+            </button>
+          ))}
+        </div>
       )}
     </section>
   );

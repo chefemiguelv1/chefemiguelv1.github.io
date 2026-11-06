@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import Header from './v1/Header.jsx';
+import { startReveal } from './reveal.js';
 import { Hero, Chef } from './v1/Intro.jsx';
 import Restaurants from './v1/Restaurants.jsx';
 import Wines from './v1/Wines.jsx';
@@ -11,6 +13,7 @@ import './styles/extra.css';
 // Version 1 layout (the one Melody and Miguel preferred), with the dishes
 // shown under the restaurant where they were born.
 export default function App() {
+  useEffect(() => startReveal(), []);
   return (
     <LightboxProvider>
       <Header />

@@ -10,10 +10,10 @@ export default function Wines() {
       <div className="head">
         <div><p className="label">Vinhos</p><h2 className="title">Lotes com a <em>sua assinatura</em></h2></div>
       </div>
-      <figure className="wines__all">
+      <div className="wines__top">
         <img src={WINES_INTRO.img} alt="Os vinhos de Miguel Castro e Silva" loading="lazy" />
-      </figure>
-      <blockquote className="wines__quote">“{WINES_INTRO.quote}”<cite>Miguel Castro e Silva</cite></blockquote>
+        <blockquote className="wines__quote">“{WINES_INTRO.quote}”<cite>Miguel Castro e Silva</cite></blockquote>
+      </div>
       <div className="wines__list">
         {WINES.map((w, i) => (
           <article className="wine" key={w.name}>

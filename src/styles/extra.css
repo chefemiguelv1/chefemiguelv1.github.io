@@ -88,3 +88,49 @@
 .wine__text { margin-top: .5rem; font-size: .85rem; line-height: 1.55; color: rgba(242,237,228,.7); }
 @media (max-width: 1100px) { .wines__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .wines__list { grid-template-columns: 1fr 1fr; } .wine__text { font-size: .8rem; } }
+
+/* ══ 06/11: simpler hero, compact wines, gallery strip, section entrances ══ */
+
+/* hero: only the photo and one line */
+.hero h1 { margin-top: 0; }
+
+/* section entrances: a short fade up, once */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* wines: photo beside the quote, smaller cards */
+.wines__top { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.wines__top img { width: 100%; height: auto; }
+.wines .wines__quote { margin: 0; text-align: left; font-size: clamp(1.1rem, .95rem + .6vw, 1.45rem); }
+.wines .wines__list { margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: 1.6rem; border-top: 1px solid var(--line-light); }
+.wine__img img { aspect-ratio: 1; }
+.wine h3 { font-size: 1rem; }
+.wine__text { font-size: .8rem; }
+@media (max-width: 860px) { .wines__top { grid-template-columns: 1fr; } }
+
+/* gallery: one strip, same height, no gaps */
+.gstrip { position: relative; }
+.gstrip__nav { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: 1rem; }
+.gstrip__nav button { width: 44px; height: 44px; border: 1px solid var(--line); background: none; font-size: 1.05rem; cursor: pointer; transition: background .25s, color .25s; }
+.gstrip__nav button:hover { background: var(--ink); color: var(--paper); }
+.gstrip__track { display: flex; gap: .75rem; overflow-x: auto; scrollbar-width: none; cursor: grab; margin: 0 calc(-1 * var(--gut)); padding: 0 var(--gut); scroll-padding: 0 var(--gut); }
+.gstrip__track::-webkit-scrollbar { display: none; }
+.gstrip__track.is-dragging { cursor: grabbing; }
+.gstrip__track.is-dragging * { pointer-events: none; }
+.gstrip__shot { flex: none; height: clamp(260px, 42vh, 440px); padding: 0; border: 0; background: var(--paper-2); overflow: hidden; cursor: zoom-in; }
+.gstrip__shot img { height: 100%; width: auto; max-width: none; transition: transform .8s; user-select: none; }
+.gstrip__shot:hover img { transform: scale(1.03); }
+.gallery .films { margin-top: clamp(2.5rem, 4vw, 3.5rem); }
+@media (max-width: 600px) { .gstrip__nav { display: none; } .gstrip__shot { height: 240px; } }
+.wine__img img { aspect-ratio: 3/2; }
+.wines .wines__list { margin-top: clamp(2rem, 3.5vw, 3rem); }
+.wines__top img { max-height: 380px; object-fit: contain; }
+/* gallery: smaller photos (4 or 5 in view) and films in one compact row */
+.gstrip__shot { height: clamp(200px, 28vh, 300px); }
+.gallery .films { display: flex; grid-template-columns: none; gap: .75rem; overflow-x: auto; scrollbar-width: none; margin: clamp(1.5rem, 3vw, 2.25rem) calc(-1 * var(--gut)) 0; padding: 0 var(--gut); }
+.gallery .films::-webkit-scrollbar { display: none; }
+.gallery .film { flex: none; width: clamp(220px, 22vw, 300px); }
+.gallery .film__img i { width: 48px; height: 48px; }
+.gallery .film__img svg { width: 16px; }
+.gallery .film__t { font-size: .82rem; }
+@media (max-width: 600px) { .gstrip__shot { height: 200px; } .gallery .film { width: 220px; } }
