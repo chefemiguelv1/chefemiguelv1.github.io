@@ -7,8 +7,6 @@ const Chevron = ({ w = 1.8 }) => (
 );
 const CURRENT = HOUSES.filter((h) => h.group === 'now');
 
-// pick a restaurant from the menus: the Restaurants section listens for this
-export const pickHouse = (id) => window.dispatchEvent(new CustomEvent('pick-house', { detail: id }));
 
 function Dropdown({ label, children }) {
   const [open, setOpen] = useState(false);
@@ -36,10 +34,10 @@ export default function Header() {
   const [lang, setLang] = useState('pt');
 
   useEffect(() => {
-    const hero = document.querySelector('.hero');
-    const onScroll = () => setSolid(scrollY > (hero ? hero.offsetHeight : 600) - 90);
-    addEventListener('scroll', onScroll, { passive: true }); onScroll();
-    return () => removeEventListener('scroll', onScroll);
+    // the page can change (home or a restaurant), so look for its hero each time
+    const onScroll = () => { const hero = document.querySelector('.hero'); setSolid(scrollY > (hero ? hero.offsetHeight : 600) - 90); };
+    addEventListener('scroll', onScroll, { passive: true }); addEventListener('hashchange', onScroll); onScroll();
+    return () => { removeEventListener('scroll', onScroll); removeEventListener('hashchange', onScroll); };
   }, []);
   useEffect(() => {
     document.body.classList.toggle('locked', menu);
@@ -63,7 +61,7 @@ export default function Header() {
           <nav className="bar__nav">
             <a href="#chef">O Chef</a>
             <Dropdown label="Restaurantes">
-              {CURRENT.map((h) => <a key={h.id} href="#restaurantes" onClick={() => pickHouse(h.id)}>{h.name}<small>{h.place}</small></a>)}
+              {CURRENT.map((h) => <a key={h.id} href={'#/' + h.id}>{h.name}<small>{h.place}</small></a>)}
             </Dropdown>
             <a href="#percurso">Percurso</a>
             <a href="#vinhos">Vinhos</a>
@@ -92,7 +90,7 @@ export default function Header() {
           <a href="#chef" onClick={close}>O Chef</a>
           <div className={'mnav__sub' + (sub === 'r' ? ' open' : '')}>
             <button type="button" onClick={() => setSub(sub === 'r' ? null : 'r')}>Restaurantes <Chevron w={1.6} /></button>
-            <div>{CURRENT.map((h) => <a key={h.id} href="#restaurantes" onClick={() => { pickHouse(h.id); close(); }}>{h.name}</a>)}</div>
+            <div>{CURRENT.map((h) => <a key={h.id} href={'#/' + h.id} onClick={close}>{h.name}</a>)}</div>
           </div>
           <a href="#percurso" onClick={close}>Percurso</a>
           <a href="#vinhos" onClick={close}>Vinhos</a>
