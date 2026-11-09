@@ -200,3 +200,12 @@
 .clips img { transition: transform .3s; }
 @media (max-width: 960px) { .prizes { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .prizes { grid-template-columns: 1fr; } .shelf figure img { max-width: 100%; } }
+
+/* Hero: Miguel a cozinhar no Casario. Foto vertical: no computador fica a direita, frase a esquerda */
+.hero { background: #16171a; }
+.hero__img { object-position: 50% 30%; }
+@media (min-width: 901px) {
+  .hero__img { left: auto; right: 0; width: 48%; object-position: 50% 30%; }
+  .hero::before { background: linear-gradient(to right, #16171a 52%, rgba(22,23,26,0) 64%); }
+  .hero h1 { max-width: 10ch; font-size: clamp(2.8rem, 5.6vw, 5.6rem); }
+}

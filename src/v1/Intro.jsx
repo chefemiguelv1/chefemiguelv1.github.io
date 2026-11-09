@@ -2,7 +2,7 @@
 export function Hero() {
   return (
     <section className="hero">
-      <img className="hero__img" src="assets/img/MCS_projetos-0x0.jpg" alt="Miguel Castro e Silva a empratar" />
+      <img className="hero__img" src="assets/img/hero_miguel_frigideira.jpg" alt="Miguel Castro e Silva a cozinhar na cozinha do Casario" />
       <h1>Cozinha portuguesa com alma.</h1>
     </section>
   );
