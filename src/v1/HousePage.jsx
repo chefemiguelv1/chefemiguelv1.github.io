@@ -31,21 +31,13 @@ export default function HousePage({ id }) {
 
   return (
     <article className="hp">
-      <section className="hp__top">
-        <div className="hp__lead">
-          <a className="hp__back" href="#restaurantes">← Restaurantes</a>
-          <p className="label">{KIND[h.group]}{h.years ? ' · ' + h.years : ''}</p>
-          <h1>{h.name}</h1>
-          <p className="hp__sub">{h.text}</p>
-          <div className="hp__btns">
-            <Book />
-            <button className="hpb" onClick={toDishes}>Ver pratos</button>
-          </div>
-          <p className="hp__where">{address || h.place}</p>
-        </div>
-        <div className="hp__pic">
-          <img className="hp__main" src={h.cover} alt={h.name} />
-          {sorted[0] && <img className="hp__plate" src={sorted[0].img} alt={sorted[0].name || h.name} />}
+      <section className="hero hp__hero">
+        <img className="hero__img" src={h.cover} alt={h.name} />
+        <p className="label">{KIND[h.group]} · {h.place}{h.years ? ' · ' + h.years : ''}</p>
+        <h1>{h.name}</h1>
+        <div className="hp__btns">
+          {h.link && <a className="hpb hpb--light" href={h.link} target="_blank" rel="noopener">{now ? 'Reservar mesa' : 'Visitar site'} ↗</a>}
+          <button className="hpb hpb--ghost" onClick={toDishes}>Ver pratos</button>
         </div>
       </section>
 
