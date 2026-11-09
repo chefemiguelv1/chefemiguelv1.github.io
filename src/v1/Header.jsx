@@ -35,7 +35,7 @@ export default function Header() {
 
   useEffect(() => {
     // the page can change (home or a restaurant), so look for its hero each time
-    const onScroll = () => { const hero = document.querySelector('.hero'); setSolid(scrollY > (hero ? hero.offsetHeight : 600) - 90); };
+    const onScroll = () => { const hero = document.querySelector('.hero'); setSolid(!hero || scrollY > hero.offsetHeight - 90); };
     addEventListener('scroll', onScroll, { passive: true }); addEventListener('hashchange', onScroll); onScroll();
     return () => { removeEventListener('scroll', onScroll); removeEventListener('hashchange', onScroll); };
   }, []);
