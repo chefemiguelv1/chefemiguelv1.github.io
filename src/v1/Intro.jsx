@@ -2,10 +2,7 @@
 export function Hero() {
   return (
     <section className="hero">
-      <div className="hero__img hero__duo">
-        <img src="assets/img/hero_miguel_frigideira.jpg" alt="Miguel Castro e Silva a cozinhar no Casario" />
-        <img src="assets/img/hero_miguel_jose_guedes.jpg" alt="Miguel Castro e Silva com o chefe José Guedes" />
-      </div>
+      <img className="hero__img" src="assets/img/hero_retrato_pb.jpg" alt="Miguel Castro e Silva" />
       <h1>Cozinha portuguesa com alma.</h1>
     </section>
   );
@@ -15,8 +12,8 @@ export function Chef() {
   return (
     <section className="chef" id="chef">
       <figure className="chef__photo">
-        <img src="assets/img/MCS_site_base_home_2560x1400_pb-1980x1083.jpg" alt="Miguel Castro e Silva" />
-        <figcaption>Miguel Castro e Silva, Porto</figcaption>
+        <img src="assets/img/hero_miguel_frigideira.jpg" alt="Miguel Castro e Silva a cozinhar no Casario" />
+        <figcaption>Na cozinha do Casario, Porto</figcaption>
       </figure>
       <div>
         <p className="label">O Chef</p>
