@@ -14,6 +14,7 @@ export const HOUSES = [
     text: 'Desde 2018, a quatro mãos com José Guedes.',
     cover: 'assets/img/restaurantes/casario.webp',
     link: 'https://www.grancruzhouse.pt/restaurant',
+    hero: 'assets/img/hero-casas/casario.webp',
     info: 'Praça da Ribeira, Viela do Buraco 19, Porto · +351 227 662 270',
     dishes: dishes('casario', [
       ['Casario_vieira_acafrao', 'Vieira, arroz de açafrão e limão, ovas avruga'],
@@ -36,6 +37,7 @@ export const HOUSES = [
     text: 'No Espaço Porto Cruz, desde 2012.',
     cover: 'assets/img/restaurantes/decastro-gaia.jpg',
     link: 'https://www.espacoportocruz.pt/espaco/restaurante-decastro-gaia',
+    hero: 'assets/img/hero-casas/gaia.jpg',
     info: 'Espaço Porto Cruz, Vila Nova de Gaia · +351 910 553 559',
     dishes: dishes('decastro-gaia', [
       ['de_castro_arroz_marisco', 'Arroz de marisco'],
@@ -63,6 +65,7 @@ export const HOUSES = [
     text: 'Ao balcão, no Mercado da Ribeira, desde 2014.',
     cover: 'assets/img/restaurantes/time-out-market.jpg',
     link: 'https://www.timeoutmarket.com/lisboa/',
+    hero: 'assets/img/hero-casas/tom.jpg',
     info: 'Mercado da Ribeira, loja 10, Av. 24 de Julho 49, Lisboa',
     dishes: dishes('time-out-market', [
       ['2025_MCS_Mercado_Bacalhau_bras_peq', 'Bacalhau à Brás, o clássico'],
@@ -93,6 +96,7 @@ export const HOUSES = [
     text: 'A cozinha da região, na Quinta de Ventozelo.',
     cover: 'assets/img/restaurantes/cantina-ventozelo.jpg',
     link: 'https://hotel.quintadeventozelo.pt/cantina',
+    hero: 'assets/img/hero-casas/ventozelo.webp',
     info: 'Quinta de Ventozelo, Ervedosa do Douro · +351 254 249 670',
     dishes: dishes('cantina-ventozelo', [
       ['Cantina_Ventozelo_Almoco_Alcatra-Barosa-Arroz-Tomate', 'Alcatra barrosã com arroz de tomate'],
