@@ -1,8 +1,9 @@
+import { srcset } from '../img.js';
 // Hero and the chef's biography.
 export function Hero() {
   return (
     <section className="hero">
-      <img className="hero__img" src="assets/img/hero_retrato_pb.jpg" alt="Miguel Castro e Silva" />
+      <img className="hero__img" src="assets/img/hero_retrato_pb.jpg" srcSet={srcset("assets/img/hero_retrato_pb.jpg", true)} sizes="100vw" fetchPriority="high" alt="Miguel Castro e Silva" />
       <h1>Cozinha portuguesa com alma.</h1>
     </section>
   );
@@ -12,7 +13,7 @@ export function Chef() {
   return (
     <section className="chef" id="chef">
       <figure className="chef__photo">
-        <img src="assets/img/hero_miguel_frigideira.jpg" alt="Miguel Castro e Silva a cozinhar no Casario" />
+        <img src="assets/img/hero_miguel_frigideira.jpg" srcSet={srcset("assets/img/hero_miguel_frigideira.jpg")} sizes="(max-width: 900px) 100vw, 45vw" loading="lazy" alt="Miguel Castro e Silva a cozinhar no Casario" />
         <figcaption>Na cozinha do Casario, Porto</figcaption>
       </figure>
       <div>

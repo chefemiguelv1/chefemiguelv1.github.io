@@ -1,3 +1,4 @@
+import { sm } from '../img.js';
 import { useState } from 'react';
 import { IG_FEED as F } from '../data/instagram.js';
 import { HOUSES } from '../data/houses.js';
@@ -21,7 +22,7 @@ export function Instagram() {
       <div className="head"><div><p className="label">Instagram</p><h2 className="title">Acompanhe a <em>cozinha</em></h2></div></div>
       <div className="igw">
         <div className="igw__top">
-          <a className="igw__pic" href={profile} {...out}><img src={F.avatar} alt="" /></a>
+          <a className="igw__pic" href={profile} aria-label="Instagram de Miguel Castro e Silva" {...out}><img src={sm(F.avatar)} alt="" width="150" height="150" /></a>
           <div className="igw__info">
             <a className="igw__user" href={profile} {...out}><span>{F.username}</span></a>
             <p className="igw__name">{F.name}</p>
@@ -45,7 +46,7 @@ export function Instagram() {
           <div className={'igw__grid' + (all ? '' : ' short')}>
             {items.map((p) => (
               <a key={p.img} href={p.url || profile} {...out} aria-label={p.alt + ', ver no Instagram'}>
-                <img src={p.img} alt="" loading="lazy" />{p.badge !== false && ICONS[p.type]}
+                <img src={sm(p.img)} alt="" loading="lazy" />{p.badge !== false && ICONS[p.type]}
               </a>
             ))}
           </div>
@@ -105,11 +106,11 @@ export function Footer() {
         <a className="sitefoot__word" href="#top">Miguel Castro e Silva</a>
       </div>
       <div className="sitefoot__cols">
-        <div><h4>Contactos</h4><p>Miguel Castro e Silva</p><p>Cozinheiro e consultor</p><a href="#contactos">Enviar mensagem</a></div>
-        <div><h4>Restaurantes</h4>{now.map((h) => <a key={h.id} href={"#/" + h.id}>{h.name}</a>)}</div>
-        <div><h4>O Chef</h4><a href="#chef">Biografia</a><a href="#percurso">Percurso</a><a href="#vinhos">Vinhos</a><a href="#livros">Livros</a><a href="#imprensa">Imprensa</a><a href="#galeria">Galeria</a></div>
-        <div><h4>Informação legal</h4><a href="privacidade.html">Política de privacidade</a><a href="cookies.html">Política de cookies</a><a href="termos.html">Termos de utilização</a><a href="termos.html#litigios">Resolução de litígios</a><a href="https://www.livroreclamacoes.pt" {...out}>Livro de Reclamações</a></div>
-        <div><h4>Seguir</h4><a href={INSTAGRAM} {...out}>Instagram</a></div>
+        <div><h3>Contactos</h3><p>Miguel Castro e Silva</p><p>Cozinheiro e consultor</p><a href="#contactos">Enviar mensagem</a></div>
+        <div><h3>Restaurantes</h3>{now.map((h) => <a key={h.id} href={"#/" + h.id}>{h.name}</a>)}</div>
+        <div><h3>O Chef</h3><a href="#chef">Biografia</a><a href="#percurso">Percurso</a><a href="#vinhos">Vinhos</a><a href="#livros">Livros</a><a href="#imprensa">Imprensa</a><a href="#galeria">Galeria</a></div>
+        <div><h3>Informação legal</h3><a href="privacidade.html">Política de privacidade</a><a href="cookies.html">Política de cookies</a><a href="termos.html">Termos de utilização</a><a href="termos.html#litigios">Resolução de litígios</a><a href="https://www.livroreclamacoes.pt" {...out}>Livro de Reclamações</a></div>
+        <div><h3>Seguir</h3><a href={INSTAGRAM} {...out}>Instagram</a></div>
       </div>
       <p className="sitefoot__copy">© 2026 Miguel Castro e Silva. Todos os direitos reservados.</p>
     </footer>

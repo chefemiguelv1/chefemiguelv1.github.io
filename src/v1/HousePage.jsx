@@ -1,3 +1,4 @@
+import { sm, srcset } from '../img.js';
 import { useState } from 'react';
 import { HOUSES } from '../data/houses.js';
 import { HOUSE_PAGES } from '../data/housePages.js';
@@ -34,7 +35,7 @@ export default function HousePage({ id }) {
   return (
     <article className="hp">
       <section className="hero hp__hero">
-        <img className="hero__img" src={h.hero || h.cover} alt={h.name} />
+        <img className="hero__img" src={h.hero || h.cover} srcSet={srcset(h.hero || h.cover, true)} sizes="100vw" fetchPriority="high" alt={h.name} />
         <p className="label">{KIND[h.group]} · {h.place}{h.years ? ' · ' + h.years : ''}</p>
         <h1>{h.name}</h1>
         <div className="hp__btns">
@@ -59,8 +60,10 @@ export default function HousePage({ id }) {
         <h2>Pratos</h2>
         <div className="hp__plates">
           {shown.map((d, i) => (
-            <figure key={d.img} onClick={() => open(plates, i)}>
-              <img src={d.img} alt={d.name || h.name} loading="lazy" />
+            <figure key={d.img}>
+              <button type="button" className="hp__zoom" onClick={() => open(plates, i)} aria-label={"Ampliar: " + (d.name || h.name)}>
+                <img src={sm(d.img)} alt="" loading="lazy" />
+              </button>
               {d.name && <figcaption>{d.name}</figcaption>}
             </figure>
           ))}
@@ -73,7 +76,7 @@ export default function HousePage({ id }) {
       </section>
 
       <section className="hp__story">
-        <img src={storyImg} alt={h.name} loading="lazy" onClick={() => spaces.length && open(spaces, 0)} />
+        <img src={storyImg} srcSet={srcset(storyImg)} sizes="(max-width: 960px) 100vw, 45vw" alt={h.name} loading="lazy" />
         <div>
           {p.lead && <h2>{p.lead}</h2>}
           {p.about.map((t) => <p key={t.slice(0, 24)}>{t}</p>)}
@@ -85,7 +88,11 @@ export default function HousePage({ id }) {
         <section className="hp__space">
           <h2>O espaço</h2>
           <div className="hp__strip">
-            {spaceShown.map((s, i) => <img key={s.img} src={s.img} alt={h.name} loading="lazy" onClick={() => open(spaces, i)} />)}
+            {spaceShown.map((s, i) => (
+              <button key={s.img} type="button" className="hp__zoom" onClick={() => open(spaces, i)} aria-label={"Ampliar foto " + (i + 1) + " de " + h.name}>
+                <img src={sm(s.img)} alt="" loading="lazy" />
+              </button>
+            ))}
           </div>
           {spaces.length > 3 && (
             <button className="hpb hp__all" onClick={() => setMoreSpace(!moreSpace)}>

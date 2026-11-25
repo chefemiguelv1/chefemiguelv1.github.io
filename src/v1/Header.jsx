@@ -73,7 +73,7 @@ export default function Header() {
             <a href="#contactos">Contactos</a>
           </nav>
           <Lang />
-          <button className="bar__burger" type="button" aria-expanded={menu} onClick={() => setMenu(true)}>
+          <button className="bar__burger" type="button" aria-label="Abrir menu" aria-expanded={menu} onClick={() => setMenu(true)}>
             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M0 1h20M0 7h20M0 13h20" /></svg><span>Menu</span>
           </button>
         </div>

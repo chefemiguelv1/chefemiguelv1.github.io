@@ -1,3 +1,4 @@
+import { sm } from '../img.js';
 import { HOUSES } from '../data/houses.js';
 import { COLLAB } from '../data/content.js';
 
@@ -5,7 +6,7 @@ import { COLLAB } from '../data/content.js';
 export default function Restaurants() {
   const Card = ({ h }) => (
     <a className={'house' + (h.group !== 'now' ? ' house--old' : '')} href={'#/' + h.id}>
-      <div className="house__img"><img src={h.cover} alt="" loading="lazy" /></div>
+      <div className="house__img"><img src={sm(h.cover)} alt="" loading="lazy" /></div>
       <h3>{h.name}</h3>
       <p>{h.place}{h.years ? ' · ' + h.years : ''}</p>
       <small>{h.text}</small>

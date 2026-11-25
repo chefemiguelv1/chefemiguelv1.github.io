@@ -1,3 +1,4 @@
+import { sm } from '../img.js';
 import { useEffect, useRef, useState } from 'react';
 import { TIMELINE, BOOKS, AWARDS, CLIPS } from '../data/content.js';
 import { GALLERY, FILMS } from '../data/gallery.js';
@@ -16,7 +17,7 @@ export function Path() {
       <div className="head"><div><p className="label">Percurso</p><h2 className="title">Do Porto para o <em>mundo</em></h2></div></div>
       <ul className={'path__list' + (open ? '' : ' is-short')}>
         {list.map((s) => (
-          <li key={s.y + s.t}><b>{s.y}</b><h3>{s.t}<small>{s.where}</small></h3><p>{s.p}</p>{s.img ? <img src={s.img} alt="" loading="lazy" /> : <span />}</li>
+          <li key={s.y + s.t}><b>{s.y}</b><h3>{s.t}<small>{s.where}</small></h3><p>{s.p}</p>{s.img ? <img src={sm(s.img)} alt="" loading="lazy" /> : <span />}</li>
         ))}
       </ul>
       <div className="path__more">
@@ -36,7 +37,7 @@ export function Books() {
       <div className="shelf">
         {BOOKS.map((b) => (
           <figure id={b.id} key={b.id}>
-            <img src={b.img} alt={b.title} />
+            <img src={sm(b.img)} alt={b.title} loading="lazy" />
             <p className="y">{b.year}</p><h3>{b.title}</h3><p className="shelf__note">{b.note}</p>
             <a className="shelf__buy" href={b.buy} target="_blank" rel="noopener">Onde encontrar ↗</a>
           </figure>
@@ -60,7 +61,7 @@ export function Press() {
       <h3 className="press__sub">Na imprensa</h3>
       <div className="clips">
         {clips.map((c) => (
-          <a key={c.name} href={c.url} target="_blank" rel="noopener"><figure><img src={c.img} alt={'Artigo: ' + c.name} loading="lazy" /><figcaption>{c.name}<span>Ler artigo ↗</span></figcaption></figure></a>
+          <a key={c.name} href={c.url} target="_blank" rel="noopener"><figure><img src={sm(c.img)} alt={'Artigo: ' + c.name} loading="lazy" /><figcaption>{c.name}<span>Ler artigo ↗</span></figcaption></figure></a>
         ))}
       </div>
       <div className="path__more">
@@ -114,7 +115,7 @@ export function Gallery() {
           <div className="gstrip__track" ref={strip} onPointerDown={down} onPointerMove={over} onPointerUp={up} onPointerLeave={up}>
             {photos.map((g, i) => (
               <button type="button" key={g.img} className="gstrip__shot" onClick={() => click(i)} aria-label={g.cap}>
-                <img src={g.img} alt="" loading="lazy" draggable="false" />
+                <img src={sm(g.img)} alt="" loading="lazy" draggable="false" />
               </button>
             ))}
           </div>
@@ -124,7 +125,7 @@ export function Gallery() {
         <div className="films">
           {films.map((v) => (
             <button key={v.id} type="button" className="film" onClick={() => open([{ video: v.id, title: v.title }], 0)}>
-              <span className="film__img"><img src={v.thumb} alt="" loading="lazy" /><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></i></span>
+              <span className="film__img"><img src={sm(v.thumb)} alt="" loading="lazy" /><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></i></span>
               <span className="film__t">{v.title}</span>
             </button>
           ))}

@@ -46,7 +46,7 @@
 .sitefoot__word { font: 700 clamp(1.15rem, .9rem + .7vw, 1.5rem)/1 var(--sans); letter-spacing: -.03em; white-space: nowrap; }
 .sitefoot__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, .7fr); gap: 2.5rem 2rem; }
 .sitefoot__cols > div { display: grid; gap: .55rem; align-content: start; }
-.sitefoot__cols h4 { margin: 0 0 .5rem; font: 600 1rem/1.3 var(--sans); }
+.sitefoot__cols h3 { margin: 0 0 .5rem; font: 600 1rem/1.3 var(--sans); }
 .sitefoot__cols p, .sitefoot__cols a { font-size: .875rem; line-height: 1.5; color: #3b3530; }
 .sitefoot__cols a { text-decoration: underline; text-underline-offset: 3px; }
 .sitefoot__cols a:hover { color: var(--wine); }
@@ -285,3 +285,15 @@
   .hp__strip { grid-template-columns: 1fr 1fr; }
   .hpb { flex: 1; padding: .9rem 1rem; }
 }
+
+/* Melhorias gerais: teclado, toque e titulos */
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.hero :focus-visible, .projects :focus-visible, .wines :focus-visible { outline-color: #fff; }
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+[id] { scroll-margin-top: 80px; }
+.hp__zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.hp__plates .hp__zoom img { transition: transform .4s; }
+.hp__plates .hp__zoom:hover img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; } }
