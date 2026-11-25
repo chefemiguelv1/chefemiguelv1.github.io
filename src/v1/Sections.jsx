@@ -59,7 +59,7 @@ export function Press() {
         {awards.map((a) => <li key={a.y + a.t}><b>{a.y}</b><span>{a.t}</span><small>{a.s}</small></li>)}
       </ul>
       <h3 className="press__sub">Na imprensa</h3>
-      <div className="clips">
+      <div className={'clips' + (all ? ' clips--all' : '')}>
         {clips.map((c) => (
           <a key={c.name} href={c.url} target="_blank" rel="noopener"><figure><img src={sm(c.img)} alt={'Artigo: ' + c.name} loading="lazy" /><figcaption>{c.name}<span>Ler artigo ↗</span></figcaption></figure></a>
         ))}
@@ -102,16 +102,20 @@ export function Gallery() {
     <section className="gallery" id="galeria">
       <div className="head">
         <div><p className="label">Galeria</p><h2 className="title">Pratos, espaços <em>e momentos</em></h2></div>
+      </div>
+      <div className="gbar">
         <div className="tabs">
           {TABS.map(([k, t]) => <button key={k} type="button" className={f === k ? 'on' : ''} onClick={() => setF(k)}>{t}</button>)}
         </div>
-      </div>
-      {photos.length > 0 && (
-        <div className="gstrip">
+        {photos.length > 0 && (
           <div className="gstrip__nav">
             <button type="button" aria-label="Anterior" onClick={() => move(-1)}>←</button>
             <button type="button" aria-label="Seguinte" onClick={() => move(1)}>→</button>
           </div>
+        )}
+      </div>
+      {photos.length > 0 && (
+        <div className="gstrip">
           <div className="gstrip__track" ref={strip} onPointerDown={down} onPointerMove={over} onPointerUp={up} onPointerLeave={up}>
             {photos.map((g, i) => (
               <button type="button" key={g.img} className="gstrip__shot" onClick={() => click(i)} aria-label={g.cap}>
