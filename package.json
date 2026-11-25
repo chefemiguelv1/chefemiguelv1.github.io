@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist --nojekyll -m \"Publicar site\""
+    "deploy": "vite build && gh-pages -d dist --add --nojekyll -m \"Publicar site\""
   },
   "dependencies": {
     "react": "^19.3.1",
